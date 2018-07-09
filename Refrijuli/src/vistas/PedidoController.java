@@ -1,30 +1,31 @@
-
 package vistas;
 
 import java.net.URL;
-import java.util.Date;
-import java.util.Optional;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import modelos.Cliente;
 import modelos.Conexion;
+import modelos.Estado;
 import modelos.Pedido;
-
 
 public class PedidoController implements Initializable {
 
-  
-     @FXML
+    @FXML
     private TextField txtIdPedido;
     @FXML
     private DatePicker dapickeFechaEntrega;
@@ -63,8 +64,7 @@ public class PedidoController implements Initializable {
     @FXML
     private TableColumn<Pedido, Cliente> clmnIdCliente;
     @FXML
-    private TableColumn<Pedido, Number> clmnIdEstado;
-
+    private TableColumn<Pedido, Estado> clmnIdEstado;
 
     @FXML
     public void limpiarCamposPedido() {
@@ -75,7 +75,7 @@ public class PedidoController implements Initializable {
         txtHoraEntrega.setText("");
         cmbIdCliente.setValue(null);
         cmbIdEstado.setValue(null);
-        btnGuardar.setDisable(false);   
+        btnGuardar.setDisable(false);
         btnActualizar.setDisable(true);
         btnEliminar.setDisable(true);
 
@@ -83,7 +83,10 @@ public class PedidoController implements Initializable {
 
     private Conexion conexion; //INSTANCIANDO LA CLASE CONEXION
     private ObservableList<Pedido> listaPedido;
+    private ObservableList<Cliente> listaCliente;
+    private ObservableList<Estado> listaEstado;
 
+// METODO AGREGAR
     @FXML
     public void agregarPedido() {
         Pedido pedido = new Pedido(
@@ -91,10 +94,9 @@ public class PedidoController implements Initializable {
                 Date.valueOf(dapickeFechaEntrega.getValue()),
                 Date.valueOf(dapickeFechaPedido.getValue()),
                 txtDireccionEntrega.getText(),
-                Integer.valueOf(txtHoraEntrega.getText()),
+                Time.valueOf(txtHoraEntrega.getText()),
                 cmbIdCliente.getSelectionModel().getSelectedItem(),
                 cmbIdEstado.getSelectionModel().getSelectedItem()
-          
         );
 
         conexion.establecerConexion();
@@ -115,10 +117,9 @@ public class PedidoController implements Initializable {
                 Date.valueOf(dapickeFechaEntrega.getValue()),
                 Date.valueOf(dapickeFechaPedido.getValue()),
                 txtDireccionEntrega.getText(),
-                Integer.valueOf(txtHoraEntrega.getText()),
-                Integer.valueOf(txtIdCliente.getText()),
-                Integer.valueOf(txtIdEstado.getText())
-    
+                Time.valueOf(txtHoraEntrega.getText()),
+                cmbIdCliente.getSelectionModel().getSelectedItem(),
+                cmbIdEstado.getSelectionModel().getSelectedItem()
         );
 
         conexion.establecerConexion();
@@ -138,35 +139,86 @@ public class PedidoController implements Initializable {
 
     @FXML
     public void eliminarPedido() {
-        Alert cuadroDialogoConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        cuadroDialogoConfirmacion.setTitle("Confirmacion");
-        cuadroDialogoConfirmacion.setHeaderText("Eliminar Registro");
-        cuadroDialogoConfirmacion.setContentText("¿Está Seguro de Eliminar el Registro?");
-        Optional<ButtonType> resultado = cuadroDialogoConfirmacion.showAndWait();
-        if (resultado.get() == ButtonType.OK) {
-            Pedido pedido = new Pedido();
-            pedido.setIdPedido(Integer.valueOf(txtIdPedido.getText()));
-            conexion.establecerConexion();
-            int r = pedido.eliminarPedido(conexion);
-            conexion.cerrarConexion();
+        conexion.establecerConexion();
+        int resultado = tblViewPedido.getSelectionModel().getSelectedItem()
+                .eliminarPedido(conexion.getConnection());
+        conexion.cerrarConexion();
 
-            if (r == 1) {
-                listaPedido.remove(tblViewPedido.getSelectionModel().getSelectedIndex());
-                Alert cuadroDialogo = new Alert(Alert.AlertType.INFORMATION);
-                cuadroDialogo.setContentText("Registro Eliminado con Éxito");
-                cuadroDialogo.setTitle("Registro Eliminado");
-                cuadroDialogo.setHeaderText("Resultado: ");
-                cuadroDialogo.showAndWait();
-            }
+        if (resultado == 1) {
+
+            listaPedido.remove(tblViewPedido.getSelectionModel().getSelectedIndex());
+
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("Registro Eliminado");
+            mensaje.setContentText("Registro ha sido eliminado con exito");
+            mensaje.setHeaderText("Resultado:");
+            mensaje.show();
 
         }
 
     }
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
-    }    
-    
+        conexion = new Conexion();
+        conexion.establecerConexion();
+
+// INICIALIZAR
+        listaPedido = FXCollections.observableArrayList();
+        listaCliente = FXCollections.observableArrayList();
+        listaEstado = FXCollections.observableArrayList();
+
+// LLENAR LISTAS
+        Pedido.llenarInformacionPedido(conexion.getConnection(), listaPedido);
+        Cliente.llenarInformacionCliente(conexion.getConnection(), listaCliente);
+        Estado.llenarInformacionEstado(conexion.getConnection(), listaEstado);
+
+// ENLAZAR LISTAS CON COMBOBOX Y TABLEVIEWS
+        cmbIdCliente.setItems(listaCliente);
+        cmbIdEstado.setItems(listaEstado);
+
+// ENLAZAR COLUMNAS CON ATRIBUTOS
+        clmnIdPedido.setCellValueFactory(new PropertyValueFactory<Pedido, Number>("idPedido"));
+        clmnFechaEntrega.setCellValueFactory(new PropertyValueFactory<Pedido, Date>("fechaEntrega"));
+        clmnFechaPedido.setCellValueFactory(new PropertyValueFactory<Pedido, Date>("fechaPedido"));
+        clmnDireccionEntrega.setCellValueFactory(new PropertyValueFactory<Pedido, String>("direccionEntrega"));
+        clmnHoraEntrega.setCellValueFactory(new PropertyValueFactory<Pedido, Number>("horaEntrega"));
+
+// ENLAZAR COLUMNAS CON ATRIBUTOS COMBOBOX
+        clmnIdCliente.setCellValueFactory(new PropertyValueFactory<Pedido, Cliente>("idCliente"));
+        clmnIdEstado.setCellValueFactory(new PropertyValueFactory<Pedido, Estado>("idEstado"));
+
+// TABLE VIEWS
+        tblViewPedido.setItems(listaPedido);
+        gestionarEventos();
+        conexion.cerrarConexion();
+
+    }
+
+    public void gestionarEventos() {
+        tblViewPedido.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Pedido>() {
+            @Override
+            public void changed(ObservableValue<? extends Pedido> observable, Pedido valorAnterior,
+                    Pedido valorSeleccionado) {
+                if (valorSeleccionado != null) {
+                    txtIdPedido.setText(String.valueOf(valorSeleccionado.getIdPedido()));
+                    dapickeFechaEntrega.setValue(valorSeleccionado.getFechaEntrega().toLocalDate());
+                    dapickeFechaPedido.setValue(valorSeleccionado.getFechaPedido().toLocalDate());
+                    txtdescripcion.setText(valorSeleccionado.getDescripcion());
+                    txttotal.setText(String.valueOf(valorSeleccionado.getTotal()));
+                    //loscombobox
+                    cmbIdCliente.setValue(valorSeleccionado.getCliente());
+                    cmbUsuario.setValue(valorSeleccionado.getUsuario());
+                    cmbEstadoPedido.setValue(valorSeleccionado.getEstadoPedido());
+                    cmbMunicipio.setValue(valorSeleccionado.getMunicipio());
+
+                    btnGuardar.setDisable(true);
+                    btnEliminar.setDisable(false);
+                    btnActualizar.setDisable(false);
+                }
+            }
+        }
+        );
+    }
+
 }
