@@ -66,6 +66,7 @@ public class PedidoController implements Initializable {
     @FXML
     private TableColumn<Pedido, Estado> clmnIdEstado;
 
+// METODO LIMPIAR CAMPOS
     @FXML
     public void limpiarCamposPedido() {
 
@@ -109,7 +110,8 @@ public class PedidoController implements Initializable {
         }
 
     }
-
+    
+// METODO ACTUALIZAR
     @FXML
     public void actualizarPedido() {
         Pedido pedido = new Pedido(

@@ -43,8 +43,8 @@ public class CategoriaController implements Initializable {
     @FXML
     private TableColumn<Categoria, String> clmnDescripcion;
 
+// METODO LIMPIAR CAMPOS   
     @FXML
-    //metodo limpiar campos
     public void limpiarCamposCategoria() {
 
         txtIdCategoria.requestFocus();
