@@ -36,9 +36,9 @@ public class PedidoController implements Initializable {
     @FXML
     private TextField txtHoraEntrega;
     @FXML
-    private ComboBox cmbIdCliente;
+    private ComboBox<Cliente> cmbIdCliente;
     @FXML
-    private ComboBox cmbIdEstado;
+    private ComboBox<Estado> cmbIdEstado;
     @FXML
     private Button btnNuevo;
     @FXML
