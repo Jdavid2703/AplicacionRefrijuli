@@ -248,13 +248,13 @@ public class Insumo {
             ps.setString(2, nombre.get());
             ps.setString(3, descripcion.get());
             ps.setInt(4, cantidad.get());
-            ps.setInt(6, idCategoria.getIdCategoria());
-            ps.setInt(7, stockMin.get());
-            ps.setInt(8, stockMax.get());
-            ps.setInt(9, idPresentacion.getIdPresentacion());
-            ps.setInt(10, idUnidad.getIdUnidad());
-            ps.setInt(11, precioUnitario.get());
-            ps.setInt(12, disponibilidad.get());
+            ps.setInt(5, idCategoria.getIdCategoria());
+            ps.setInt(6, stockMin.get());
+            ps.setInt(7, stockMax.get());
+            ps.setInt(8, idPresentacion.getIdPresentacion());
+            ps.setInt(9, idUnidad.getIdUnidad());
+            ps.setInt(10, precioUnitario.get());
+            ps.setInt(11, disponibilidad.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
