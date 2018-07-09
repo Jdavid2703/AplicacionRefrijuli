@@ -45,7 +45,7 @@ public class CategoriaController implements Initializable {
 
     @FXML
     //metodo limpiar campos
-    public void limpiarCamposNuevoRegistro() {
+    public void limpiarCamposCategoria() {
 
         txtIdCategoria.requestFocus();
         txtIdCategoria.setText("");
