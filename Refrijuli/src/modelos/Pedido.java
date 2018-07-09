@@ -253,7 +253,7 @@ public class Pedido {
         }
     }
 
-//METODO ELIMINAR
+//METODO ELIMINAR 
     public int eliminarPedido(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(

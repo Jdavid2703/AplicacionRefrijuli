@@ -16,6 +16,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import modelos.Cliente;
+import modelos.Conexion;
 import modelos.Pedido;
 
 
@@ -33,9 +35,9 @@ public class PedidoController implements Initializable {
     @FXML
     private TextField txtHoraEntrega;
     @FXML
-    private TextField txtIdCliente;
+    private ComboBox cmbIdCliente;
     @FXML
-    private TextField txtIdEstado;
+    private ComboBox cmbIdEstado;
     @FXML
     private Button btnNuevo;
     @FXML
@@ -45,7 +47,7 @@ public class PedidoController implements Initializable {
     @FXML
     private Button btnGuardar;
 
-    //TABLAS Y COLUMNAS
+//TABLAS Y COLUMNAS
     @FXML
     private TableView<Pedido> tblViewPedido;
     @FXML
@@ -59,8 +61,6 @@ public class PedidoController implements Initializable {
     @FXML
     private TableColumn<Pedido, Number> clmnHoraEntrega;
     @FXML
-    private TableColumn<Pedido, Number> clmnTotalMonto;
-    @FXML
     private TableColumn<Pedido, Cliente> clmnIdCliente;
     @FXML
     private TableColumn<Pedido, Number> clmnIdEstado;
@@ -73,8 +73,8 @@ public class PedidoController implements Initializable {
         txtIdPedido.setText("");
         txtDireccionEntrega.setText("");
         txtHoraEntrega.setText("");
-        txtIdCliente.setText("");
-        txtIdEstado.setText("");
+        cmbIdCliente.setValue(null);
+        cmbIdEstado.setValue(null);
         btnGuardar.setDisable(false);   
         btnActualizar.setDisable(true);
         btnEliminar.setDisable(true);
@@ -92,8 +92,8 @@ public class PedidoController implements Initializable {
                 Date.valueOf(dapickeFechaPedido.getValue()),
                 txtDireccionEntrega.getText(),
                 Integer.valueOf(txtHoraEntrega.getText()),
-                Integer.valueOf(txtIdCliente.getText()),
-                Integer.valueOf(txtIdEstado.getText())
+                cmbIdCliente.getSelectionModel().getSelectedItem(),
+                cmbIdEstado.getSelectionModel().getSelectedItem()
           
         );
 
