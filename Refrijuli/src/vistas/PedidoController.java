@@ -173,7 +173,7 @@ public class PedidoController implements Initializable {
         Cliente.llenarInformacionCliente(conexion.getConnection(), listaCliente);
         Estado.llenarInformacionEstado(conexion.getConnection(), listaEstado);
 
-// ENLAZAR LISTAS CON COMBOBOX Y TABLEVIEWS
+// ENLAZAR LISTAS CON COMBOBOX
         cmbIdCliente.setItems(listaCliente);
         cmbIdEstado.setItems(listaEstado);
 
@@ -204,13 +204,11 @@ public class PedidoController implements Initializable {
                     txtIdPedido.setText(String.valueOf(valorSeleccionado.getIdPedido()));
                     dapickeFechaEntrega.setValue(valorSeleccionado.getFechaEntrega().toLocalDate());
                     dapickeFechaPedido.setValue(valorSeleccionado.getFechaPedido().toLocalDate());
-                    txtdescripcion.setText(valorSeleccionado.getDescripcion());
-                    txttotal.setText(String.valueOf(valorSeleccionado.getTotal()));
-                    //loscombobox
-                    cmbIdCliente.setValue(valorSeleccionado.getCliente());
-                    cmbUsuario.setValue(valorSeleccionado.getUsuario());
-                    cmbEstadoPedido.setValue(valorSeleccionado.getEstadoPedido());
-                    cmbMunicipio.setValue(valorSeleccionado.getMunicipio());
+                    txtDireccionEntrega.setText(valorSeleccionado.getDireccionEntrega());
+                    txtHoraEntrega.setText(String.valueOf(valorSeleccionado.getHoraEntrega()));
+                    //LOS COMBOBOX
+                    cmbIdCliente.setValue(valorSeleccionado.getIdCliente());
+                    cmbIdEstado.setValue(valorSeleccionado.getIdEstado());
 
                     btnGuardar.setDisable(true);
                     btnEliminar.setDisable(false);
