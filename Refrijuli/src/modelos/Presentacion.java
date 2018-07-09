@@ -12,9 +12,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
 
-public class Presentacion implements Initializable {
+
+public class Presentacion  {
 
     private IntegerProperty idPresentacion;
     private StringProperty descripcion;
@@ -123,9 +123,5 @@ public class Presentacion implements Initializable {
             return 0;
         }
     }
-     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        conexion = new Conexion();
-        conexion.establecerConexion();
-    }
+    
 }

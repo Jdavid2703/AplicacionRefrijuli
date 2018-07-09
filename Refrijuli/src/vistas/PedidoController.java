@@ -141,7 +141,7 @@ public class PedidoController implements Initializable {
     public void eliminarPedido() {
         conexion.establecerConexion();
         int resultado = tblViewPedido.getSelectionModel().getSelectedItem()
-                .eliminarPedido(conexion.getConnection());
+                .eliminarPedido((Conexion) conexion.getConnection());
         conexion.cerrarConexion();
 
         if (resultado == 1) {
@@ -220,3 +220,4 @@ public class PedidoController implements Initializable {
     }
 
 }
+
