@@ -163,7 +163,7 @@ public class Pedido {
                                 resultado.getDate("fechaEntrega"),
                                 resultado.getDate("fechaPedido"),
                                 resultado.getString("direccionEntrega"),
-                                resultado.getDate("horaEntrega"),
+                                resultado.getTime("horaEntrega"),
                                 new Cliente(
                                         resultado.getInt("idCliente"),
                                         resultado.getString("primerNombre"),
@@ -173,7 +173,11 @@ public class Pedido {
                                         new TipoDocumento(
                                                 resultado.getInt("idTipoDocumento"),
                                                 resultado.getString("nombreTipoDocumento")),
-                                        resultado.getInt("numeroDocumento"),                                        
+                                        new Estado(
+                                                resultado.getInt("idEstado"),
+                                                resultado.getString("nombreEstado"),
+                                                resultado.getString("Descripcion")),
+                                        
                                         resultado.getString("direccion"),
                                         resultado.getInt("telefono"),
                                         resultado.getInt("celular")),

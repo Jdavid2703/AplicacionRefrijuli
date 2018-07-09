@@ -16,11 +16,14 @@ public class TipoDocumento {
     private IntegerProperty idTipoDocumento;
     private StringProperty nombreTipoDocumento;
 
-    public TipoDocumento(Integer idTipoDocumento, String nombreTipoDocumento) {
+    public TipoDocumento(
+            Integer idTipoDocumento,
+            String nombreTipoDocumento) {
         this.idTipoDocumento = new SimpleIntegerProperty(idTipoDocumento);
         this.nombreTipoDocumento = new SimpleStringProperty(nombreTipoDocumento);
     }
 
+//GET Y SET ID TIPO DOCUMENTO
     public Integer getIdTipoDocumento() {
         return idTipoDocumento.get();
     }
@@ -33,6 +36,7 @@ public class TipoDocumento {
         return idTipoDocumento;
     }
 
+//GET Y SET NOMBRE TIPO DOCUMENTO
     public String getNombreTipoDocumento() {
         return nombreTipoDocumento.get();
     }
@@ -45,6 +49,8 @@ public class TipoDocumento {
         return nombreTipoDocumento;
     }
 
+    
+//METODO LLENAR INFORMACIÓN
     public static void llenarInformacionTipoDocumento(Connection connection, 
                             ObservableList<TipoDocumento> listaTipoDocumento) {
         try {
@@ -68,11 +74,13 @@ public class TipoDocumento {
             e.printStackTrace();
         }
     }
-    //METODO GUARDAR
+    
+//METODO GUARDAR TIPO DOCUMENTO
     public int guardarTipoDocumento(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "INSERT INTO  TipoDocumento ( "
+                    + "idTipoDocumento, "
                     + "nombreTipoDocumento, "
                     + ") VALUES (?, ?)"
             );
@@ -86,7 +94,7 @@ public class TipoDocumento {
         }
     }
         
-        //METODO ACTUALIZAR
+//METODO ACTUALIZAR TIPO DOCUMENTO
 
     public int actualizarTipoDocumento(Conexion conexion){
         try {
@@ -107,7 +115,8 @@ public class TipoDocumento {
         }
     }
 
-    //METODO ELIMINAR
+
+//METODO ELIMINAR TIPO DOCUMENTO
     public int eliminarTipoDocumento(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
