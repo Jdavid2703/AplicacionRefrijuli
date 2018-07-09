@@ -176,8 +176,7 @@ public class Insumo {
                                 new Presentacion(resultado.getInt("idPresentacion"),
                                         resultado.getString("descripcion")),
                                 new Unidad(resultado.getInt("idUnidad"),
-                                        resultado.getString("tipoUnidad"),
-                                        resultado.getInt("cantidad")),
+                                        resultado.getString("tipoUnidad")),
                                 resultado.getInt("precioUnitario"),
                                 resultado.getInt("disponibilidad")
                         )

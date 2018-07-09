@@ -217,12 +217,12 @@ public class InsumoController implements Initializable {
         clmnStockMax.setCellValueFactory(new PropertyValueFactory<Insumo, Number>("stockMax"));
         clmnPrecioUnitario.setCellValueFactory(new PropertyValueFactory<Insumo, Number>("precioUnitario"));
         clmnDisponibilidad.setCellValueFactory(new PropertyValueFactory<Insumo, Number>("disponibilidad"));
-        
+
 // ENLAZAR COLUMNAS CON ATRIBUTOS COMBOBOX
         clmnIdCategoria.setCellValueFactory(new PropertyValueFactory<Insumo, Categoria>("idCategoria"));
         clmnIdPresentacion.setCellValueFactory(new PropertyValueFactory<Insumo, Presentacion>("idPresentacion"));
         clmnIdUnidad.setCellValueFactory(new PropertyValueFactory<Insumo, Unidad>("idUnidad"));
-        
+
 // TABLE VIEWS
         tblViewInsumo.setItems(listaInsumo);
         gestionarEventos();
@@ -238,7 +238,12 @@ public class InsumoController implements Initializable {
                 if (valorSeleccionado != null) {
                     txtIdInsumo.setText(String.valueOf(valorSeleccionado.getIdInsumo()));
                     txtNombre.setText(String.valueOf(valorSeleccionado.getNombre()));
-                    txtDescripcion.setText(valorSeleccionado.getDescripcion());                
+                    txtDescripcion.setText(String.valueOf(valorSeleccionado.getDescripcion()));
+                    txtCantidad.setText(String.valueOf(valorSeleccionado.getCantidad()));
+                    txtStockMin.setText(String.valueOf(valorSeleccionado.getStockMin()));
+                    txtStockMax.setText(String.valueOf(valorSeleccionado.getStockMax()));
+                    txtPrecioUnitario.setText(String.valueOf(valorSeleccionado.getPrecioUnitario()));
+                    txtDisponibilidad.setText(String.valueOf(valorSeleccionado.getDisponibilidad()));
                     //LOS COMBOBOX
                     cmbIdCategoria.setValue(valorSeleccionado.getIdCategoria());
                     cmbIdPresentacion.setValue(valorSeleccionado.getIdPresentacion());
