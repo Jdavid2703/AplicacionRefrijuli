@@ -1,8 +1,11 @@
 package vistas;
 
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -13,7 +16,7 @@ import javafx.scene.control.TextField;
 import modelos.Conexion;
 import modelos.Presentacion;
 
-public class PresentacionController {
+public class PresentacionController implements Initializable {
 
     @FXML
     private TextField txtIdPresentacion;
@@ -99,6 +102,10 @@ public class PresentacionController {
         }
 
     }
-
+ @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        conexion = new Conexion();
+        conexion.establecerConexion();
+    }
 }
 
