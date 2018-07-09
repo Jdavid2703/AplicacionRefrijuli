@@ -166,7 +166,6 @@ public class Pedido {
                                         new TipoDocumento(
                                                 resultado.getInt("idTipoDocumento"),
                                                 resultado.getString("nombreTipoDocumento")),
-                                        resultado.getInt("numeroDocumento"),
                                         new Estado(
                                                 resultado.getInt("idEstado"),
                                                 resultado.getString("nombreEstado"),
