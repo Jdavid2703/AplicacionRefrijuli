@@ -23,7 +23,7 @@ public class Categoria {
         this.descripcion = new SimpleStringProperty(descripcion);
     }
 
-    //get y set categoria
+//GET Y SET ID CATEGORIA
     public Categoria() {
     }
 
@@ -39,6 +39,7 @@ public class Categoria {
         return idCategoria;
     }
 
+//GET Y SET NOMBRE 
     public String getNombre() {
         return nombre.get();
     }
@@ -51,6 +52,7 @@ public class Categoria {
         return nombre;
     }
 
+//GET Y SET DESCRIPCION 
     public String getDescripcion() {
         return descripcion.get();
     }
@@ -63,7 +65,7 @@ public class Categoria {
         return descripcion;
     }
 
-    //Llenar informacion categoria
+//METODO LLENAR INFORMACIÓN
     public static void llenarInformacionCategoria(Connection connection,
             ObservableList<Categoria> listaCategoria) {
         try {
@@ -88,7 +90,7 @@ public class Categoria {
         }
     }
 
-    //METODO GUARDAR CATEGORIA
+//METODO GUARDAR 
     public int guardarCategoria(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
@@ -109,7 +111,7 @@ public class Categoria {
         }
     }
 
-    //Metodo actualizar categoria
+// METODO ACTUALIZAR
     public int actualizarCategoria(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
@@ -131,7 +133,7 @@ public class Categoria {
         }
     }
 
-    //Metodo eliminar categoria
+//METODO ELIMINAR
     public int eliminarCategoria(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
