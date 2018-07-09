@@ -1,4 +1,4 @@
-package views;
+package vistas;
 
 
 import java.net.URL;
@@ -16,11 +16,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-import model.Categoria;
-import model.Conexion;
-import model.Insumo;
-import model.Presentacion;
-import model.Unidad;
+import modelos.Categoria;
+import modelos.Conexion;
+import modelos.Insumo;
+import modelos.Presentacion;
+import modelos.Unidad;
 
 
 public class InsumoController implements Initializable {
