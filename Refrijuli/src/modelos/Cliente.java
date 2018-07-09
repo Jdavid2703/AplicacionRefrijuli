@@ -22,7 +22,7 @@ import javafx.collections.ObservableList;
  * @author JEISONANDRES
  */
 public class Cliente {
-    
+
     private IntegerProperty idCliente;
     private StringProperty primerNombre;
     private StringProperty segundoNombre;
@@ -34,19 +34,19 @@ public class Cliente {
     private StringProperty direccion;
     private IntegerProperty telefono;
     private IntegerProperty celular;
-    
-     public Cliente(
-     Integer idCliente,
-     String primerNombre,
-     String segundoNombre,
-     String primerApellido,
-     String segundoApellido,
-     TipoDocumento idTipoDocumento,
-     Integer numeroDocumento,
-     Estado idEstado,
-     String direccion,
-     Integer telefono,
-     Integer celular) {
+
+    public Cliente(
+            Integer idCliente,
+            String primerNombre,
+            String segundoNombre,
+            String primerApellido,
+            String segundoApellido,
+            TipoDocumento idTipoDocumento,
+            Integer numeroDocumento,
+            Estado idEstado,
+            String direccion,
+            Integer telefono,
+            Integer celular) {
         this.idCliente = new SimpleIntegerProperty(idCliente);
         this.primerNombre = new SimpleStringProperty(primerNombre);
         this.segundoNombre = new SimpleStringProperty(segundoNombre);
@@ -60,8 +60,8 @@ public class Cliente {
         this.celular = new SimpleIntegerProperty(celular);
 
     }
-    
-     //GET Y SET PEDIDO
+
+    //GET Y SET PEDIDO
     public Integer getIdCliente() {
         return idCliente.get();
     }
@@ -79,8 +79,8 @@ public class Cliente {
         return primerNombre.get();
     }
 
-    public void setPrimerNombre (String primerNombre) {
-        this.primerNombre = new SimpleStringProperty(primerNombre) ;
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = new SimpleStringProperty(primerNombre);
     }
 
     public String primerNombreProperty() {
@@ -93,7 +93,7 @@ public class Cliente {
     }
 
     public void setSegundoNombre(String segundoNombre) {
-        this.segundoNombre =  new SimpleStringProperty(segundoNombre);
+        this.segundoNombre = new SimpleStringProperty(segundoNombre);
     }
 
     public String segundoNombreProperty() {
@@ -140,7 +140,7 @@ public class Cliente {
     }
 
     //nombre documento
-     public Integer getNumeroDocumento() {
+    public Integer getNumeroDocumento() {
         return numeroDocumento.get();
     }
 
@@ -151,8 +151,7 @@ public class Cliente {
     public IntegerProperty numeroDocumentoProperty() {
         return numeroDocumento;
     }
-     
-    
+
 //GET Y SET ESTADO
     public Estado getIdEstado() {
         return idEstado;
@@ -165,9 +164,9 @@ public class Cliente {
     public Estado idEstadoProperty() {
         return idEstado;
     }
-    
+
 //GET Y SET ESTADO
-     public String getDireccion() {
+    public String getDireccion() {
         return direccion.get();
     }
 
@@ -178,7 +177,7 @@ public class Cliente {
     public StringProperty direccionProperty() {
         return direccion;
     }
-     
+
 //GET Y SET ESTADO
     public Integer getTelefono() {
         return telefono.get();
@@ -191,7 +190,7 @@ public class Cliente {
     public IntegerProperty telefonoProperty() {
         return telefono;
     }
-    
+
     //GET Y SET ESTADO
     public Integer getCelular() {
         return celular.get();
@@ -205,8 +204,7 @@ public class Cliente {
         return celular;
     }
 
-    
-     public static void llenarInformacionCliente(Connection connection,
+    public static void llenarInformacionCliente(Connection connection,
             ObservableList<Cliente> listaCliente) {
         try {
             Statement statement = connection.createStatement();
@@ -237,15 +235,14 @@ public class Cliente {
                                         resultado.getInt("idTipoDocumento"),
                                         resultado.getString("nombre"),
                                         resultado.getString("descripcion")),
-                                 resultado.getInt("numeroDocumento"),
-                                        new Estado(
-                                                resultado.getInt("idEstado"),
-                                                resultado.getString("nombre"),
-                                                resultado.getString("Descripcion")),
-                                        resultado.getString("direccion"),
-                                        resultado.getInt("telefono"),
-                                        resultado.getInt("celular")
-                                
+                                resultado.getInt("numeroDocumento"),
+                                new Estado(
+                                        resultado.getInt("idEstado"),
+                                        resultado.getString("nombre"),
+                                        resultado.getString("Descripcion")),
+                                resultado.getString("direccion"),
+                                resultado.getInt("telefono"),
+                                resultado.getInt("celular")
                         ));
 
             }
@@ -254,7 +251,7 @@ public class Cliente {
         }
     }
 
-      public int guardarPedido(Conexion conexion) {
+    public int guardarCliente(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "INSERT INTO Cliente ( "
@@ -263,17 +260,25 @@ public class Cliente {
                     + "segundoNombre "
                     + "primerApellido, "
                     + "segundoApellido "
-                    + "idCliente "
+                    + "idTipoDocumento "
+                    + "numeroDocumento "
                     + "idEstado "
-                    + ") VALUES (?,  ?,  ?,  ?,  ?, ?, ?)"
+                    + "direccion "
+                    + "telefono "
+                    + "celular "
+                    + ") VALUES (?,  ?,  ?,  ?,  ?,  ?, ?,  ?,  ?,  ?,  ?"
             );
-            ps.setInt(1, idPedido.get());
-            ps.setDate(2, (java.sql.Date) fechaEntrega);
-            ps.setDate(3, (java.sql.Date) fechaPedido);
-            ps.setString(4, direccionEntrega.get());
-            ps.setDate(5, (java.sql.Date) horaEntrega);
-            ps.setInt(6, idCliente.getIdCliente());
-            ps.setInt(7, idEstado.getIdEstado());
+            ps.setInt(1, idCliente.get());
+            ps.setString(2,primerNombre.get());
+            ps.setString(3, segundoNombre.get());
+            ps.setString(4, primerApellido.get());
+            ps.setString(5, segundoApellido.get());
+            ps.setInt(6, idTipoDocumento.getIdTipoDocumento());
+            ps.setInt(7, numeroDocumento.get());
+            ps.setInt(8, idEstado.getIdEstado());
+            ps.setString(9, direccion.get());
+            ps.setInt(10, telefono.get());
+            ps.setInt(11, celular.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -281,8 +286,9 @@ public class Cliente {
             return 0;
         }
     }
-/***
- HOla mundo desde aqui
- ***/ 
-    
+    /**
+     * *
+     * HOla mundo desde aqui *
+     */
+
 }
