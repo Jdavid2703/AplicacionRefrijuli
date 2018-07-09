@@ -6,6 +6,7 @@
 package modelos;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,34 +23,37 @@ import javafx.collections.ObservableList;
  */
 public class Cliente {
     
-    private IntegerProperty idcliente;
+    private IntegerProperty idCliente;
     private StringProperty primerNombre;
     private StringProperty segundoNombre;
     private StringProperty primerApellido;
     private StringProperty segundoApellido;
     private TipoDocumento idTipoDocumento;
+    private IntegerProperty numeroDocumento;
     private Estado idEstado;
     private StringProperty direccion;
     private IntegerProperty telefono;
     private IntegerProperty celular;
     
      public Cliente(
-     Integer idcliente,
+     Integer idCliente,
      String primerNombre,
      String segundoNombre,
      String primerApellido,
      String segundoApellido,
      TipoDocumento idTipoDocumento,
+     Integer numeroDocumento,
      Estado idEstado,
      String direccion,
      Integer telefono,
      Integer celular) {
-        this.idcliente = new SimpleIntegerProperty(idcliente);
+        this.idCliente = new SimpleIntegerProperty(idCliente);
         this.primerNombre = new SimpleStringProperty(primerNombre);
         this.segundoNombre = new SimpleStringProperty(segundoNombre);
         this.primerApellido = new SimpleStringProperty(primerApellido);
         this.segundoApellido = new SimpleStringProperty(segundoApellido);
         this.idTipoDocumento = idTipoDocumento;
+        this.numeroDocumento = new SimpleIntegerProperty(numeroDocumento);
         this.idEstado = idEstado;
         this.direccion = new SimpleStringProperty(direccion);
         this.telefono = new SimpleIntegerProperty(telefono);
@@ -59,15 +63,15 @@ public class Cliente {
     
      //GET Y SET PEDIDO
     public Integer getIdCliente() {
-        return idcliente.get();
+        return idCliente.get();
     }
 
-    public void setIdCliente(Integer idcliente) {
-        this.idcliente = new SimpleIntegerProperty(idcliente);
+    public void setIdCliente(Integer idCliente) {
+        this.idCliente = new SimpleIntegerProperty(idCliente);
     }
 
     public IntegerProperty idClienteProperty() {
-        return idcliente;
+        return idCliente;
     }
 
 //GET Y SET FECHA ENTREGA
@@ -135,6 +139,20 @@ public class Cliente {
         return idTipoDocumento;
     }
 
+    //nombre documento
+     public Integer getNumeroDocumento() {
+        return numeroDocumento.get();
+    }
+
+    public void setNumeroDocumento(Integer numeroDocumento) {
+        this.numeroDocumento = new SimpleIntegerProperty(numeroDocumento);
+    }
+
+    public IntegerProperty numeroDocumentoProperty() {
+        return numeroDocumento;
+    }
+     
+    
 //GET Y SET ESTADO
     public Estado getIdEstado() {
         return idEstado;
@@ -193,12 +211,13 @@ public class Cliente {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultado = statement.executeQuery(
-                    "SELECT idcliente, "
+                    "SELECT idCliente, "
                     + "primerNombre, "
                     + "segundoNombre, "
                     + "primerApellido, "
                     + "segundoApellido, "
                     + "idTipoDocumento, "
+                    + "numeroDocumento, "
                     + "idEstado "
                     + "direccion "
                     + "telefono "
@@ -209,35 +228,57 @@ public class Cliente {
             while (resultado.next()) {
                 listaCliente.add(
                         new Cliente(
-                                resultado.getInt("idcliente"),
+                                resultado.getInt("idCliente"),
                                 resultado.getDate("primerNombre"),
                                 resultado.getDate("segundoNombre"),
                                 resultado.getString("primerApellido"),
                                 resultado.getDate("segundoApellido"),
                                 new TipoDocumento(
-                                        resultado.getInt("id"),
+                                        resultado.getInt("idTipoDocumento"),
                                         resultado.getString("nombre"),
-                                        resultado.getString("descripcion"),
-                                        new TipoDocumento(
-                                                resultado.getInt("idTipoDocumento"),
-                                                resultado.getString("nombreTipoDocumento")),
-                                        resultado.getInt("numeroDocumento"),
+                                        resultado.getString("descripcion")),
+                                 resultado.getInt("numeroDocumento"),
                                         new Estado(
                                                 resultado.getInt("idEstado"),
-                                                resultado.getString("nombreEstado"),
+                                                resultado.getString("nombre"),
                                                 resultado.getString("Descripcion")),
                                         resultado.getString("direccion"),
-                                        new Municipio(
-                                                resultado.getInt("idMunicipio"),
-                                                resultado.getString("nombreMunicipio")),
                                         resultado.getInt("telefono"),
                                         resultado.getInt("celular")
-                                )
+                                
                         ));
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+      public int guardarPedido(Conexion conexion) {
+        try {
+            PreparedStatement ps = conexion.getConnection().prepareStatement(
+                    "INSERT INTO Cliente ( "
+                    + "idCliente, "
+                    + "primerNombre, "
+                    + "segundoNombre "
+                    + "primerApellido, "
+                    + "segundoApellido "
+                    + "idCliente "
+                    + "idEstado "
+                    + ") VALUES (?,  ?,  ?,  ?,  ?, ?, ?)"
+            );
+            ps.setInt(1, idPedido.get());
+            ps.setDate(2, (java.sql.Date) fechaEntrega);
+            ps.setDate(3, (java.sql.Date) fechaPedido);
+            ps.setString(4, direccionEntrega.get());
+            ps.setDate(5, (java.sql.Date) horaEntrega);
+            ps.setInt(6, idCliente.getIdCliente());
+            ps.setInt(7, idEstado.getIdEstado());
+
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 
