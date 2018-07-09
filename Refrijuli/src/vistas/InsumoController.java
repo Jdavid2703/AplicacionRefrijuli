@@ -36,9 +36,9 @@ public class InsumoController implements Initializable {
      @FXML 
      private ComboBox<Categoria> cmbIdCategoria;
      @FXML
-     private TextField txtStockMinimo;
+     private TextField txtStockMin;
      @FXML
-     private TextField txtStockMaximo;
+     private TextField txtStockMax;
      @FXML 
      private ComboBox<Presentacion> cmbIdPresentacion;
      @FXML 
@@ -69,9 +69,9 @@ public class InsumoController implements Initializable {
      @FXML
      private TableColumn<Insumo, Categoria>clmnIdCategoria;
      @FXML
-     private TableColumn<Insumo, Number>clmnStockMinimo;
+     private TableColumn<Insumo, Number>clmnStockMin;
      @FXML
-     private TableColumn<Insumo, Number>clmnStockMaximo;
+     private TableColumn<Insumo, Number>clmnStockMax;
      @FXML
      private TableColumn<Insumo, Presentacion>clmnIdPresentacion;
      @FXML
@@ -90,8 +90,8 @@ public class InsumoController implements Initializable {
         txtDescripcion.setText("null");
         txtCantidad.setText("null");
         cmbIdCategoria.setValue("null");
-        txtStockMinimo.setText("");
-        txtStockMaximo.setText("");
+        txtStockMin.setText("");
+        txtStockMax.setText("");
         cmbIdPresentacion.setValue("null");
         cmbIdUnidad.setValue("null");
         txtPrecioUnidad.setText("null");
@@ -112,8 +112,8 @@ public void agregarInsumo() {
                 txtDescripcion.getText(),
                 Integer.valueOf(txtCantidad.getText()),
                 cmbIdCategoria.getSelectionModel().getSelectedItem(),
-                Integer.valueOf(txtStockMinimo.getText()),
-                Integer.valueOf(txtStockMaximo.getText()),
+                Integer.valueOf(txtStockMin.getText()),
+                Integer.valueOf(txtStockMax.getText()),
                 cmbIdPresentacion.getSelectionModel().getSelectedItem(),
                 cmbIdUnidad.getSelectionModel().getSelectedItem(),
                  Integer.valueOf(txtPrecioUnidad.getText()),
@@ -135,8 +135,8 @@ public void agregarInsumo() {
                 txtDescripcion.getText(),
                 Integer.valueOf(txtCantidad.getText()),
                 cmbIdCategoria.getSelectionModel().getSelectedItem(),
-                Integer.valueOf(txtStockMinimo.getText()),
-                Integer.valueOf(txtStockMaximo.getText()),
+                Integer.valueOf(txtStockMin.getText()),
+                Integer.valueOf(txtStockMax.getText()),
                 cmbIdPresentacion.getSelectionModel().getSelectedItem(),
                 cmbIdUnidad.getSelectionModel().getSelectedItem(),
                 Integer.valueOf(txtPrecioUnidad.getText()),
