@@ -6,6 +6,7 @@
 package modelos;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -233,7 +234,7 @@ public class Cliente {
                                 resultado.getString("primerApellido"),
                                 resultado.getDate("segundoApellido"),
                                 new TipoDocumento(
-                                        resultado.getInt("id"),
+                                        resultado.getInt("idTipoDocumento"),
                                         resultado.getString("nombre"),
                                         resultado.getString("descripcion")),
                                  resultado.getInt("numeroDocumento"),
@@ -250,6 +251,34 @@ public class Cliente {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+      public int guardarPedido(Conexion conexion) {
+        try {
+            PreparedStatement ps = conexion.getConnection().prepareStatement(
+                    "INSERT INTO Cliente ( "
+                    + "idCliente, "
+                    + "primerNombre, "
+                    + "segundoNombre "
+                    + "primerApellido, "
+                    + "segundoApellido "
+                    + "idCliente "
+                    + "idEstado "
+                    + ") VALUES (?,  ?,  ?,  ?,  ?, ?, ?)"
+            );
+            ps.setInt(1, idPedido.get());
+            ps.setDate(2, (java.sql.Date) fechaEntrega);
+            ps.setDate(3, (java.sql.Date) fechaPedido);
+            ps.setString(4, direccionEntrega.get());
+            ps.setDate(5, (java.sql.Date) horaEntrega);
+            ps.setInt(6, idCliente.getIdCliente());
+            ps.setInt(7, idEstado.getIdEstado());
+
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 
