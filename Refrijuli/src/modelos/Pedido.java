@@ -40,7 +40,7 @@ public class Pedido {
 
     }
 
-//GET Y SET PEDIDO
+//GET Y SET ID PEDIDO
     public Integer getIdPedido() {
         return idPedido.get();
     }
@@ -172,9 +172,6 @@ public class Pedido {
                                                 resultado.getString("nombreEstado"),
                                                 resultado.getString("Descripcion")),
                                         resultado.getString("direccion"),
-                                        new Municipio(
-                                                resultado.getInt("idMunicipio"),
-                                                resultado.getString("nombreMunicipio")),
                                         resultado.getInt("telefono"),
                                         resultado.getInt("celular")
                                 )
@@ -221,7 +218,7 @@ public class Pedido {
                     + "SET idPedido = ? "
                     + "fechaEntrega = ? "
                     + "fechaPedido = ? "
-                    + "direccion = ? "
+                    + "direccionEntrega = ? "
                     + "horaEntrega = ? "
                     + "idCliente = ? "
                     + "idEstado = ? "
