@@ -79,7 +79,7 @@ public class Unidad {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "INSERT INTO  Unidad ( "
                     + "idUnidad, "
-                    + "nombreUnidad, "
+                    + "nombreUnidad "
                     + ") VALUES (?, ?)"
             );
             ps.setInt(1, idUnidad.get());

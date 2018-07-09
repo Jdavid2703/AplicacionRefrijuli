@@ -15,12 +15,15 @@ public class TipoDocumento {
 
     private IntegerProperty idTipoDocumento;
     private StringProperty nombreTipoDocumento;
+    private StringProperty descripcionTipoDocumento;
 
     public TipoDocumento(
             Integer idTipoDocumento,
-            String nombreTipoDocumento) {
+            String nombreTipoDocumento,
+            String descripcionTipoDocumento) {
         this.idTipoDocumento = new SimpleIntegerProperty(idTipoDocumento);
         this.nombreTipoDocumento = new SimpleStringProperty(nombreTipoDocumento);
+        this.descripcionTipoDocumento = new SimpleStringProperty(descripcionTipoDocumento);
     }
 
 //GET Y SET ID TIPO DOCUMENTO
@@ -31,8 +34,8 @@ public class TipoDocumento {
     public void setIdTipoDocumento(Integer idTipoDocumento) {
         this.idTipoDocumento = new SimpleIntegerProperty(idTipoDocumento);
     }
-    
-     public IntegerProperty idTipoDocumentoProperty() {
+
+    public IntegerProperty idTipoDocumentoProperty() {
         return idTipoDocumento;
     }
 
@@ -44,29 +47,42 @@ public class TipoDocumento {
     public void setNombreTipoDocumento(String nombreTipoDocumento) {
         this.nombreTipoDocumento = new SimpleStringProperty(nombreTipoDocumento);
     }
-    
+
     public StringProperty nombreTipoDocumentoProperty() {
         return nombreTipoDocumento;
     }
 
-    
+//GET Y SET DESCRIPCION TIPO DOCUMENTO
+    public String getDescripcionTipoDocumento() {
+        return descripcionTipoDocumento.get();
+    }
+
+    public void setDescripcionTipoDocumento(String descripcionTipoDocumento) {
+        this.descripcionTipoDocumento = new SimpleStringProperty(descripcionTipoDocumento);
+    }
+
+    public StringProperty DescripcionTipoDocumentoProperty() {
+        return descripcionTipoDocumento;
+    }
+
 //METODO LLENAR INFORMACIÓN
-    public static void llenarInformacionTipoDocumento(Connection connection, 
-                            ObservableList<TipoDocumento> listaTipoDocumento) {
+    public static void llenarInformacionTipoDocumento(Connection connection,
+            ObservableList<TipoDocumento> listaTipoDocumento) {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultado = statement.executeQuery(
                     "SELECT idTipoDocumento, "
-                            + "nombreTipoDocumento, "
-                           
+                    + "nombreTipoDocumento, "
+                    + "descripcionTipoDocumento "
+                    + "FROM TipoDocumento"
             );
-            
+
             while (resultado.next()) {
                 listaTipoDocumento.add(
                         new TipoDocumento(
-                            resultado.getInt("idTipoDocumento"),      
-                            resultado.getString("nombreTipoDocumento")
-                        
+                                resultado.getInt("idTipoDocumento"),
+                                resultado.getString("nombreTipoDocumento"),
+                                resultado.getString("descripcionTipoDocumento")
                         )
                 );
             }
@@ -74,7 +90,7 @@ public class TipoDocumento {
             e.printStackTrace();
         }
     }
-    
+
 //METODO GUARDAR TIPO DOCUMENTO
     public int guardarTipoDocumento(Conexion conexion) {
         try {
@@ -82,10 +98,12 @@ public class TipoDocumento {
                     "INSERT INTO  TipoDocumento ( "
                     + "idTipoDocumento, "
                     + "nombreTipoDocumento, "
-                    + ") VALUES (?, ?)"
+                    + "descripcionTipoDocumento "
+                    + ") VALUES (?, ?, ?)"
             );
             ps.setInt(1, idTipoDocumento.get());
             ps.setString(2, nombreTipoDocumento.get());
+            ps.setString(3, descripcionTipoDocumento.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -93,20 +111,22 @@ public class TipoDocumento {
             return 0;
         }
     }
-        
-//METODO ACTUALIZAR TIPO DOCUMENTO
 
-    public int actualizarTipoDocumento(Conexion conexion){
+//METODO ACTUALIZAR TIPO DOCUMENTO
+    public int actualizarTipoDocumento(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "UPDATE TipoDocumento"
                     + "SET idTipoDocumento = ?, "
                     + "nombreTipoDocumento = ?, "
+                    + "descripcionTipoDocumento = ?, "
                     + "WHERE idTipoDocumento = ?"
             );
 
             ps.setInt(1, idTipoDocumento.get());
             ps.setString(2, nombreTipoDocumento.get());
+            ps.setString(3, descripcionTipoDocumento.get());
+            
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -114,7 +134,6 @@ public class TipoDocumento {
             return 0;
         }
     }
-
 
 //METODO ELIMINAR TIPO DOCUMENTO
     public int eliminarTipoDocumento(Conexion conexion) {
@@ -134,7 +153,4 @@ public class TipoDocumento {
 
     }
 
-
-  
 }
- 

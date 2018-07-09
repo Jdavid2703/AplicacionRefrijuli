@@ -164,7 +164,8 @@ public class Pedido {
                                         resultado.getString("segundoApellido"),
                                         new TipoDocumento(
                                                 resultado.getInt("idTipoDocumento"),
-                                                resultado.getString("nombreTipoDocumento")),
+                                                resultado.getString("nombreTipoDocumento"),
+                                                resultado.getString("desecripcionTipoDocumento")),
                                         resultado.getInt("numeroDocumento"),
                                         new Estado(
                                                 resultado.getInt("idEstado"),
@@ -194,8 +195,8 @@ public class Pedido {
                     + "fechaEntrega, "
                     + "fechaPedido "
                     + "direccionEntrega, "
-                    + "horaEntrega "
-                    + "idCliente "
+                    + "horaEntrega, "
+                    + "idCliente, "
                     + "idEstado "
                     + ") VALUES (?,  ?,  ?,  ?,  ?, ?, ?)"
             );
