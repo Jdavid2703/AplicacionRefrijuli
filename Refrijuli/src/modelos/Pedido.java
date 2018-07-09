@@ -41,7 +41,6 @@ public class Pedido {
 
     }
 
-    
 //GET Y SET ID PEDIDO
     public Integer getIdPedido() {
         return idPedido.get();
@@ -55,7 +54,6 @@ public class Pedido {
         return idPedido;
     }
 
-    
 //GET Y SET FECHA ENTREGA
     public Date getFechaEntrega() {
         return fechaEntrega;
@@ -69,7 +67,6 @@ public class Pedido {
         return fechaEntrega;
     }
 
-    
 //GET Y SET FECHA PEDIDO
     public Date getFechaPedido() {
         return fechaPedido;
@@ -83,7 +80,6 @@ public class Pedido {
         return fechaPedido;
     }
 
-    
 //GET Y SET DIRECCIÓN
     public String getDireccionEntrega() {
         return direccionEntrega.get();
@@ -97,7 +93,6 @@ public class Pedido {
         return direccionEntrega;
     }
 
-    
 //GET Y SET HORA ENTREGA
     public Time getHoraEntrega() {
         return horaEntrega;
@@ -111,7 +106,6 @@ public class Pedido {
         return horaEntrega;
     }
 
-    
 //GET Y SET CLIENTE
     public Cliente getIdCliente() {
         return idCliente;
@@ -125,7 +119,6 @@ public class Pedido {
         return idCliente;
     }
 
-    
 //GET Y SET ESTADO
     public Estado getIdEstado() {
         return idEstado;
@@ -138,8 +131,7 @@ public class Pedido {
     public Estado idEstadoProperty() {
         return idEstado;
     }
-        
-    
+
 //METODO LLENAR INFORMACIÓN
     public static void llenarInformacionPedido(Connection connection,
             ObservableList<Pedido> listaPedido) {
@@ -163,7 +155,7 @@ public class Pedido {
                                 resultado.getDate("fechaEntrega"),
                                 resultado.getDate("fechaPedido"),
                                 resultado.getString("direccionEntrega"),
-                                resultado.getDate("horaEntrega"),
+                                resultado.getTime("horaEntrega"),
                                 new Cliente(
                                         resultado.getInt("idCliente"),
                                         resultado.getString("primerNombre"),
@@ -173,15 +165,19 @@ public class Pedido {
                                         new TipoDocumento(
                                                 resultado.getInt("idTipoDocumento"),
                                                 resultado.getString("nombreTipoDocumento")),
-                                        resultado.getInt("numeroDocumento"),                                        
+                                        resultado.getInt("numeroDocumento"),
+                                        new Estado(
+                                                resultado.getInt("idEstado"),
+                                                resultado.getString("nombreEstado"),
+                                                resultado.getString("Descripcion")),
                                         resultado.getString("direccion"),
                                         resultado.getInt("telefono"),
                                         resultado.getInt("celular")),
                                 new Estado(
-                                                resultado.getInt("idEstado"),
-                                                resultado.getString("nombreEstado"),
-                                                resultado.getString("Descripcion")
-                        )));
+                                        resultado.getInt("idEstado"),
+                                        resultado.getString("nombreEstado"),
+                                        resultado.getString("Descripcion")
+                                )));
 
             }
         } catch (SQLException e) {
@@ -218,7 +214,6 @@ public class Pedido {
         }
     }
 
-    
 // METODO ACTUALIZAR
     public int actualizarPedido(Conexion conexion) {
         try {
@@ -267,4 +262,3 @@ public class Pedido {
 
     }
 }
-
