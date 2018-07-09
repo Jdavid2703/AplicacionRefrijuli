@@ -80,7 +80,7 @@ public class PresentacionController {
         }
     }
 
-     public void eliminarPedido() {
+     public void eliminarPresentacion() {
         conexion.establecerConexion();
         int resultado = tblViewPresentacion.getSelectionModel().getSelectedItem()
                 .eliminarPresentacion((Conexion) conexion.getConnection());
