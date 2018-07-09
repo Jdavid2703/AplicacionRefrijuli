@@ -10,17 +10,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author JEISONANDRES
- */
+
+
 public class Cliente {
 
     private IntegerProperty idCliente;
@@ -61,7 +58,7 @@ public class Cliente {
 
     }
 
-    //GET Y SET PEDIDO
+  
     public Integer getIdCliente() {
         return idCliente.get();
     }
@@ -74,7 +71,7 @@ public class Cliente {
         return idCliente;
     }
 
-//GET Y SET FECHA ENTREGA
+
     public String getPrimerNombre() {
         return primerNombre.get();
     }
@@ -87,7 +84,7 @@ public class Cliente {
         return primerNombre.get();
     }
 
-//GET Y SET FECHA PEDIDO
+
     public String getSegundoNombre() {
         return segundoNombre.get();
     }
@@ -100,7 +97,7 @@ public class Cliente {
         return segundoNombre.get();
     }
 
-//GET Y SET DIRECCIÓN
+
     public String getPrimerApellido() {
         return primerApellido.get();
     }
@@ -113,7 +110,7 @@ public class Cliente {
         return primerApellido;
     }
 
-//GET Y SET HORA ENTREGA
+
     public String getSegundoApellido() {
         return segundoApellido.get();
     }
@@ -126,9 +123,9 @@ public class Cliente {
         return segundoApellido;
     }
 
-//GET Y SET CLIENTE
+
     public TipoDocumento getIdTipoDocumento() {
-        return idTipoDocumento.get();
+        return idTipoDocumento.getIdTipoDocumento();
     }
 
     public void setIdTipoDocumento(TipoDocumento idTipoDocumento) {
@@ -139,7 +136,7 @@ public class Cliente {
         return idTipoDocumento;
     }
 
-    //nombre documento
+
     public Integer getNumeroDocumento() {
         return numeroDocumento.get();
     }
@@ -152,7 +149,7 @@ public class Cliente {
         return numeroDocumento;
     }
 
-//GET Y SET ESTADO
+
     public Estado getIdEstado() {
         return idEstado;
     }
@@ -165,7 +162,7 @@ public class Cliente {
         return idEstado;
     }
 
-//GET Y SET ESTADO
+
     public String getDireccion() {
         return direccion.get();
     }
@@ -178,7 +175,7 @@ public class Cliente {
         return direccion;
     }
 
-//GET Y SET ESTADO
+
     public Integer getTelefono() {
         return telefono.get();
     }
@@ -191,7 +188,7 @@ public class Cliente {
         return telefono;
     }
 
-    //GET Y SET ESTADO
+    
     public Integer getCelular() {
         return celular.get();
     }
@@ -227,14 +224,13 @@ public class Cliente {
                 listaCliente.add(
                         new Cliente(
                                 resultado.getInt("idCliente"),
-                                resultado.getDate("primerNombre"),
-                                resultado.getDate("segundoNombre"),
+                                resultado.getString("primerNombre"),
+                                resultado.getString("segundoNombre"),
                                 resultado.getString("primerApellido"),
-                                resultado.getDate("segundoApellido"),
+                                resultado.getString("segundoApellido"),
                                 new TipoDocumento(
                                         resultado.getInt("idTipoDocumento"),
-                                        resultado.getString("nombre"),
-                                        resultado.getString("descripcion")),
+                                        resultado.getString("nombreTipoDocumento")),
                                 resultado.getInt("numeroDocumento"),
                                 new Estado(
                                         resultado.getInt("idEstado"),
@@ -269,7 +265,7 @@ public class Cliente {
                     + ") VALUES (?,  ?,  ?,  ?,  ?,  ?, ?,  ?,  ?,  ?,  ?"
             );
             ps.setInt(1, idCliente.get());
-            ps.setString(2,primerNombre.get());
+            ps.setString(2, primerNombre.get());
             ps.setString(3, segundoNombre.get());
             ps.setString(4, primerApellido.get());
             ps.setString(5, segundoApellido.get());
@@ -286,9 +282,61 @@ public class Cliente {
             return 0;
         }
     }
-    /**
-     * *
-     * HOla mundo desde aqui *
-     */
+
+    
+
+    public int actualizarCliente(Conexion conexion) {
+        try {
+            PreparedStatement ps = conexion.getConnection().prepareStatement(
+                    "UPDATE Cliente"
+                    + "SET idCliente = ? "
+                    + "primerNombre = ? "
+                    + "segundoNombre = ? "
+                    + "primerApellido = ? "
+                    + "segundoApellido = ? "
+                    + "idTipoDocumento = ? "
+                    + "numeroDocumento = ? "
+                    + "idEstado = ? "
+                    + "direccion = ? "
+                    + "telefono = ? "
+                    + "celular = ? "
+                    + "WHERE idCliente = ?"
+            );
+
+            ps.setInt(1, idCliente.get());
+            ps.setString(2,primerNombre.get() );
+            ps.setString(3,segundoNombre.get() );
+            ps.setString(4, primerApellido.get());
+            ps.setString(5,segundoApellido.get() );
+            ps.setInt(1, idTipoDocumento.getIdTipoDocumento());
+            ps.setInt(1, numeroDocumento.get());
+            ps.setInt(7, idEstado.getIdEstado());
+            ps.setString(7, direccion.get());
+            ps.setInt(7, telefono.get());
+            ps.setInt(7, celular.get());
+
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+     public int eliminarCliente(Conexion conexion) {
+        try {
+            PreparedStatement ps = conexion.getConnection().prepareStatement(
+                    "DELETE FROM Cliente"
+                    + " WHERE idCliente = ?"
+            );
+
+            ps.setInt(1, idCliente.get());
+
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
 
 }
