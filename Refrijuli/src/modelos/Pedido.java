@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.Date;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -18,7 +19,7 @@ public class Pedido {
     private Date fechaEntrega;
     private Date fechaPedido;
     private StringProperty direccionEntrega;
-    private Date horaEntrega;
+    private Time horaEntrega;
     private Cliente idCliente;
     private Estado idEstado;
 
@@ -27,7 +28,7 @@ public class Pedido {
             Date fechaEntrega,
             Date fechaPedido,
             String direccionEntrega,
-            Date horaEntrega,
+            Time horaEntrega,
             Cliente idCliente,
             Estado idEstado) {
         this.idPedido = new SimpleIntegerProperty(idPedido);
@@ -40,6 +41,7 @@ public class Pedido {
 
     }
 
+    
 //GET Y SET ID PEDIDO
     public Integer getIdPedido() {
         return idPedido.get();
@@ -53,6 +55,7 @@ public class Pedido {
         return idPedido;
     }
 
+    
 //GET Y SET FECHA ENTREGA
     public Date getFechaEntrega() {
         return fechaEntrega;
@@ -66,6 +69,7 @@ public class Pedido {
         return fechaEntrega;
     }
 
+    
 //GET Y SET FECHA PEDIDO
     public Date getFechaPedido() {
         return fechaPedido;
@@ -79,6 +83,7 @@ public class Pedido {
         return fechaPedido;
     }
 
+    
 //GET Y SET DIRECCIÓN
     public String getDireccionEntrega() {
         return direccionEntrega.get();
@@ -92,19 +97,21 @@ public class Pedido {
         return direccionEntrega;
     }
 
+    
 //GET Y SET HORA ENTREGA
-    public Date getHoraEntrega() {
+    public Time getHoraEntrega() {
         return horaEntrega;
     }
 
-    public void setHoraEntrega(Date horaEntrega) {
+    public void setHoraEntrega(Time horaEntrega) {
         this.horaEntrega = horaEntrega;
     }
 
-    public Date horaEntregaProperty() {
+    public Time horaEntregaProperty() {
         return horaEntrega;
     }
 
+    
 //GET Y SET CLIENTE
     public Cliente getIdCliente() {
         return idCliente;
@@ -118,6 +125,7 @@ public class Pedido {
         return idCliente;
     }
 
+    
 //GET Y SET ESTADO
     public Estado getIdEstado() {
         return idEstado;
@@ -130,8 +138,7 @@ public class Pedido {
     public Estado idEstadoProperty() {
         return idEstado;
     }
-    
-    
+        
     
 //METODO LLENAR INFORMACIÓN
     public static void llenarInformacionPedido(Connection connection,
@@ -166,16 +173,15 @@ public class Pedido {
                                         new TipoDocumento(
                                                 resultado.getInt("idTipoDocumento"),
                                                 resultado.getString("nombreTipoDocumento")),
-                                        resultado.getInt("numeroDocumento"),
-                                        new Estado(
-                                                resultado.getInt("idEstado"),
-                                                resultado.getString("nombreEstado"),
-                                                resultado.getString("Descripcion")),
+                                        resultado.getInt("numeroDocumento"),                                        
                                         resultado.getString("direccion"),
                                         resultado.getInt("telefono"),
-                                        resultado.getInt("celular")
-                                )
-                        ));
+                                        resultado.getInt("celular")),
+                                new Estado(
+                                                resultado.getInt("idEstado"),
+                                                resultado.getString("nombreEstado"),
+                                                resultado.getString("Descripcion")
+                        )));
 
             }
         } catch (SQLException e) {
@@ -183,6 +189,7 @@ public class Pedido {
         }
     }
 
+// METODO GUARDAR
     public int guardarPedido(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
@@ -200,7 +207,7 @@ public class Pedido {
             ps.setDate(2, (java.sql.Date) fechaEntrega);
             ps.setDate(3, (java.sql.Date) fechaPedido);
             ps.setString(4, direccionEntrega.get());
-            ps.setDate(5, (java.sql.Date) horaEntrega);
+            ps.setTime(5, (java.sql.Time) horaEntrega);
             ps.setInt(6, idCliente.getIdCliente());
             ps.setInt(7, idEstado.getIdEstado());
 
@@ -211,6 +218,8 @@ public class Pedido {
         }
     }
 
+    
+// METODO ACTUALIZAR
     public int actualizarPedido(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
@@ -229,9 +238,9 @@ public class Pedido {
             ps.setDate(2, (java.sql.Date) fechaEntrega);
             ps.setDate(3, (java.sql.Date) fechaPedido);
             ps.setString(4, direccionEntrega.get());
-            ps.setDate(5, (java.sql.Date) horaEntrega);
+            ps.setTime(5, (java.sql.Time) horaEntrega);
             ps.setInt(6, idCliente.getIdCliente());
-            ps.setInt(7, idEstado.getIdCliente());
+            ps.setInt(7, idEstado.getIdEstado());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -240,6 +249,7 @@ public class Pedido {
         }
     }
 
+//METODO ELIMINAR
     public int eliminarPedido(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
