@@ -80,27 +80,21 @@ public class PresentacionController {
         }
     }
 
-    public void eliminarPresentacion() {
-        Alert cuadroDialogoConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        cuadroDialogoConfirmacion.setTitle("Confirmacion");
-        cuadroDialogoConfirmacion.setHeaderText("Eliminar Registro");
-        cuadroDialogoConfirmacion.setContentText("¿Está Seguro de Eliminar el Registro?");
-        Optional<ButtonType> resultado = cuadroDialogoConfirmacion.showAndWait();
-        if (resultado.get() == ButtonType.OK) {
-            Presentacion presentacion = new Presentacion();
-            presentacion.setIdPresentacion(Integer.valueOf(txtIdPresentacion.getText()));
-            conexion.establecerConexion();
-            int r = presentacion.eliminarPresentacion(conexion);
-            conexion.cerrarConexion();
+     public void eliminarPedido() {
+        conexion.establecerConexion();
+        int resultado = tblViewPresentacion.getSelectionModel().getSelectedItem()
+                .eliminarPresentacion((Conexion) conexion.getConnection());
+        conexion.cerrarConexion();
 
-            if (r == 1) {
-                listaPresentacion.remove(tblViewPresentacion.getSelectionModel().getSelectedIndex());
-                Alert cuadroDialogo = new Alert(Alert.AlertType.INFORMATION);
-                cuadroDialogo.setContentText("Registro Eliminado con Éxito");
-                cuadroDialogo.setTitle("Registro Eliminado");
-                cuadroDialogo.setHeaderText("Resultado: ");
-                cuadroDialogo.showAndWait();
-            }
+        if (resultado == 1) {
+
+            listaPresentacion.remove(tblViewPresentacion.getSelectionModel().getSelectedIndex());
+
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("Registro Eliminado");
+            mensaje.setContentText("Registro ha sido eliminado con exito");
+            mensaje.setHeaderText("Resultado:");
+            mensaje.show();
 
         }
 
