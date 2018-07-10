@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelos;
 
 import java.sql.Connection;
@@ -56,6 +51,7 @@ public class Cliente {
 
     }
 
+//GET Y SET ID CLIENTE
     public Integer getIdCliente() {
         return idCliente.get();
     }
@@ -67,6 +63,8 @@ public class Cliente {
     public IntegerProperty idClienteProperty() {
         return idCliente;
     }
+    
+//GET Y SET PRIMER NOMBRE
 
     public String getPrimerNombre() {
         return primerNombre.get();
@@ -76,10 +74,11 @@ public class Cliente {
         this.primerNombre = new SimpleStringProperty(primerNombre);
     }
 
-    public String primerNombreProperty() {
-        return primerNombre.get();
+    public StringProperty primerNombreProperty() {
+        return primerNombre;
     }
 
+//GET Y SET SEGUNDO NOMBRE
     public String getSegundoNombre() {
         return segundoNombre.get();
     }
@@ -88,9 +87,11 @@ public class Cliente {
         this.segundoNombre = new SimpleStringProperty(segundoNombre);
     }
 
-    public String segundoNombreProperty() {
-        return segundoNombre.get();
+    public StringProperty segundoNombreProperty() {
+        return segundoNombre;
     }
+
+//GET Y SET PRIMER APELLIDO
 
     public String getPrimerApellido() {
         return primerApellido.get();
@@ -104,6 +105,7 @@ public class Cliente {
         return primerApellido;
     }
 
+//GET Y SET SEGUNDO APELLIDO
     public String getSegundoApellido() {
         return segundoApellido.get();
     }
@@ -116,8 +118,9 @@ public class Cliente {
         return segundoApellido;
     }
 
+//GET Y SET ID TIPO DOCUMENTO
     public TipoDocumento getIdTipoDocumento() {
-        return idTipoDocumento.getIdTipoDocumento();
+        return idTipoDocumento;
     }
 
     public void setIdTipoDocumento(TipoDocumento idTipoDocumento) {
@@ -128,6 +131,7 @@ public class Cliente {
         return idTipoDocumento;
     }
 
+//GET Y SET NUMERO DOCUMENTO
     public Integer getNumeroDocumento() {
         return numeroDocumento.get();
     }
@@ -140,6 +144,7 @@ public class Cliente {
         return numeroDocumento;
     }
 
+//GET Y SET ID ESTADO
     public Estado getIdEstado() {
         return idEstado;
     }
@@ -151,7 +156,8 @@ public class Cliente {
     public Estado idEstadoProperty() {
         return idEstado;
     }
-
+    
+//GET Y SET DIRECCION
     public String getDireccion() {
         return direccion.get();
     }
@@ -164,6 +170,7 @@ public class Cliente {
         return direccion;
     }
 
+//GET Y SET TELEFONO
     public Integer getTelefono() {
         return telefono.get();
     }
@@ -176,6 +183,7 @@ public class Cliente {
         return telefono;
     }
 
+//GET Y SET CELULAR
     public Integer getCelular() {
         return celular.get();
     }
@@ -188,6 +196,7 @@ public class Cliente {
         return celular;
     }
 
+// METODO LLENAR INFORMACION
     public static void llenarInformacionCliente(Connection connection,
             ObservableList<Cliente> listaCliente) {
         try {
@@ -235,6 +244,7 @@ public class Cliente {
         }
     }
 
+// METODO GUARDAR
     public int guardarCliente(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
@@ -271,6 +281,7 @@ public class Cliente {
         }
     }
 
+// METODO ACTUALIZAR
     public int actualizarCliente(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
@@ -308,6 +319,7 @@ public class Cliente {
         }
     }
 
+// METODO ELIMINAR
     public int eliminarCliente(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
