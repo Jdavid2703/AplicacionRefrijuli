@@ -161,26 +161,20 @@ public class InsumoController implements Initializable {
     }
 
     public void eliminarInsumo() {
-        Alert cuadroDialogoConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-        cuadroDialogoConfirmacion.setTitle("Confirmacion");
-        cuadroDialogoConfirmacion.setHeaderText("Eliminar Registro");
-        cuadroDialogoConfirmacion.setContentText("¿Está Seguro de Eliminar el Registro?");
-        Optional<ButtonType> resultado = cuadroDialogoConfirmacion.showAndWait();
-        if (resultado.get() == ButtonType.OK) {
-            Insumo insumo = new Insumo();
-            insumo.setIdInsumo(Integer.valueOf(txtIdInsumo.getText()));
-            conexion.establecerConexion();
-            int r = insumo.eliminarInsumo(conexion);
-            conexion.cerrarConexion();
+        conexion.establecerConexion();
+        int resultado = tblViewInsumo.getSelectionModel().getSelectedItem()
+                .eliminarInsumo((Conexion) conexion.getConnection());
+        conexion.cerrarConexion();
 
-            if (r == 1) {
-                listaInsumo.remove(tblViewInsumo.getSelectionModel().getSelectedIndex());
-                Alert cuadroDialogo = new Alert(Alert.AlertType.INFORMATION);
-                cuadroDialogo.setContentText("Registro Eliminado con Éxito");
-                cuadroDialogo.setTitle("Registro Eliminado");
-                cuadroDialogo.setHeaderText("Resultado: ");
-                cuadroDialogo.showAndWait();
-            }
+        if (resultado == 1) {
+
+            listaInsumo.remove(tblViewInsumo.getSelectionModel().getSelectedIndex());
+
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("Registro Eliminado");
+            mensaje.setContentText("Registro ha sido eliminado con exito");
+            mensaje.setHeaderText("Resultado:");
+            mensaje.show();
 
         }
 
