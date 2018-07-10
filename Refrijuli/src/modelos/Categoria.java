@@ -17,7 +17,10 @@ public class Categoria {
     private StringProperty nombre;
     private StringProperty descripcion;
 
-    public Categoria(Integer idCategoria, String nombre, String descripcion) {
+    public Categoria(
+            Integer idCategoria, 
+            String nombre, 
+            String descripcion) {
         this.idCategoria = new SimpleIntegerProperty(idCategoria);
         this.nombre = new SimpleStringProperty(nombre);
         this.descripcion = new SimpleStringProperty(descripcion);
@@ -71,7 +74,8 @@ public class Categoria {
             ResultSet resultado = statement.executeQuery(
                     "SELECT idCategoria, "
                     + "nombre, "
-                    + "descripcion, "
+                    + "descripcion "
+                    + "FROM Categoria "
             );
 
             while (resultado.next()) {
