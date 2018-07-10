@@ -6,8 +6,6 @@
 package vistas;
 
 import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,14 +23,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import modelos.Cliente;
 import modelos.Conexion;
 import modelos.Estado;
-import modelos.Pedido;
 import modelos.TipoDocumento;
 
-/**
- * FXML Controller class
- *
- * @author JEISONANDRES
- */
+
 public class ClienteController implements Initializable {
 
     @FXML

@@ -6,106 +6,57 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="781.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ClienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.ClienteController">
    <children>
-      <GridPane alignment="TOP_CENTER" layoutY="8.0" prefHeight="507.0" prefWidth="746.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="10.0" prefWidth="93.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="31.0" minWidth="10.0" prefWidth="29.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="106.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="11.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="0.0" prefHeight="48.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Id Cliente" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label text="Primer Nombre" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Label text="Segundo Nombre" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-            <Label text="Primer Apellido" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Label text="Segundo Apellido" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <TextField fx:id="txtIdCliente" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <TextField fx:id="txtPrimerNombre" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <TextField fx:id="txtPrimerApellido" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <ComboBox fx:id="cmbIdTipoDocumento" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-            <TextField fx:id="txtNumeroDocumento" prefHeight="17.0" prefWidth="106.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
-            <ComboBox fx:id="cmbEstado" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="11" />
-            <TextField fx:id="txtTelefono" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-            <TextField fx:id="txtSegundoNombre" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-            <TextField fx:id="txtSegundoApellido" GridPane.columnIndex="9" GridPane.rowIndex="5" />
-            <TextField fx:id="txtDireccion" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-            <ComboBox fx:id="cmbMunicipio" prefWidth="150.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
-            <TextField fx:id="txtCelular" GridPane.columnIndex="9" GridPane.rowIndex="11" />
-            <Button fx:id="btnNuevo" mnemonicParsing="false" text="Nuevo" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
-            <Button fx:id="btnActualizar" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Actualizar" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="14" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
-            <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="9" GridPane.halignment="LEFT" GridPane.rowIndex="14" />
-            <TableView fx:id="tblViewCliente" prefHeight="285.0" prefWidth="726.0" GridPane.columnIndex="1" GridPane.columnSpan="11" GridPane.rowIndex="17" GridPane.rowSpan="10">
-              <columns>
-                <TableColumn fx:id="clmnIdCliente" prefWidth="31.0" text="Id cliente" />
-                <TableColumn fx:id="clmnPrimerNombre" minWidth="9.0" prefWidth="67.0" text="Pr.Nombre" />
-                  <TableColumn fx:id="clmnSegundoNombre" prefWidth="55.0" text="Sg.Nombre" />
-                  <TableColumn fx:id="clmnPrimerApellido" minWidth="6.0" prefWidth="69.0" text="Pr.Apellido" />
-                  <TableColumn fx:id="clmnSegundoApellido" minWidth="0.0" prefWidth="72.0" text="Sg.Apellido" />
-                  <TableColumn fx:id="clmnIdTipoDocumento" prefWidth="84.0" text="Id. Documento" />
-                  <TableColumn fx:id="clmnNumeroDocumento" prefWidth="89.0" text="No. Documento" />
-                  <TableColumn fx:id="clmnDireccion" minWidth="0.0" prefWidth="59.0" text="Dirección" />
-                  <TableColumn fx:id="clmnEstado" prefWidth="44.0" text="Estado" />
-                  <TableColumn fx:id="clmnMunicipio" minWidth="3.0" prefWidth="66.0" text="Municipio" />
-                  <TableColumn fx:id="clmnTelefono" maxWidth="294.0" minWidth="0.0" prefWidth="37.0" text="Tel" />
-                  <TableColumn fx:id="clmnCelular" prefWidth="52.0" text="Cel" />
-              </columns>
-            </TableView>
-            <Label text="   Tipo Documento" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <Label text="Direccion" GridPane.columnIndex="7" GridPane.rowIndex="7" />
-            <Label text="Estado" GridPane.columnIndex="3" GridPane.rowIndex="11" />
-            <Label text="Municipio" GridPane.columnIndex="7" GridPane.rowIndex="9" />
-            <Label text="Telefono" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-            <Label text="Celular" GridPane.columnIndex="7" GridPane.rowIndex="11" />
-            <ImageView fitHeight="48.0" fitWidth="716.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-            <Label prefHeight="17.0" prefWidth="149.0" text="Número Documento" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-         </children>
-      </GridPane>
+      <TableView fx:id="tblViewCliente" layoutX="12.0" layoutY="416.0" prefHeight="177.0" prefWidth="916.0">
+        <columns>
+          <TableColumn fx:id="clmnIdCliente" prefWidth="56.0" text="Id cliente" />
+          <TableColumn fx:id="clmnPrimerNombre" minWidth="9.0" prefWidth="105.0" text="Pr.Nombre" />
+            <TableColumn fx:id="clmnSegundoNombre" prefWidth="81.0" text="Sg.Nombre" />
+            <TableColumn fx:id="clmnPrimerApellido" minWidth="6.0" prefWidth="100.0" text="Pr.Apellido" />
+            <TableColumn fx:id="clmnSegundoApellido" minWidth="0.0" prefWidth="89.0" text="Sg.Apellido" />
+            <TableColumn fx:id="clmnIdTipoDocumento" prefWidth="44.0" text="Id. Documento" />
+            <TableColumn fx:id="clmnNumeroDocumento" prefWidth="110.0" text="No. Documento" />
+            <TableColumn fx:id="clmnDireccion" minWidth="0.0" prefWidth="83.0" text="Dirección" />
+            <TableColumn fx:id="clmnIdEstado" prefWidth="62.0" text="Estado" />
+            <TableColumn fx:id="clmnTelefono" maxWidth="294.0" minWidth="0.0" prefWidth="90.0" text="Tel" />
+            <TableColumn fx:id="clmnCelular" prefWidth="95.0" text="Cel" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtPrimerApellido" layoutX="233.0" layoutY="177.0" />
+      <TextField fx:id="txtNumeroDocumento" layoutX="233.0" layoutY="255.0" />
+      <TextField fx:id="txtCelular" layoutX="531.0" layoutY="255.0" />
+      <TextField fx:id="txtPrimerNombre" layoutX="233.0" layoutY="144.0" />
+      <TextField fx:id="txtDireccion" layoutX="531.0" layoutY="214.0" />
+      <TextField fx:id="txtSegundoApellido" layoutX="529.0" layoutY="177.0" />
+      <ComboBox fx:id="cmbIdEstado" layoutX="233.0" layoutY="294.0" prefWidth="150.0" />
+      <TextField fx:id="txtIdCliente" layoutX="233.0" layoutY="108.0" />
+      <Button fx:id="btnGuardar" layoutX="500.0" layoutY="361.0" mnemonicParsing="false" text="Guardar" />
+      <Button fx:id="btnEliminar" layoutX="409.0" layoutY="361.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="btnActualizar" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="315.0" layoutY="361.0" mnemonicParsing="false" text="Actualizar" />
+      <Button fx:id="btnNuevo" layoutX="233.0" layoutY="361.0" mnemonicParsing="false" text="Nuevo" />
+      <TextField fx:id="txtTelefono" layoutX="529.0" layoutY="108.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="482.0" layoutY="259.0" text="Celular" />
+      <Label layoutX="466.0" layoutY="218.0" text="Direccion" />
+      <Label layoutX="420.0" layoutY="181.0" text="Segundo Apellido" />
+      <Label layoutX="420.0" layoutY="148.0" text="Segundo Nombre" />
+      <Label layoutX="468.0" layoutY="112.0" text="Telefono" />
+      <Label layoutX="183.0" layoutY="298.0" text="Estado" />
+      <Label layoutX="102.0" layoutY="259.0" prefHeight="17.0" prefWidth="117.0" text="Número Documento" />
+      <Label layoutX="137.0" layoutY="144.0" text="Primer Nombre" />
+      <Label layoutX="137.0" layoutY="181.0" text="Primer Apellido" />
+      <Label layoutX="168.0" layoutY="112.0" text="Id Cliente" />
+      <ComboBox fx:id="cmbIdTipoDocumento" layoutX="233.0" layoutY="214.0" prefWidth="150.0" />
+      <Label layoutX="119.0" layoutY="218.0" text="   Tipo Documento" />
+      <TextField fx:id="txtSegundoNombre" layoutX="529.0" layoutY="144.0" />
+      <ImageView fitHeight="72.0" fitWidth="436.0" layoutX="264.0" layoutY="14.0">
+         <image>
+            <Image url="@../img/CLIENTE.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
