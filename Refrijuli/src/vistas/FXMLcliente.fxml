@@ -23,10 +23,10 @@
       <TextField fx:id="txtSegundoApellido" layoutX="598.0" layoutY="179.0" />
       <TextField fx:id="txtDireccion" layoutX="600.0" layoutY="216.0" />
       <TextField fx:id="txtCelular" layoutX="600.0" layoutY="257.0" />
-      <Button fx:id="btnNuevo" layoutX="302.0" layoutY="363.0" mnemonicParsing="false" text="Nuevo" />
-      <Button fx:id="btnActualizar" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="384.0" layoutY="363.0" mnemonicParsing="false" text="Actualizar" />
-      <Button fx:id="btnEliminar" layoutX="478.0" layoutY="363.0" mnemonicParsing="false" text="Eliminar" />
-      <Button fx:id="btnGuardar" layoutX="569.0" layoutY="363.0" mnemonicParsing="false" text="Guardar" />
+      <Button fx:id="btnNuevo" layoutX="302.0" layoutY="363.0" mnemonicParsing="false" onAction="#limpiarCamposCliente" text="Nuevo" />
+      <Button fx:id="btnActualizar" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="384.0" layoutY="363.0" mnemonicParsing="false" onAction="#actualizarCliente" text="Actualizar" />
+      <Button fx:id="btnEliminar" layoutX="478.0" layoutY="363.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
+      <Button fx:id="btnGuardar" layoutX="569.0" layoutY="363.0" mnemonicParsing="false" onAction="#agregarCliente" text="Guardar" />
       <TableView fx:id="tblViewCliente" layoutX="12.0" layoutY="416.0" prefHeight="177.0" prefWidth="916.0">
         <columns>
           <TableColumn fx:id="clmnIdCliente" prefWidth="56.0" text="Id cliente" />
