@@ -61,24 +61,24 @@ public class Insumo {
         this.idInsumo = new SimpleIntegerProperty(idInsumo);
     }
 
-    public StringProperty getNombre() {
-        return nombre;
+    public String getNombre() {
+        return nombre.get();
     }
 
     public void setNombre(String nombre) {
         this.nombre = new SimpleStringProperty(nombre);
     }
 
-    public StringProperty getDescripcion() {
-        return descripcion;
+    public String getDescripcion() {
+        return descripcion.get();
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = new SimpleStringProperty(descripcion);
     }
 
-    public IntegerProperty getCantidad() {
-        return cantidad;
+    public Integer getCantidad() {
+        return cantidad.get();
     }
 
     public void setCantidad(Integer cantidad) {
@@ -93,16 +93,16 @@ public class Insumo {
         this.idCategoria = idCategoria;
     }
 
-    public IntegerProperty getStockMin() {
-        return stockMin;
+    public Integer getStockMin() {
+        return stockMin.get();
     }
 
     public void setStockMin(Integer stockMin) {
         this.stockMin = new SimpleIntegerProperty(stockMin);
     }
 
-    public IntegerProperty getStockMax() {
-        return stockMax;
+    public Integer getStockMax() {
+        return stockMax.get();
     }
 
     public void setStockMax(Integer stockMax) {
@@ -125,16 +125,16 @@ public class Insumo {
         this.idUnidad = idUnidad;
     }
 
-    public IntegerProperty getPrecioUnitario() {
-        return precioUnitario;
+    public Integer getPrecioUnitario() {
+        return precioUnitario.get();
     }
 
     public void setPrecioUnitario(Integer precioUnitario) {
         this.precioUnitario = new SimpleIntegerProperty(precioUnitario);
     }
 
-    public IntegerProperty getDisponibilidad() {
-        return disponibilidad;
+    public Integer getDisponibilidad() {
+        return disponibilidad.get();
     }
 
     public void setDisponibilidad(Integer disponibilidad) {
