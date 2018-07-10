@@ -1,7 +1,11 @@
 package vistas;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +15,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modelos.Cliente;
 import modelos.Conexion;
+import modelos.Estado;
+import modelos.Pedido;
 import modelos.Presentacion;
 
 public class PresentacionController implements Initializable {
@@ -104,6 +112,44 @@ public class PresentacionController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         conexion = new Conexion();
         conexion.establecerConexion();
+
+// INICIALIZAR
+        listaPresentacion= FXCollections.observableArrayList();
+
+// LLENAR LISTAS
+        Presentacion.llenarInformacionPresentacion(conexion.getConnection(), listaPresentacion);
+
+
+// ENLAZAR COLUMNAS CON ATRIBUTOS
+        clmnIdPresentacion.setCellValueFactory(new PropertyValueFactory<Presentacion, Number>("idPresentacion"));
+        clmnDescripcion.setCellValueFactory(new PropertyValueFactory<Presentacion, String>("descripcion"));
+      
+
+// TABLE VIEWS
+        tblViewPresentacion.setItems(listaPresentacion);
+        gestionarEventos();
+        conexion.cerrarConexion();
+
+    }
+
+    public void gestionarEventos() {
+        tblViewPresentacion.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Presentacion>() {
+            @Override
+            public void changed(ObservableValue<? extends Presentacion> observable, Presentacion valorAnterior,
+                    Presentacion valorSeleccionado) {
+                if (valorSeleccionado != null) {
+                    txtIdPresentacion.setText(String.valueOf(valorSeleccionado.getIdPresentacion()));
+                    txtDescripcion.setText(valorSeleccionado.getDescripcion());
+                    
+
+                    btnGuardar.setDisable(true);
+                    btnEliminar.setDisable(false);
+                    btnActualizar.setDisable(false);
+                }
+            }
+        }
+        );
     }
 }
+
 

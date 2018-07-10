@@ -11,8 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="784.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vistas.PedidoController">
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.PedidoController">
    <children>
       <TextField fx:id="txtIdPedido" layoutX="100.0" layoutY="129.0" prefHeight="25.0" prefWidth="149.0" />
       <DatePicker fx:id="dapickeFechaPedido" layoutX="100.0" layoutY="180.0" prefHeight="25.0" prefWidth="150.0" />
@@ -21,10 +20,10 @@
       <TextField fx:id="txtHoraEntrega" layoutX="374.0" layoutY="180.0" />
       <ComboBox fx:id="cmbIdCliente" layoutX="374.0" layoutY="227.0" prefWidth="150.0" />
       <ComboBox fx:id="cmbIdEstado" layoutX="611.0" layoutY="129.0" prefWidth="150.0" />
-      <Button fx:id="btnNuevo" layoutX="233.0" layoutY="304.0" mnemonicParsing="false" text="Nuevo" />
-      <Button fx:id="btnEliminar" layoutX="329.0" layoutY="304.0" mnemonicParsing="false" text="Eliminar" />
-      <Button fx:id="btnActualizar" layoutX="425.0" layoutY="304.0" mnemonicParsing="false" text="Actualizar" />
-      <Button fx:id="btnGuardar" layoutX="523.0" layoutY="304.0" mnemonicParsing="false" text="Guardar" />
+      <Button fx:id="btnNuevo" layoutX="233.0" layoutY="304.0" mnemonicParsing="false" onAction="#limpiarCamposPedido" text="Nuevo" />
+      <Button fx:id="btnEliminar" layoutX="329.0" layoutY="304.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
+      <Button fx:id="btnActualizar" layoutX="425.0" layoutY="304.0" mnemonicParsing="false" onAction="#actualizarPedido" text="Actualizar" />
+      <Button fx:id="btnGuardar" layoutX="523.0" layoutY="304.0" mnemonicParsing="false" onAction="#agregarPedido" text="Guardar" />
       <TableView fx:id="tblViewPedido" layoutX="1.0" layoutY="353.0" prefHeight="240.0" prefWidth="804.0">
         <columns>
           <TableColumn fx:id="clmnIdPedido" prefWidth="77.0" text="ID Pedido" />
