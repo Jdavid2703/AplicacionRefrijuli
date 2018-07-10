@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -10,45 +9,54 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="797.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="vistas.PresentacionController">
+<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.PresentacionController">
    <children>
-      <SplitPane dividerPositions="0.6407766990291263" layoutX="319.0" layoutY="151.0" orientation="VERTICAL" prefHeight="517.0" prefWidth="797.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <Label layoutX="244.0" layoutY="118.0" text="ID Presentacion:" />
-                  <Label layoutX="244.0" layoutY="177.0" text="Descripcion:" />
-                  <TextField layoutX="340.0" layoutY="114.0" prefHeight="25.0" prefWidth="99.0" />
-                  <TextArea layoutX="340.0" layoutY="164.0" prefHeight="94.0" prefWidth="266.0" />
-                  <ImageView fitHeight="95.0" fitWidth="200.0">
-                     <image>
-                        <Image url="@../img/REFRIJULI.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="320.0" layoutX="424.0" layoutY="13.0">
-                     <image>
-                        <Image url="@../img/PRESENTACION.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="200.0" layoutY="274.0" mnemonicParsing="false" text="Nuevo" />
-                  <Button layoutX="277.0" layoutY="274.0" mnemonicParsing="false" text="Guardar" />
-                  <Button layoutX="346.0" layoutY="274.0" mnemonicParsing="false" text="Actualizar" />
-                  <Button layoutX="424.0" layoutY="274.0" mnemonicParsing="false" text="Eliminar" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <TableView layoutX="190.0" layoutY="-25.0" prefHeight="182.0" prefWidth="795.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn prefWidth="182.0" text="ID PRESENTACION" />
-                      <TableColumn prefWidth="612.0" text="DESCRIPCION" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+      <ImageView fitHeight="146.0" fitWidth="346.0" layoutX="-63.0">
+         <image>
+            <Image url="@../img/REFRIJULI.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="98.0" fitWidth="473.0" layoutX="220.0" layoutY="14.0">
+         <image>
+            <Image url="@../img/PRESENTACION.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="107.0" layoutY="114.0" prefHeight="120.0" prefWidth="473.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="txtIdPresentacion" GridPane.columnIndex="2" />
+            <TextArea fx:id="txtDescripcion" prefHeight="37.0" prefWidth="112.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="btnNuevo" mnemonicParsing="false" text="Nuevo" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <Button fx:id="btnActualizar" mnemonicParsing="false" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Eliminar" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Label prefHeight="17.0" prefWidth="100.0" text="ID Presentación:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+            <Label prefHeight="17.0" prefWidth="74.0" text="Descripción:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <TableView fx:id="tblViewPresentacion" layoutX="120.0" layoutY="278.0" prefHeight="220.0" prefWidth="473.0">
+         <columns>
+            <TableColumn fx:id="clmnIdPresentacion" prefWidth="99.0" text="ID Presentación" />
+            <TableColumn fx:id="clmnDescripcion" prefWidth="373.0" text="Descripción" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
