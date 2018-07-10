@@ -47,7 +47,7 @@ public class VentanaPrincipalController {
     void newpage3(ActionEvent event) {
 
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("FXMLinsumo.fxml"));
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/vistas/FXMLinsumo.fxml"));
             Parent root1 = (Parent) fxmlloader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -64,7 +64,7 @@ public class VentanaPrincipalController {
     void newpage4(ActionEvent event) {
 
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("FXMLpedido.fxml"));
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/vistas/FXMLpedido.fxml"));
             Parent root1 = (Parent) fxmlloader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -81,7 +81,7 @@ public class VentanaPrincipalController {
     void newpage5(ActionEvent event) {
 
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("FXMLpresentacion.fxml"));
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/vistas/FXMLpresentacion.fxml"));
             Parent root1 = (Parent) fxmlloader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -98,7 +98,7 @@ public class VentanaPrincipalController {
     void newpage6(ActionEvent event) {
 
         try {
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("FXMLunidad.fxml"));
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/vistas/FXMLunidad.fxml"));
             Parent root1 = (Parent) fxmlloader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
