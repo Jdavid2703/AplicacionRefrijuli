@@ -15,14 +15,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import modelos.Conexion;
-import modelos.Unidad;
+import modelos.TipoDocumento;
 
 public class TipoDocumentoController implements Initializable {
 
     @FXML
-    private TextField txtIdtipoDocumento;
+    private TextField txtIdTipoDocumento;
     @FXML
-    private TextField txtNombre;
+    private TextField txtNombreTipoDocumento;
+    @FXML
+    private TextField txtDescripcionTipoDocumento;
     @FXML
     private Button btnNuevo;
     @FXML
@@ -32,20 +34,21 @@ public class TipoDocumentoController implements Initializable {
     @FXML
     private Button btnGuardar;
     @FXML
-    private TableView<Unidad> tblViewUnidad;
+    private TableView<TipoDocumento> tblViewTipoDocumento;
     @FXML
-    private TableColumn<Unidad, Number> clmnIdUnidad;
+    private TableColumn<TipoDocumento, Number> clmnIdTipoDocumento;
     @FXML
-    private TableColumn<Unidad, String> clmnNombreUnidad;
+    private TableColumn<TipoDocumento, String> clmnNombreTipoDocumento;
+    @FXML
+    private TableColumn<TipoDocumento, String> clmnDescripcionTipoDocumento;
 
-    
 // METODO LIMPIAR CAMPOS
     @FXML
     public void limpiarCamposUnidad() {
 
-        txtIdUnidad.requestFocus();
-        txtIdUnidad.setText("");
-        txtNombreUnidad.setText("");
+        txtIdTipoDocumento.requestFocus();
+        txtNombreTipoDocumento.setText("");
+        txtDescripcionTipoDocumento.setText("");
         btnGuardar.setDisable(false);
         btnEliminar.setDisable(true);
         btnActualizar.setDisable(true);
@@ -53,52 +56,53 @@ public class TipoDocumentoController implements Initializable {
     }
 
     private Conexion conexion;//Instanciando la conexion
-    private ObservableList<Unidad> listaUnidad;
+    private ObservableList<TipoDocumento> listaTipoDocumento;
 
-//AGREGAR UNIDAD
-    public void agregarUnidad() {
-        Unidad unidad = new Unidad(
-                Integer.valueOf(txtIdUnidad.getText()),
-                txtNombreUnidad.getText());
-                
+//METODO AGREGAR 
+    public void agregarTipoDocumento() {
+        TipoDocumento tipoDocumento = new TipoDocumento(
+                Integer.valueOf(txtIdTipoDocumento.getText()),
+                txtNombreTipoDocumento.getText(),
+                txtDescripcionTipoDocumento.getText());
 
         conexion.establecerConexion();
-        int resultado = unidad.guardarUnidad(conexion);
+        int resultado = tipoDocumento.guardarTipoDocumento(conexion);
         conexion.cerrarConexion();
 
         if (resultado == 1) {
-            listaUnidad.add(unidad);
+            listaTipoDocumento.add(tipoDocumento);
         }
     }
 
-// ACTUALIZAR UNIDAD
-    public void actualizarUnidad() {
-        Unidad unidad = new Unidad(
-                Integer.valueOf(txtIdUnidad.getText()),
-                txtNombreUnidad.getText());
+// METODO ACTUALIZAR 
+    public void actualizarTipoDocumento() {
+        TipoDocumento tipoDocumento = new TipoDocumento(
+                Integer.valueOf(txtIdTipoDocumento.getText()),
+                txtNombreTipoDocumento.getText(),
+                txtDescripcionTipoDocumento.getText());
 
         conexion.establecerConexion();
-        int resultado = unidad.actualizarUnidad(conexion);
+        int resultado = tipoDocumento.actualizarTipoDocumento(conexion);
         conexion.cerrarConexion();
 
         if (resultado == 1) {
-            listaUnidad.set(
-                    tblViewUnidad.getSelectionModel().getSelectedIndex(),
-                    unidad
+            listaTipoDocumento.set(
+                    tblViewTipoDocumento.getSelectionModel().getSelectedIndex(),
+                    tipoDocumento
             );
         }
     }
 
-// ELIMINAR UNIDAD
-    public void eliminarUnidad() {
+// METODO ELIMINAR 
+    public void eliminarTipoDocumento() {
         conexion.establecerConexion();
-        int resultado = tblViewUnidad.getSelectionModel().getSelectedItem()
-                .eliminarUnidad((Conexion) conexion.getConnection());
+        int resultado = tblViewTipoDocumento.getSelectionModel().getSelectedItem()
+                .eliminarTipoDocumento((Conexion) conexion.getConnection());
         conexion.cerrarConexion();
 
         if (resultado == 1) {
 
-            listaUnidad.remove(tblViewUnidad.getSelectionModel().getSelectedIndex());
+            listaTipoDocumento.remove(tblViewTipoDocumento.getSelectionModel().getSelectedIndex());
 
             Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
             mensaje.setTitle("Registro Eliminado");
@@ -116,31 +120,32 @@ public class TipoDocumentoController implements Initializable {
         conexion.establecerConexion();
 
 // INICIALIZAR
-        listaUnidad = FXCollections.observableArrayList();
+        listaTipoDocumento = FXCollections.observableArrayList();
 
 // LLENAR LISTAS
-        Unidad.llenarInformacionUnidad(conexion.getConnection(), listaUnidad);
+        TipoDocumento.llenarInformacionTipoDocumento(conexion.getConnection(), listaTipoDocumento);
 
 // ENLAZAR COLUMNAS CON ATRIBUTOS
-        clmnIdUnidad.setCellValueFactory(new PropertyValueFactory<Unidad, Number>("idUnidad"));
-        clmnNombreUnidad.setCellValueFactory(new PropertyValueFactory<Unidad, String>("nombreUnidad"));
-
+        clmnIdTipoDocumento.setCellValueFactory(new PropertyValueFactory<TipoDocumento, Number>("idTipoDocumento"));
+        clmnNombreTipoDocumento.setCellValueFactory(new PropertyValueFactory<TipoDocumento, String>("nombreTipoDocumento"));
+        clmnDescripcionTipoDocumento.setCellValueFactory(new PropertyValueFactory<TipoDocumento, String>("descripcionTipoDocumento"));
+        
 // TABLE VIEWS
-        tblViewUnidad.setItems(listaUnidad);
+        tblViewTipoDocumento.setItems(listaTipoDocumento);
         gestionarEventos();
         conexion.cerrarConexion();
 
     }
 
     public void gestionarEventos() {
-        tblViewUnidad.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Unidad>() {
+        tblViewTipoDocumento.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TipoDocumento>() {
             @Override
-            public void changed(ObservableValue<? extends Unidad> observable, Unidad valorAnterior,
-                    Unidad valorSeleccionado) {
+            public void changed(ObservableValue<? extends TipoDocumento> observable, TipoDocumento valorAnterior,
+                    TipoDocumento valorSeleccionado) {
                 if (valorSeleccionado != null) {
-                    txtIdUnidad.setText(String.valueOf(valorSeleccionado.getIdUnidad()));
-                    txtNombreUnidad.setText(String.valueOf(valorSeleccionado.getNombreUnidad()));
-  
+                    txtIdTipoDocumento.setText(String.valueOf(valorSeleccionado.getIdTipoDocumento()));
+                    txtNombreTipoDocumento.setText(String.valueOf(valorSeleccionado.getNombreTipoDocumento()));
+                    txtDescripcionTipoDocumento.setText(String.valueOf(valorSeleccionado.getDescripcionTipoDocumento()));
 
                     btnGuardar.setDisable(true);
                     btnEliminar.setDisable(false);
