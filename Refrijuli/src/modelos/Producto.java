@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 
 public class Producto {
 
-    private IntegerProperty idProducto;
+        private IntegerProperty idProducto;
     private StringProperty nombre;
     private StringProperty descripcion;
     private IntegerProperty precio;
