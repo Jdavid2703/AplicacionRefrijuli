@@ -16,8 +16,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
-
-
 public class Cliente {
 
     private IntegerProperty idCliente;
@@ -58,7 +56,6 @@ public class Cliente {
 
     }
 
-  
     public Integer getIdCliente() {
         return idCliente.get();
     }
@@ -70,7 +67,6 @@ public class Cliente {
     public IntegerProperty idClienteProperty() {
         return idCliente;
     }
-
 
     public String getPrimerNombre() {
         return primerNombre.get();
@@ -84,7 +80,6 @@ public class Cliente {
         return primerNombre.get();
     }
 
-
     public String getSegundoNombre() {
         return segundoNombre.get();
     }
@@ -96,7 +91,6 @@ public class Cliente {
     public String segundoNombreProperty() {
         return segundoNombre.get();
     }
-
 
     public String getPrimerApellido() {
         return primerApellido.get();
@@ -110,7 +104,6 @@ public class Cliente {
         return primerApellido;
     }
 
-
     public String getSegundoApellido() {
         return segundoApellido.get();
     }
@@ -122,7 +115,6 @@ public class Cliente {
     public StringProperty segundoApellidoProperty() {
         return segundoApellido;
     }
-
 
     public TipoDocumento getIdTipoDocumento() {
         return idTipoDocumento.getIdTipoDocumento();
@@ -136,7 +128,6 @@ public class Cliente {
         return idTipoDocumento;
     }
 
-
     public Integer getNumeroDocumento() {
         return numeroDocumento.get();
     }
@@ -148,7 +139,6 @@ public class Cliente {
     public IntegerProperty numeroDocumentoProperty() {
         return numeroDocumento;
     }
-
 
     public Estado getIdEstado() {
         return idEstado;
@@ -162,7 +152,6 @@ public class Cliente {
         return idEstado;
     }
 
-
     public String getDireccion() {
         return direccion.get();
     }
@@ -174,7 +163,6 @@ public class Cliente {
     public StringProperty direccionProperty() {
         return direccion;
     }
-
 
     public Integer getTelefono() {
         return telefono.get();
@@ -188,7 +176,6 @@ public class Cliente {
         return telefono;
     }
 
-    
     public Integer getCelular() {
         return celular.get();
     }
@@ -230,7 +217,8 @@ public class Cliente {
                                 resultado.getString("segundoApellido"),
                                 new TipoDocumento(
                                         resultado.getInt("idTipoDocumento"),
-                                        resultado.getString("nombreTipoDocumento")),
+                                        resultado.getString("nombreTipoDocumento"),
+                                        resultado.getString("descripcionTipoDocumento")),
                                 resultado.getInt("numeroDocumento"),
                                 new Estado(
                                         resultado.getInt("idEstado"),
@@ -283,8 +271,6 @@ public class Cliente {
         }
     }
 
-    
-
     public int actualizarCliente(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
@@ -304,10 +290,10 @@ public class Cliente {
             );
 
             ps.setInt(1, idCliente.get());
-            ps.setString(2,primerNombre.get() );
-            ps.setString(3,segundoNombre.get() );
+            ps.setString(2, primerNombre.get());
+            ps.setString(3, segundoNombre.get());
             ps.setString(4, primerApellido.get());
-            ps.setString(5,segundoApellido.get() );
+            ps.setString(5, segundoApellido.get());
             ps.setInt(1, idTipoDocumento.getIdTipoDocumento());
             ps.setInt(1, numeroDocumento.get());
             ps.setInt(7, idEstado.getIdEstado());
@@ -321,8 +307,8 @@ public class Cliente {
             return 0;
         }
     }
-    
-     public int eliminarCliente(Conexion conexion) {
+
+    public int eliminarCliente(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "DELETE FROM Cliente"
