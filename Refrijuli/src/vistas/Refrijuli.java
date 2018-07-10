@@ -1,4 +1,4 @@
-package refrijuli;
+package vistas;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -12,9 +12,9 @@ public class Refrijuli extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/vistas/FXMLVentanaPrincipal.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("FXMLVentanaPrincipal.fxml"));
 			Scene scene = new Scene(root);
-//		        scene.getStylesheets().add(getClass().getResource("estilo.css").toExternalForm());
+		        scene.getStylesheets().add(getClass().getResource("estilo.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

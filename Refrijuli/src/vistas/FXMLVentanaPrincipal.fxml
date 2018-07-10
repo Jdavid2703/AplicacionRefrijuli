@@ -7,12 +7,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.VentanaPrincipalController">
    <children>
-      <Button layoutX="116.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Categoria" />
-      <Button layoutX="116.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage2" prefHeight="53.0" prefWidth="111.0" text="Tipo de Documentos" />
-      <Button layoutX="116.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage3" prefHeight="53.0" prefWidth="111.0" text="Insumo" />
-      <Button layoutX="354.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage4" prefHeight="53.0" prefWidth="111.0" text="Pedido" />
-      <Button layoutX="566.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage6" prefHeight="53.0" prefWidth="111.0" text="Unidad" />
-      <Button layoutX="566.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage5" prefHeight="53.0" prefWidth="111.0" text="Presentación" />
+      <Button fx:id="Categoria" layoutX="116.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Categoria" />
+      <Button fx:id="TipoDocumento" layoutX="116.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage2" prefHeight="53.0" prefWidth="111.0" text="Tipo de Documentos" />
+      <Button fx:id="Insumo" layoutX="116.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage3" prefHeight="53.0" prefWidth="111.0" text="Insumo" />
+      <Button fx:id="Cliente" layoutX="354.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage7" prefHeight="53.0" prefWidth="111.0" text="Cliente" />
+      <Button fx:id="Producto" layoutX="354.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage8" prefHeight="53.0" prefWidth="111.0" text="Producto" />
+      <Button fx:id="Pedido" layoutX="354.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage4" prefHeight="53.0" prefWidth="111.0" text="Pedido" />
+      <Button fx:id="Unidad" layoutX="566.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage6" prefHeight="53.0" prefWidth="111.0" text="Unidad" />
+      <Button fx:id="Presentacion" layoutX="566.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage5" prefHeight="53.0" prefWidth="111.0" text="Presentación" />
       <ImageView fitHeight="112.0" fitWidth="425.0" layoutX="141.0" layoutY="14.0">
          <image>
             <Image url="@../img/refrijuliprincipal_1_original.png" />
@@ -33,8 +35,6 @@
             <Image url="@../img/icons8-tarjeta-de-identificación-96.png" />
          </image>
       </ImageView>
-      <Button layoutX="354.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Cliente" />
-      <Button layoutX="354.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Producto" />
       <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="284.0" layoutY="257.0">
          <image>
             <Image url="@../img/icons8-producto-96.png" />
