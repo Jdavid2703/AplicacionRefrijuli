@@ -1,9 +1,7 @@
 package vistas;
 
-import java.io.File;
+
 import java.net.URL;
-import java.sql.Date;
-import java.sql.Time;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,13 +17,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import modelos.Categoria;
-import modelos.Cliente;
 import modelos.Conexion;
 import modelos.Estado;
-import modelos.Pedido;
 import modelos.Producto;
 
 public class ProductoController implements Initializable {
@@ -38,8 +31,6 @@ public class ProductoController implements Initializable {
     private TextArea txtDescripcion;
     @FXML
     private TextField txtPrecio;
-    @FXML
-    private TextField txtEstado;
     @FXML
     private ComboBox<Estado> cmbIdEstado;
     @FXML
@@ -59,11 +50,9 @@ public class ProductoController implements Initializable {
     @FXML
     private TableColumn<Producto, String> clmnDescripcion;
     @FXML
-    private TableColumn<Producto, String> clmnPrecio;
-  
-    
+    private TableColumn<Producto, Number> clmnPrecio;
     @FXML
-    private TableColumn<Producto, String> clmnIdEstado;
+    private TableColumn<Producto, Estado> clmnIdEstado;
 
     @FXML
     public void limpiarCamposProducto() {
@@ -88,7 +77,7 @@ public class ProductoController implements Initializable {
                 Integer.valueOf(txtidProducto.getText()),
                 txtNombre.getText(),
                 txtDescripcion.getText(),
-                txtPrecio.getText(),
+                Integer.valueOf(txtPrecio.getText()),
                 cmbIdEstado.getSelectionModel().getSelectedItem()
         );
 
@@ -106,7 +95,7 @@ public class ProductoController implements Initializable {
                 Integer.valueOf(txtidProducto.getText()),
                 String.valueOf(txtNombre.getText()),
                 String.valueOf(txtDescripcion.getText()),
-                String.valueOf(txtPrecio.getText()),
+                Integer.valueOf(txtPrecio.getText()),
                 cmbIdEstado.getSelectionModel().getSelectedItem()
         );
 
@@ -148,29 +137,47 @@ public class ProductoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         conexion = new Conexion();
         conexion.establecerConexion();
-        // INICIALIZAR
+// INICIALIZAR
         listaProducto = FXCollections.observableArrayList();
         listaEstado = FXCollections.observableArrayList();
-        // LLENAR LISTAS
+// LLENAR LISTAS
         Producto.llenarInformacionProducto(conexion.getConnection(), listaProducto);
         Estado.llenarInformacionEstado(conexion.getConnection(), listaEstado);
-        // ENLAZAR LISTAS CON COMBOBOX
+// ENLAZAR LISTAS CON COMBOBOX
         cmbIdEstado.setItems(listaEstado);
-        // ENLAZAR COLUMNAS CON ATRIBUTOS
+// ENLAZAR COLUMNAS CON ATRIBUTOS
         clmnIdProducto.setCellValueFactory(new PropertyValueFactory<Producto, Number>("idProducto"));
         clmnNombre.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombre"));
         clmnDescripcion.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcion"));
-        clmnPrecio.setCellValueFactory(new PropertyValueFactory<Producto, String>("precio"));
-       // ENLAZAR COLUMNAS CON ATRIBUTOS COMBOBOX
+        clmnPrecio.setCellValueFactory(new PropertyValueFactory<Producto, Number>("precio"));
+// ENLAZAR COLUMNAS CON ATRIBUTOS COMBOBOX
        clmnIdEstado.setCellValueFactory(new PropertyValueFactory<Producto, Estado>("idEstado"));
-        // TABLE VIEWS
+// TABLE VIEWS
         tblViewProducto.setItems(listaProducto);
         gestionarEventos();
         conexion.cerrarConexion();
     }
 
     private void gestionarEventos() {
-       
+     tblViewProducto.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Producto>() {
+            @Override
+            public void changed(ObservableValue<? extends Producto> observable, Producto valorAnterior,
+                    Producto valorSeleccionado) {
+                if (valorSeleccionado != null) {
+                    txtidProducto.setText(String.valueOf(valorSeleccionado.getIdProducto()));
+                    txtNombre.setText(String.valueOf(valorSeleccionado.getNombre()));
+                    txtDescripcion.setText(String.valueOf(valorSeleccionado.getDescripcion()));
+                    txtPrecio.setText(String.valueOf(valorSeleccionado.getPrecio()));
+                    //LOS COMBOBOX
+                    cmbIdEstado.setValue(valorSeleccionado.getIdEstado());
+
+                    btnGuardar.setDisable(true);
+                    btnEliminar.setDisable(false);
+                    btnActualizar.setDisable(false);
+                }
+            }
+        }
+        );
     }
    
 

@@ -16,57 +16,83 @@ public class Producto {
     private IntegerProperty idProducto;
     private StringProperty nombre;
     private StringProperty descripcion;
-    private StringProperty precio;
-    private StringProperty idEstado;
+    private IntegerProperty precio;
+    private Estado idEstado;
 
-    public Producto(Integer idProducto, String nombre, String descripcion, String precio, String foto, String estado) {
+    public Producto(
+            Integer idProducto,
+            String nombre,
+            String descripcion,
+            Integer precio,
+            Estado idEstado) {
         this.idProducto = new SimpleIntegerProperty(idProducto);
         this.nombre = new SimpleStringProperty(nombre);
         this.descripcion = new SimpleStringProperty(descripcion);
-        this.precio = new SimpleStringProperty(precio);
-        this.idEstado = new SimpleStringProperty(estado);
+        this.precio = new SimpleIntegerProperty(precio);
+        this.idEstado = idEstado;
     }
 
     public Producto() {
     }
-    public IntegerProperty getIdProducto() {
-        return idProducto;
+
+    public Integer getIdProducto() {
+        return idProducto.get();
     }
 
     public void setIdProducto(Integer idProducto) {
         this.idProducto = new SimpleIntegerProperty(idProducto);
     }
 
-    public StringProperty getNombre() {
-        return nombre;
+    public IntegerProperty idProductoProperty() {
+        return idProducto;
+    }
+
+    public String getNombre() {
+        return nombre.get();
     }
 
     public void setNombre(String nombre) {
         this.nombre = new SimpleStringProperty(nombre);
     }
 
-    public StringProperty getDescripcion() {
-        return descripcion;
+    public StringProperty nombreProperty() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion.get();
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = new SimpleStringProperty(descripcion);
     }
 
-    public StringProperty getPrecio() {
+    public StringProperty descripcionProperty() {
+        return descripcion;
+    }
+
+    public Integer getPrecio() {
+        return precio.get();
+    }
+
+    public void setPrecio(Integer precio) {
+        this.precio = new SimpleIntegerProperty(precio);
+    }
+
+    public IntegerProperty precioProperty() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
-        this.precio = new SimpleStringProperty(precio);
-    }
-
-    public StringProperty getEstado() {
+    public Estado getIdEstado() {
         return idEstado;
     }
 
-    public void setEstado(String estado) {
-        this.idEstado = new SimpleStringProperty(estado);
+    public void setIdEstado(Estado idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public Estado idEstadoProperty() {
+        return idEstado;
     }
 
     public static void llenarInformacionProducto(Connection connection,
@@ -74,24 +100,26 @@ public class Producto {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultado = statement.executeQuery(
-                    "SELECT idProducto"
-                    + "nombre"
-                    + "descripcion "
-                    + "precio"
-                    + "foto"
+                    "SELECT idProducto,"
+                    + "nombre,"
+                    + "descripcion, "
+                    + "precio,"
                     + "idEstado"
                     + "FROM Producto"
             );
 
             while (resultado.next()) {
-                listaProducto.add(new Producto(
-                        resultado.getInt("idProducto"),
-                        resultado.getString("nombre"),
-                        resultado.getString("descripcion"),
-                        resultado.getString("precio"),
-                        resultado.getString("foto"),
-                        resultado.getString("idEstado")
-                )
+                listaProducto.add(
+                        new Producto(
+                                resultado.getInt("idProducto"),
+                                resultado.getString("nombre"),
+                                resultado.getString("descripcion"),
+                                resultado.getInt("precio"),
+                                new Estado(
+                                        resultado.getInt("idEstado"),
+                                        resultado.getString("nombreEstado"),
+                                        resultado.getString("descripcion"))
+                        )
                 );
             }
         } catch (SQLException e) {
@@ -104,18 +132,17 @@ public class Producto {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "INSERT INTO  producto ( "
                     + "idProducto, "
-                    + "nombre "
-                    + "descripcion "
-                    + "precio "
-                   
+                    + "nombre, "
+                    + "descripcion, "
+                    + "precio, "
                     + "idEstado "
                     + ") VALUES (?, ?, ?, ?, ?)"
             );
             ps.setInt(1, idProducto.get());
             ps.setString(2, nombre.get());
             ps.setString(3, descripcion.get());
-            ps.setString(4, precio.get());
-            ps.setString(5, idEstado.get());
+            ps.setInt(4, precio.get());
+            ps.setInt(5, idEstado.getIdEstado());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -139,9 +166,9 @@ public class Producto {
             ps.setInt(1, idProducto.get());
             ps.setString(2, nombre.get());
             ps.setString(3, descripcion.get());
-            ps.setString(4, precio.get());
+            ps.setInt(4, precio.get());
 
-            ps.setString(5, idEstado.get());
+            ps.setInt(5, idEstado.getIdEstado());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
