@@ -46,8 +46,8 @@
             <TextField fx:id="txtIdUnidad" GridPane.columnIndex="2" />
             <TextField fx:id="txtNombreUnidad" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#limpiarCamposUnidad" text="Nuevo" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-            <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#actualizarUnidad" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarUnidad" prefHeight="25.0" prefWidth="63.0" text="Eliminar" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarUnidad" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarUnidad" prefHeight="25.0" prefWidth="63.0" text="Eliminar" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#agregarUnidad" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="5" />
          </children>
       </GridPane>

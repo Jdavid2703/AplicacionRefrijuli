@@ -113,7 +113,7 @@ public class ProductoController implements Initializable {
     }
 
     @FXML
-    public void eliminarPedido() {
+    public void eliminarProducto() {
         conexion.establecerConexion();
         int resultado = tblViewProducto.getSelectionModel().getSelectedItem()
                 .eliminarProducto((Conexion) conexion.getConnection());

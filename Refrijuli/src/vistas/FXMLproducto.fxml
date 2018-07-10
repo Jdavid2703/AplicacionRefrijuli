@@ -29,9 +29,9 @@
                   <TextField fx:id="txtPrecio" layoutX="484.0" layoutY="118.0" prefHeight="25.0" prefWidth="62.0" />
                   <ComboBox fx:id="cmbIdEstado" layoutX="484.0" layoutY="169.0" prefWidth="150.0" />
                   <Button fx:id="btnNuevo" layoutX="200.0" layoutY="248.0" mnemonicParsing="false" onAction="#limpiarCamposProducto" text="Nuevo" />
-                  <Button fx:id="btnActualizar" layoutX="294.0" layoutY="248.0" mnemonicParsing="false" onAction="#actualizarProducto" text="Actualizar" />
-                  <Button fx:id="btnGuardar" layoutX="392.0" layoutY="248.0" mnemonicParsing="false" onAction="#agregarProducto" text="Guardar" />
-                  <Button fx:id="btnEliminar" layoutX="484.0" layoutY="248.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
+                  <Button fx:id="btnActualizar" disable="true" layoutX="294.0" layoutY="248.0" mnemonicParsing="false" onAction="#actualizarProducto" text="Actualizar" />
+                  <Button fx:id="btnGuardar" layoutX="486.0" layoutY="248.0" mnemonicParsing="false" onAction="#agregarProducto" text="Guardar" />
+                  <Button fx:id="btnEliminar" disable="true" layoutX="403.0" layoutY="248.0" mnemonicParsing="false" onAction="#eliminarProducto" text="Eliminar" />
                   <ImageView fitHeight="95.0" fitWidth="448.0" layoutX="319.0">
                      <image>
                         <Image url="@../img/PRODUCTO.png" />

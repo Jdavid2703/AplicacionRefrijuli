@@ -45,8 +45,8 @@
             <TextField fx:id="txtIdPresentacion" GridPane.columnIndex="2" />
             <TextArea fx:id="txtDescripcion" prefHeight="37.0" prefWidth="112.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#limpiarCamposNuevoRegistro" text="Nuevo" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-            <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#actualizarPresentacion" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarPresentacion" prefHeight="25.0" prefWidth="63.0" text="Eliminar" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarPresentacion" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarPresentacion" prefHeight="25.0" prefWidth="63.0" text="Eliminar" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#agregarRegistroPresentacion" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="6" />
             <Label prefHeight="17.0" prefWidth="100.0" text="ID Presentación:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
             <Label prefHeight="17.0" prefWidth="74.0" text="Descripción:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
