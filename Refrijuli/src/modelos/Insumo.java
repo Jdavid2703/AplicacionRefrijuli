@@ -211,6 +211,7 @@ public class Insumo {
                     + "idUnidad,"
                     + "precioUnitario,"
                     + "disponibilidad"
+                    + "FROM Insumo"
             );
 
             while (resultado.next()) {

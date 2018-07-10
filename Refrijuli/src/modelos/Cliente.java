@@ -209,9 +209,9 @@ public class Cliente {
                     + "segundoApellido, "
                     + "idTipoDocumento, "
                     + "numeroDocumento, "
-                    + "idEstado "
-                    + "direccion "
-                    + "telefono "
+                    + "idEstado, "
+                    + "direccion, "
+                    + "telefono, "
                     + "celular "
                     + "FROM Cliente"
             );

@@ -56,7 +56,7 @@ public class Presentacion  {
             Statement statement = connection.createStatement();
             ResultSet resultado = statement.executeQuery(
                     "SELECT idPresentacion, "
-                    + "descripcion,"
+                    + "descripcion"
                     + "FROM Presentacion"
             );
 
