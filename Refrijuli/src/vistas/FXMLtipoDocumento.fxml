@@ -14,10 +14,10 @@
       <TextField fx:id="txtIdTipoDocumento" layoutX="304.0" layoutY="113.0" />
       <TextField fx:id="txtNombreTipoDocumento" layoutX="304.0" layoutY="151.0" />
       <TextField fx:id="txtDescripcionTipoDocumento" layoutX="304.0" layoutY="192.0" />
-      <Button fx:id="btnNuevo" layoutX="213.0" layoutY="262.0" mnemonicParsing="false" text="Nuevo" />
-      <Button fx:id="btnEliminar" layoutX="309.0" layoutY="262.0" mnemonicParsing="false" text="Eliminar" />
-      <Button fx:id="btnActualizar" layoutX="405.0" layoutY="262.0" mnemonicParsing="false" text="Actualizar" />
-      <Button fx:id="btnGuardar" layoutX="503.0" layoutY="262.0" mnemonicParsing="false" text="Guardar" />
+      <Button fx:id="btnNuevo" layoutX="213.0" layoutY="262.0" mnemonicParsing="false" onAction="#limpiarCamposUnidad" text="Nuevo" />
+      <Button fx:id="btnEliminar" layoutX="309.0" layoutY="262.0" mnemonicParsing="false" onAction="#eliminarTipoDocumento" text="Eliminar" />
+      <Button fx:id="btnActualizar" layoutX="405.0" layoutY="262.0" mnemonicParsing="false" onAction="#actualizarTipoDocumento" text="Actualizar" />
+      <Button fx:id="btnGuardar" layoutX="503.0" layoutY="262.0" mnemonicParsing="false" onAction="#agregarTipoDocumento" text="Guardar" />
       <ImageView fitHeight="134.0" fitWidth="285.0" layoutX="-41.0" layoutY="5.0">
          <image>
             <Image url="@../img/REFRIJULI.png" />

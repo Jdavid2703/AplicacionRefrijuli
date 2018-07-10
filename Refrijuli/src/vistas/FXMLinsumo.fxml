@@ -37,6 +37,7 @@
             <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
@@ -63,10 +64,10 @@
             <TextField fx:id="txtPrecioUnitario" GridPane.columnIndex="3" GridPane.rowIndex="8" />
             <Label prefHeight="17.0" prefWidth="95.0" text="Disponibilidad: " GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
             <TextField fx:id="txtDisponibilidad" GridPane.columnIndex="5" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Button fx:id="btnActualizar" mnemonicParsing="false" text="Actualizar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Button fx:id="btnNuevo" mnemonicParsing="false" text="Nuevo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+            <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#limpiarCamposInsumo" text="Nuevo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+            <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#actualizarInsumo" text="Actualizar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarInsumo" text="Eliminar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#agregarInsumo" text="Guardar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
          </children>
       </GridPane>
       <ImageView fitHeight="87.0" fitWidth="443.0" layoutX="353.0" layoutY="24.0">
