@@ -5,18 +5,59 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="706.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vistas.VentanaPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.VentanaPrincipalController">
    <children>
-      <Button layoutX="97.0" layoutY="88.0" mnemonicParsing="false" onAction="#newpage" prefHeight="66.0" prefWidth="127.0" text="Categoria" />
-      <Button layoutX="553.0" layoutY="88.0" mnemonicParsing="false" onAction="#newpage4" prefHeight="66.0" prefWidth="127.0" text="Pedido" />
-      <Button layoutX="553.0" layoutY="178.0" mnemonicParsing="false" onAction="#newpage6" prefHeight="66.0" prefWidth="127.0" text="Unidad" />
-      <Button layoutX="97.0" layoutY="178.0" mnemonicParsing="false" onAction="#newpage2" prefHeight="66.0" prefWidth="127.0" text="Tipo de Documentos" />
-      <Button layoutX="97.0" layoutY="261.0" mnemonicParsing="false" onAction="#newpage3" prefHeight="66.0" prefWidth="127.0" text="Insumo" />
-      <Button layoutX="553.0" layoutY="261.0" mnemonicParsing="false" onAction="#newpage5" prefHeight="66.0" prefWidth="127.0" text="Presentación" />
-      <ImageView fitHeight="134.0" fitWidth="285.0" layoutX="241.0" layoutY="127.0">
+      <Button layoutX="116.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Categoria" />
+      <Button layoutX="116.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage2" prefHeight="53.0" prefWidth="111.0" text="Tipo de Documentos" />
+      <Button layoutX="116.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage3" prefHeight="53.0" prefWidth="111.0" text="Insumo" />
+      <Button layoutX="354.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage4" prefHeight="53.0" prefWidth="111.0" text="Pedido" />
+      <Button layoutX="566.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage6" prefHeight="53.0" prefWidth="111.0" text="Unidad" />
+      <Button layoutX="566.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage5" prefHeight="53.0" prefWidth="111.0" text="Presentación" />
+      <ImageView fitHeight="112.0" fitWidth="425.0" layoutX="141.0" layoutY="14.0">
          <image>
-            <Image url="@../img/REFRIJULI.png" />
+            <Image url="@../img/refrijuliprincipal_1_original.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="284.0" layoutY="163.0">
+         <image>
+            <Image url="@../img/icons8-management-96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="37.0" layoutY="340.0">
+         <image>
+            <Image url="@../img/icons8-ingredients-96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="40.0" layoutY="257.0">
+         <image>
+            <Image url="@../img/icons8-tarjeta-de-identificación-96.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="354.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Cliente" />
+      <Button layoutX="354.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Producto" />
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="284.0" layoutY="257.0">
+         <image>
+            <Image url="@../img/icons8-producto-96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="284.0" layoutY="340.0">
+         <image>
+            <Image url="@../img/icons8-orden-de-compra-96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="66.0" fitWidth="67.0" layoutX="40.0" layoutY="163.0">
+         <image>
+            <Image url="@../img/icons8-categoría-80.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="499.0" layoutY="163.0">
+         <image>
+            <Image url="@../img/icons8-libro-de-caja-96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="499.0" layoutY="257.0">
+         <image>
+            <Image url="@../img/icons8-minibar-80.png" />
          </image>
       </ImageView>
    </children>
