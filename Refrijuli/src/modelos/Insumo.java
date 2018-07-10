@@ -50,17 +50,20 @@ public class Insumo {
         this.disponibilidad = new SimpleIntegerProperty(disponibilidad);
     }
 
-    public Insumo() {
-    }
-
-    public IntegerProperty getIdInsumo() {
-        return idInsumo;
+//GET Y SET ID INSUMO
+    public Integer getIdInsumo() {
+        return idInsumo.get();
     }
 
     public void setIdInsumo(Integer idInsumo) {
         this.idInsumo = new SimpleIntegerProperty(idInsumo);
     }
 
+    public IntegerProperty idInsumoProperty() {
+        return idInsumo;
+    }
+
+//GET Y SET NOMBRE 
     public String getNombre() {
         return nombre.get();
     }
@@ -69,6 +72,11 @@ public class Insumo {
         this.nombre = new SimpleStringProperty(nombre);
     }
 
+    public StringProperty nombreProperty() {
+        return nombre;
+    }
+
+    //GET Y SET DESCRIPCION
     public String getDescripcion() {
         return descripcion.get();
     }
@@ -77,6 +85,11 @@ public class Insumo {
         this.descripcion = new SimpleStringProperty(descripcion);
     }
 
+    public StringProperty descripcionProperty() {
+        return descripcion;
+    }
+
+//GET Y SET CANTIDAD
     public Integer getCantidad() {
         return cantidad.get();
     }
@@ -85,6 +98,11 @@ public class Insumo {
         this.cantidad = new SimpleIntegerProperty(cantidad);
     }
 
+    public IntegerProperty cantidadProperty() {
+        return cantidad;
+    }
+
+//GET Y SET ID CATEGORIA
     public Categoria getIdCategoria() {
         return idCategoria;
     }
@@ -93,6 +111,11 @@ public class Insumo {
         this.idCategoria = idCategoria;
     }
 
+    public Categoria idCategoriaProperty() {
+        return idCategoria;
+    }
+
+//GET Y SET STOCK MIN
     public Integer getStockMin() {
         return stockMin.get();
     }
@@ -101,6 +124,11 @@ public class Insumo {
         this.stockMin = new SimpleIntegerProperty(stockMin);
     }
 
+    public IntegerProperty stockMinProperty() {
+        return stockMin;
+    }
+
+//GET Y SET STOCK MAX
     public Integer getStockMax() {
         return stockMax.get();
     }
@@ -109,6 +137,11 @@ public class Insumo {
         this.stockMax = new SimpleIntegerProperty(stockMax);
     }
 
+    public IntegerProperty stockMaxProperty() {
+        return stockMax;
+    }
+
+//GET Y SET ID PRESENTACION
     public Presentacion getIdPresentacion() {
         return idPresentacion;
     }
@@ -117,6 +150,11 @@ public class Insumo {
         this.idPresentacion = idPresentacion;
     }
 
+    public Presentacion idPresentacionProperty() {
+        return idPresentacion;
+    }
+
+//GET Y SET ID UNIDAD
     public Unidad getIdUnidad() {
         return idUnidad;
     }
@@ -125,6 +163,11 @@ public class Insumo {
         this.idUnidad = idUnidad;
     }
 
+    public Unidad idUnidadProperty() {
+        return idUnidad;
+    }
+
+//GET Y SET PRECIO UNITARIO
     public Integer getPrecioUnitario() {
         return precioUnitario.get();
     }
@@ -133,6 +176,11 @@ public class Insumo {
         this.precioUnitario = new SimpleIntegerProperty(precioUnitario);
     }
 
+    public IntegerProperty precioUnitarioProperty() {
+        return precioUnitario;
+    }
+
+//GET Y SET DISPONIBILIDAD
     public Integer getDisponibilidad() {
         return disponibilidad.get();
     }
@@ -141,7 +189,12 @@ public class Insumo {
         this.disponibilidad = new SimpleIntegerProperty(disponibilidad);
     }
 
-    //METODO LLENAR INFORMACION
+    public IntegerProperty disponibilidadProperty() {
+        return disponibilidad;
+    }
+
+    
+//METODO LLENAR INFORMACION
     public static void llenarInformacionInsumo(Connection connection,
             ObservableList<Insumo> listaInsumo) {
         try {
@@ -159,7 +212,6 @@ public class Insumo {
                     + "precioUnitario,"
                     + "disponibilidad"
             );
-
 
             while (resultado.next()) {
                 listaInsumo.add(

@@ -24,10 +24,8 @@ public class Categoria {
     }
 
 //GET Y SET ID CATEGORIA
-    public Categoria() {
-    }
-
-    public Integer getIdCategoria() {
+  
+   public Integer getIdCategoria() {
         return idCategoria.get();
     }
 
