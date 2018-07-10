@@ -12,6 +12,21 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.ClienteController">
    <children>
+      <TextField fx:id="txtIdCliente" layoutX="302.0" layoutY="110.0" />
+      <TextField fx:id="txtPrimerNombre" layoutX="302.0" layoutY="146.0" />
+      <TextField fx:id="txtPrimerApellido" layoutX="302.0" layoutY="179.0" />
+      <ComboBox fx:id="cmbIdTipoDocumento" layoutX="302.0" layoutY="216.0" prefWidth="150.0" />
+      <TextField fx:id="txtNumeroDocumento" layoutX="302.0" layoutY="257.0" />
+      <ComboBox fx:id="cmbIdEstado" layoutX="302.0" layoutY="296.0" prefWidth="150.0" />
+      <TextField fx:id="txtTelefono" layoutX="598.0" layoutY="110.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="txtSegundoNombre" layoutX="598.0" layoutY="146.0" />
+      <TextField fx:id="txtSegundoApellido" layoutX="598.0" layoutY="179.0" />
+      <TextField fx:id="txtDireccion" layoutX="600.0" layoutY="216.0" />
+      <TextField fx:id="txtCelular" layoutX="600.0" layoutY="257.0" />
+      <Button fx:id="btnNuevo" layoutX="302.0" layoutY="363.0" mnemonicParsing="false" text="Nuevo" />
+      <Button fx:id="btnActualizar" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="384.0" layoutY="363.0" mnemonicParsing="false" text="Actualizar" />
+      <Button fx:id="btnEliminar" layoutX="478.0" layoutY="363.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="btnGuardar" layoutX="569.0" layoutY="363.0" mnemonicParsing="false" text="Guardar" />
       <TableView fx:id="tblViewCliente" layoutX="12.0" layoutY="416.0" prefHeight="177.0" prefWidth="916.0">
         <columns>
           <TableColumn fx:id="clmnIdCliente" prefWidth="56.0" text="Id cliente" />
@@ -27,35 +42,25 @@
             <TableColumn fx:id="clmnCelular" prefWidth="95.0" text="Cel" />
         </columns>
       </TableView>
-      <TextField fx:id="txtPrimerApellido" layoutX="233.0" layoutY="177.0" />
-      <TextField fx:id="txtNumeroDocumento" layoutX="233.0" layoutY="255.0" />
-      <TextField fx:id="txtCelular" layoutX="531.0" layoutY="255.0" />
-      <TextField fx:id="txtPrimerNombre" layoutX="233.0" layoutY="144.0" />
-      <TextField fx:id="txtDireccion" layoutX="531.0" layoutY="214.0" />
-      <TextField fx:id="txtSegundoApellido" layoutX="529.0" layoutY="177.0" />
-      <ComboBox fx:id="cmbIdEstado" layoutX="233.0" layoutY="294.0" prefWidth="150.0" />
-      <TextField fx:id="txtIdCliente" layoutX="233.0" layoutY="108.0" />
-      <Button fx:id="btnGuardar" layoutX="500.0" layoutY="361.0" mnemonicParsing="false" text="Guardar" />
-      <Button fx:id="btnEliminar" layoutX="409.0" layoutY="361.0" mnemonicParsing="false" text="Eliminar" />
-      <Button fx:id="btnActualizar" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="315.0" layoutY="361.0" mnemonicParsing="false" text="Actualizar" />
-      <Button fx:id="btnNuevo" layoutX="233.0" layoutY="361.0" mnemonicParsing="false" text="Nuevo" />
-      <TextField fx:id="txtTelefono" layoutX="529.0" layoutY="108.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="482.0" layoutY="259.0" text="Celular" />
-      <Label layoutX="466.0" layoutY="218.0" text="Direccion" />
-      <Label layoutX="420.0" layoutY="181.0" text="Segundo Apellido" />
-      <Label layoutX="420.0" layoutY="148.0" text="Segundo Nombre" />
-      <Label layoutX="468.0" layoutY="112.0" text="Telefono" />
-      <Label layoutX="183.0" layoutY="298.0" text="Estado" />
-      <Label layoutX="102.0" layoutY="259.0" prefHeight="17.0" prefWidth="117.0" text="Número Documento" />
-      <Label layoutX="137.0" layoutY="144.0" text="Primer Nombre" />
-      <Label layoutX="137.0" layoutY="181.0" text="Primer Apellido" />
-      <Label layoutX="168.0" layoutY="112.0" text="Id Cliente" />
-      <ComboBox fx:id="cmbIdTipoDocumento" layoutX="233.0" layoutY="214.0" prefWidth="150.0" />
-      <Label layoutX="119.0" layoutY="218.0" text="   Tipo Documento" />
-      <TextField fx:id="txtSegundoNombre" layoutX="529.0" layoutY="144.0" />
-      <ImageView fitHeight="72.0" fitWidth="436.0" layoutX="264.0" layoutY="14.0">
+      <Label layoutX="551.0" layoutY="261.0" text="Celular" />
+      <Label layoutX="535.0" layoutY="220.0" text="Direccion" />
+      <Label layoutX="489.0" layoutY="183.0" text="Segundo Apellido" />
+      <Label layoutX="489.0" layoutY="150.0" text="Segundo Nombre" />
+      <Label layoutX="537.0" layoutY="114.0" text="Telefono" />
+      <Label layoutX="252.0" layoutY="300.0" text="Estado" />
+      <Label layoutX="171.0" layoutY="261.0" prefHeight="17.0" prefWidth="117.0" text="Número Documento" />
+      <Label layoutX="206.0" layoutY="146.0" text="Primer Nombre" />
+      <Label layoutX="206.0" layoutY="183.0" text="Primer Apellido" />
+      <Label layoutX="237.0" layoutY="114.0" text="Id Cliente" />
+      <Label layoutX="188.0" layoutY="220.0" text="   Tipo Documento" />
+      <ImageView fitHeight="102.0" fitWidth="527.0" layoutX="274.0">
          <image>
             <Image url="@../img/CLIENTE.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="148.0" fitWidth="315.0" layoutX="-33.0" layoutY="-5.0">
+         <image>
+            <Image url="@../img/REFRIJULI.png" />
          </image>
       </ImageView>
    </children>
