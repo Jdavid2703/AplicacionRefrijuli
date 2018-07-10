@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="597.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.FXMLinsumoController">
+<AnchorPane id="AnchorPane" prefHeight="597.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.InsumoController">
    <children>
       <GridPane layoutX="39.0" layoutY="128.0" prefHeight="273.0" prefWidth="796.0">
          <columnConstraints>
@@ -45,27 +46,27 @@
             <Label text="Descripcion: " GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             <Label text="Cantidad: " GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
             <Label text="ID Categoria: " GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField cache="true" depthTest="DISABLE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="txtIdInsumo" GridPane.columnIndex="1" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextArea fx:id="txtDescripcion" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtCantidad" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="cmbIdCategoria" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Label text="Stock Min: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
             <Label text="Stock Max: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
             <Label text="ID Presentacion: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             <Label text="ID Unidad: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
             <Label text="Precio Unitario: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <TextField fx:id="txtStockMin" GridPane.columnIndex="3" />
+            <TextField fx:id="txtStockMax" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbIdPresentacion" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cmbIdUnidad" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <TextField fx:id="txtPrecioUnitario" GridPane.columnIndex="3" GridPane.rowIndex="8" />
             <Label prefHeight="17.0" prefWidth="95.0" text="Disponibilidad: " GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
-            <TextField GridPane.columnIndex="5" />
-            <Button mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" text="Actualizar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" text="Guardar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <Button mnemonicParsing="false" text="Nuevo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtDisponibilidad" GridPane.columnIndex="5" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+            <Button fx:id="btnActualizar" mnemonicParsing="false" text="Actualizar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+            <Button fx:id="btnNuevo" mnemonicParsing="false" text="Nuevo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
          </children>
       </GridPane>
       <ImageView fitHeight="87.0" fitWidth="443.0" layoutX="353.0" layoutY="24.0">
@@ -73,20 +74,19 @@
             <Image url="@../img/INSUMO.png" />
          </image>
       </ImageView>
-      <TableView layoutX="17.0" layoutY="398.0" prefHeight="190.0" prefWidth="892.0">
+      <TableView fx:id="tblViewInsumo" layoutX="17.0" layoutY="398.0" prefHeight="190.0" prefWidth="892.0">
         <columns>
-          <TableColumn prefWidth="64.0" text="ID Insumo" />
-          <TableColumn prefWidth="58.0" text="Nombre" />
-            <TableColumn prefWidth="75.0" text="Descripcion" />
-            <TableColumn prefWidth="63.0" text="Cantidad" />
-            <TableColumn prefWidth="81.0" text="ID Categoria" />
-            <TableColumn prefWidth="65.0" text="Stock Min" />
-            <TableColumn prefWidth="75.0" text="Stock Max" />
-            <TableColumn prefWidth="103.0" text="ID Presentacion" />
-            <TableColumn prefWidth="64.0" text="ID Unidad" />
-            <TableColumn prefWidth="92.0" text="Precio Unitario" />
-            <TableColumn prefWidth="89.0" text="Disponibilidad" />
-            <TableColumn prefWidth="65.0" text="Stock Min" />
+          <TableColumn fx:id="clmnIdInsumo" prefWidth="64.0" text="ID Insumo" />
+          <TableColumn fx:id="clmnNombre" prefWidth="58.0" text="Nombre" />
+            <TableColumn fx:id="clmnDescripcion" prefWidth="92.0" text="Descripcion" />
+            <TableColumn fx:id="clmnCantidad" prefWidth="83.0" text="Cantidad" />
+            <TableColumn fx:id="clmnIdCategoria" prefWidth="77.0" text="ID Categoria" />
+            <TableColumn fx:id="clmnStockMin" prefWidth="78.0" text="Stock Min" />
+            <TableColumn fx:id="clmnStockMax" prefWidth="78.0" text="Stock Max" />
+            <TableColumn fx:id="clmnIdPresentacion" prefWidth="98.0" text="ID Presentacion" />
+            <TableColumn fx:id="clmnIdUnidad" prefWidth="73.0" text="ID Unidad" />
+            <TableColumn fx:id="clmnPrecioUnitario" prefWidth="97.0" text="Precio Unitario" />
+            <TableColumn fx:id="clmnDisponibilidad" prefWidth="93.0" text="Disponibilidad" />
         </columns>
       </TableView>
       <ImageView fitHeight="117.0" fitWidth="332.0" layoutX="39.0">
