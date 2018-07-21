@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="525.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="#e47f0c" layoutX="14.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RefiJuli es una empresa que se dedica a fabricar y distribuir refrigerios especificamente para eventos. La calidad de nuestros productos, la puntualidad y el compromiso hacen parte fundamental de nuestra filosofía empresarial. Contamos con un equipo de profesionales altamente capacitados en logística, catering y servicio al cliente. " textAlignment="JUSTIFY" wrappingWidth="755.96875">
+         <font>
+            <Font name="System Bold Italic" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="112.0" fitWidth="425.0" layoutX="180.0" layoutY="28.0">
+         <image>
+            <Image url="@../img/refrijuliprincipal_1_original.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

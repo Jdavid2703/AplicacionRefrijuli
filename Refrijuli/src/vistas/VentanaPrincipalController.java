@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class VentanaPrincipalController {
@@ -148,4 +147,21 @@ public class VentanaPrincipalController {
 
     }
 
+    
+        @FXML
+    void newpage9(ActionEvent event) {
+
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("FXMLinfo.fxml"));
+            Parent root1 = (Parent) fxmlloader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (Exception e) {
+
+            System.err.println(e.getMessage());
+
+        }
+
+    }
 }

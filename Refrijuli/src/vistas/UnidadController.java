@@ -1,6 +1,7 @@
 package vistas;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -38,7 +40,8 @@ public class UnidadController implements Initializable {
     @FXML
     private TableColumn<Unidad, String> clmnNombreUnidad;
 
-    
+
+
 // METODO LIMPIAR CAMPOS
     @FXML
     public void limpiarCamposUnidad() {
@@ -49,13 +52,15 @@ public class UnidadController implements Initializable {
         btnGuardar.setDisable(false);
         btnEliminar.setDisable(true);
         btnActualizar.setDisable(true);
+        txtIdUnidad.setDisable(false);
 
     }
 
     private Conexion conexion;//Instanciando la conexion
     private ObservableList<Unidad> listaUnidad;
 
-//AGREGAR UNIDAD
+    
+// METODO AGREGAR UNIDAD
     public void agregarUnidad() {
         Unidad unidad = new Unidad(
                 Integer.valueOf(txtIdUnidad.getText()),
@@ -68,10 +73,18 @@ public class UnidadController implements Initializable {
 
         if (resultado == 1) {
             listaUnidad.add(unidad);
+            
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("Registro agregado");
+            mensaje.setContentText("Registro ha sido agregado con exíto");
+            mensaje.setHeaderText("Resultado:");
+            mensaje.show();
+            
+            limpiarCamposUnidad();
         }
     }
 
-// ACTUALIZAR UNIDAD
+// METODO ACTUALIZAR UNIDAD
     public void actualizarUnidad() {
         Unidad unidad = new Unidad(
                 Integer.valueOf(txtIdUnidad.getText()),
@@ -83,28 +96,43 @@ public class UnidadController implements Initializable {
 
         if (resultado == 1) {
             listaUnidad.set(
-                    tblViewUnidad.getSelectionModel().getSelectedIndex(),
-                    unidad
-            );
+                    tblViewUnidad.getSelectionModel().getSelectedIndex(),unidad);
+            
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("Registro Actualizado");
+            mensaje.setContentText("Registro ha sido actualizado con exito");
+            mensaje.setHeaderText("Resultado:");
+            mensaje.show();
+
+            limpiarCamposUnidad();
         }
     }
 
-// ELIMINAR UNIDAD
+//  METODO ELIMINAR UNIDAD
     public void eliminarUnidad() {
-        conexion.establecerConexion();
-        int resultado = tblViewUnidad.getSelectionModel().getSelectedItem()
-                .eliminarUnidad((Conexion) conexion.getConnection());
-        conexion.cerrarConexion();
+        Alert cuadroDialogoConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        cuadroDialogoConfirmacion.setTitle("Confirmación");
+        cuadroDialogoConfirmacion.setHeaderText("Eliminar Registro");
+        cuadroDialogoConfirmacion.setContentText("¿Está Seguro de Eliminar el Registro?");
+        Optional<ButtonType> resultado = cuadroDialogoConfirmacion.showAndWait();
+        if (resultado.get() == ButtonType.OK) {
+            Unidad unidad = new Unidad();
+            unidad.setIdUnidad(Integer.valueOf(txtIdUnidad.getText()));
+            conexion.establecerConexion();
+            int r = unidad.eliminarUnidad(conexion);
+            conexion.cerrarConexion();
 
-        if (resultado == 1) {
+            if (r == 1) {
+                listaUnidad.remove(tblViewUnidad.getSelectionModel().getSelectedIndex());
 
-            listaUnidad.remove(tblViewUnidad.getSelectionModel().getSelectedIndex());
+                Alert cuadroDialogo = new Alert(Alert.AlertType.INFORMATION);
+                cuadroDialogo.setContentText("Registro Eliminado con Éxito");
+                cuadroDialogo.setTitle("Registro Eliminado");
+                cuadroDialogo.setHeaderText("Resultado: ");
+                cuadroDialogo.showAndWait();
 
-            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
-            mensaje.setTitle("Registro Eliminado");
-            mensaje.setContentText("Registro ha sido eliminado con exito");
-            mensaje.setHeaderText("Resultado:");
-            mensaje.show();
+                limpiarCamposUnidad();
+            }
 
         }
 
@@ -145,6 +173,8 @@ public class UnidadController implements Initializable {
                     btnGuardar.setDisable(true);
                     btnEliminar.setDisable(false);
                     btnActualizar.setDisable(false);
+                    
+                    txtIdUnidad.setDisable(true);
                 }
             }
         }

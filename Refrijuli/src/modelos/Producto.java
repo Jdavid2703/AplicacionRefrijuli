@@ -13,25 +13,28 @@ import javafx.collections.ObservableList;
 
 public class Producto {
 
-        private IntegerProperty idProducto;
+    private IntegerProperty idProducto;
     private StringProperty nombre;
     private StringProperty descripcion;
     private IntegerProperty precio;
-    private Estado idEstado;
+    private EstadoProducto idEstadoProducto;
 
     public Producto(
             Integer idProducto,
             String nombre,
             String descripcion,
             Integer precio,
-            Estado idEstado) {
+            EstadoProducto idEstadoProducto) {
         this.idProducto = new SimpleIntegerProperty(idProducto);
         this.nombre = new SimpleStringProperty(nombre);
         this.descripcion = new SimpleStringProperty(descripcion);
         this.precio = new SimpleIntegerProperty(precio);
-        this.idEstado = idEstado;
+        this.idEstadoProducto = idEstadoProducto;
     }
 
+        /**
+     * Constructor vacío para parametrizar un único valor
+     */
     public Producto() {
     }
 
@@ -83,16 +86,16 @@ public class Producto {
         return precio;
     }
 
-    public Estado getIdEstado() {
-        return idEstado;
+    public EstadoProducto getIdEstadoProducto() {
+        return idEstadoProducto;
     }
 
-    public void setIdEstado(Estado idEstado) {
-        this.idEstado = idEstado;
+    public void setIdEstadoProducto(EstadoProducto idEstadoProducto) {
+        this.idEstadoProducto = idEstadoProducto;
     }
 
-    public Estado idEstadoProperty() {
-        return idEstado;
+    public EstadoProducto idEstadoProductoProperty() {
+        return idEstadoProducto;
     }
 
     public static void llenarInformacionProducto(Connection connection,
@@ -100,11 +103,11 @@ public class Producto {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultado = statement.executeQuery(
-                    "SELECT idProducto,"
-                    + "nombre,"
+                    "SELECT idProducto, "
+                    + "nombre, "
                     + "descripcion, "
-                    + "precio,"
-                    + "idEstado"
+                    + "precio, "
+                    + "idEstadoProducto "
                     + "FROM Producto"
             );
 
@@ -115,10 +118,10 @@ public class Producto {
                                 resultado.getString("nombre"),
                                 resultado.getString("descripcion"),
                                 resultado.getInt("precio"),
-                                new Estado(
-                                        resultado.getInt("idEstado"),
-                                        resultado.getString("nombreEstado"),
-                                        resultado.getString("descripcion"))
+                                new EstadoProducto(
+                                        resultado.getInt("idEstadoProducto"),
+                                        resultado.getString("nombreEstadoProducto"),
+                                        resultado.getString("descripcionEstadoProducto"))
                         )
                 );
             }
@@ -135,14 +138,14 @@ public class Producto {
                     + "nombre, "
                     + "descripcion, "
                     + "precio, "
-                    + "idEstado "
-                    + ") VALUES (?, ?, ?, ?, ?)"
+                    + "idEstadoProducto "
+                    + ") VALUES (?,  ?,  ?,  ?,  ?)"
             );
             ps.setInt(1, idProducto.get());
             ps.setString(2, nombre.get());
             ps.setString(3, descripcion.get());
             ps.setInt(4, precio.get());
-            ps.setInt(5, idEstado.getIdEstado());
+            ps.setInt(5, idEstadoProducto.getIdEstadoProducto());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -155,11 +158,11 @@ public class Producto {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "UPDATE Producto "
-                    + "SET idProducto = ? "
-                    + "nombre = ? "
-                    + "descripcion = ? "
-                    + "precio = ? "
-                    + "idEstado = ? "
+                    + "SET idProducto = ?, "
+                    + "nombre = ?, "
+                    + "descripcion = ?, "
+                    + "precio = ?, "
+                    + "idEstadoProducto = ? "
                     + "WHERE idProducto = ?"
             );
 
@@ -167,8 +170,8 @@ public class Producto {
             ps.setString(2, nombre.get());
             ps.setString(3, descripcion.get());
             ps.setInt(4, precio.get());
-
-            ps.setInt(5, idEstado.getIdEstado());
+            ps.setInt(5, idEstadoProducto.getIdEstadoProducto());
+            ps.setInt(6, idProducto.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -180,7 +183,8 @@ public class Producto {
     public int eliminarProducto(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "DELETE FROM Producto WHERE idProducto = ?"
+                    "DELETE FROM Producto "
+                   + "WHERE idProducto = ?"
             );
             ps.setInt(1, idProducto.get());
             return ps.executeUpdate();

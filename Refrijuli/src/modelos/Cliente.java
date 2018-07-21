@@ -20,10 +20,11 @@ public class Cliente {
     private StringProperty segundoApellido;
     private TipoDocumento idTipoDocumento;
     private IntegerProperty numeroDocumento;
-    private Estado idEstado;
+    private EstadoCliente idEstadoCliente;
     private StringProperty direccion;
     private IntegerProperty telefono;
     private IntegerProperty celular;
+    private Municipio idMunicipio;
 
     public Cliente(
             Integer idCliente,
@@ -33,10 +34,11 @@ public class Cliente {
             String segundoApellido,
             TipoDocumento idTipoDocumento,
             Integer numeroDocumento,
-            Estado idEstado,
+            EstadoCliente idEstadoCliente,
             String direccion,
             Integer telefono,
-            Integer celular) {
+            Integer celular,
+            Municipio idMunicipio) {
         this.idCliente = new SimpleIntegerProperty(idCliente);
         this.primerNombre = new SimpleStringProperty(primerNombre);
         this.segundoNombre = new SimpleStringProperty(segundoNombre);
@@ -44,11 +46,18 @@ public class Cliente {
         this.segundoApellido = new SimpleStringProperty(segundoApellido);
         this.idTipoDocumento = idTipoDocumento;
         this.numeroDocumento = new SimpleIntegerProperty(numeroDocumento);
-        this.idEstado = idEstado;
+        this.idEstadoCliente = idEstadoCliente;
         this.direccion = new SimpleStringProperty(direccion);
         this.telefono = new SimpleIntegerProperty(telefono);
         this.celular = new SimpleIntegerProperty(celular);
+        this.idMunicipio = idMunicipio;
 
+    }
+
+    /**
+     * Constructor vacío para parametrizar un único valor
+     */
+    public Cliente() {
     }
 
 //GET Y SET ID CLIENTE
@@ -63,9 +72,8 @@ public class Cliente {
     public IntegerProperty idClienteProperty() {
         return idCliente;
     }
-    
-//GET Y SET PRIMER NOMBRE
 
+//GET Y SET PRIMER NOMBRE
     public String getPrimerNombre() {
         return primerNombre.get();
     }
@@ -92,7 +100,6 @@ public class Cliente {
     }
 
 //GET Y SET PRIMER APELLIDO
-
     public String getPrimerApellido() {
         return primerApellido.get();
     }
@@ -127,9 +134,6 @@ public class Cliente {
         this.idTipoDocumento = idTipoDocumento;
     }
 
-    public TipoDocumento idTipoDocumentoProperty() {
-        return idTipoDocumento;
-    }
 
 //GET Y SET NUMERO DOCUMENTO
     public Integer getNumeroDocumento() {
@@ -145,18 +149,15 @@ public class Cliente {
     }
 
 //GET Y SET ID ESTADO
-    public Estado getIdEstado() {
-        return idEstado;
+    public EstadoCliente getIdEstadoCliente() {
+        return idEstadoCliente;
     }
 
-    public void setIdEstado(Estado idEstado) {
-        this.idEstado = idEstado;
+    public void setIdEstadoCliente(EstadoCliente idEstadoCliente) {
+        this.idEstadoCliente = idEstadoCliente;
     }
 
-    public Estado idEstadoProperty() {
-        return idEstado;
-    }
-    
+
 //GET Y SET DIRECCION
     public String getDireccion() {
         return direccion.get();
@@ -196,6 +197,16 @@ public class Cliente {
         return celular;
     }
 
+//GET Y SET ID MUNICIPIO
+    public Municipio getIdMunicipio() {
+        return idMunicipio;
+    }
+
+    public void setIdMunicipio(Municipio idMunicipio) {
+        this.idMunicipio = idMunicipio;
+    }
+
+
 // METODO LLENAR INFORMACION
     public static void llenarInformacionCliente(Connection connection,
             ObservableList<Cliente> listaCliente) {
@@ -209,10 +220,11 @@ public class Cliente {
                     + "segundoApellido, "
                     + "idTipoDocumento, "
                     + "numeroDocumento, "
-                    + "idEstado, "
+                    + "idEstadoCliente, "
                     + "direccion, "
                     + "telefono, "
-                    + "celular "
+                    + "celular, "
+                    + "idMunicipio "
                     + "FROM Cliente"
             );
 
@@ -229,19 +241,34 @@ public class Cliente {
                                         resultado.getString("nombreTipoDocumento"),
                                         resultado.getString("descripcionTipoDocumento")),
                                 resultado.getInt("numeroDocumento"),
-                                new Estado(
-                                        resultado.getInt("idEstado"),
-                                        resultado.getString("nombre"),
-                                        resultado.getString("Descripcion")),
+                                new EstadoCliente(
+                                        resultado.getInt("idEstadoCliente"),
+                                        resultado.getString("nombreEstadoCliente"),
+                                        resultado.getString("descripcionEstadoCliente")),
                                 resultado.getString("direccion"),
                                 resultado.getInt("telefono"),
-                                resultado.getInt("celular")
-                        ));
+                                resultado.getInt("celular"),
+                                new Municipio(
+                                        resultado.getInt("idMunicipio"),
+                                        resultado.getString("nombre"),
+                                        resultado.getString("descripcion")))
+                
+            
+         );
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return primerNombre.get()
+                + " "
+                + primerApellido.get()
+                + " "
+                + numeroDocumento.get();
     }
 
 // METODO GUARDAR
@@ -251,16 +278,17 @@ public class Cliente {
                     "INSERT INTO Cliente ( "
                     + "idCliente, "
                     + "primerNombre, "
-                    + "segundoNombre "
+                    + "segundoNombre, "
                     + "primerApellido, "
-                    + "segundoApellido "
-                    + "idTipoDocumento "
-                    + "numeroDocumento "
-                    + "idEstado "
-                    + "direccion "
-                    + "telefono "
-                    + "celular "
-                    + ") VALUES (?,  ?,  ?,  ?,  ?,  ?, ?,  ?,  ?,  ?,  ?"
+                    + "segundoApellido, "
+                    + "idTipoDocumento, "
+                    + "numeroDocumento, "
+                    + "idEstadoCliente, "
+                    + "direccion, "
+                    + "telefono, "
+                    + "celular, "
+                    + "idMunicipio "
+                    + ") VALUES (?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)"
             );
             ps.setInt(1, idCliente.get());
             ps.setString(2, primerNombre.get());
@@ -269,10 +297,11 @@ public class Cliente {
             ps.setString(5, segundoApellido.get());
             ps.setInt(6, idTipoDocumento.getIdTipoDocumento());
             ps.setInt(7, numeroDocumento.get());
-            ps.setInt(8, idEstado.getIdEstado());
+            ps.setInt(8, idEstadoCliente.getIdEstadoCliente());
             ps.setString(9, direccion.get());
             ps.setInt(10, telefono.get());
             ps.setInt(11, celular.get());
+            ps.setInt(12, idMunicipio.getIdMunicipio());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -285,18 +314,19 @@ public class Cliente {
     public int actualizarCliente(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "UPDATE Cliente"
-                    + "SET idCliente = ? "
-                    + "primerNombre = ? "
-                    + "segundoNombre = ? "
-                    + "primerApellido = ? "
-                    + "segundoApellido = ? "
-                    + "idTipoDocumento = ? "
-                    + "numeroDocumento = ? "
-                    + "idEstado = ? "
-                    + "direccion = ? "
-                    + "telefono = ? "
-                    + "celular = ? "
+                    "UPDATE Cliente "
+                    + "SET idCliente = ?, "
+                    + "primerNombre = ?, "
+                    + "segundoNombre = ?, "
+                    + "primerApellido = ?, "
+                    + "segundoApellido = ?, "
+                    + "idTipoDocumento = ?, "
+                    + "numeroDocumento = ?, "
+                    + "idEstadoCliente = ?, "
+                    + "direccion = ?, "
+                    + "telefono = ?, "
+                    + "celular = ?, "
+                    + "idMunicipio = ? "
                     + "WHERE idCliente = ?"
             );
 
@@ -305,12 +335,14 @@ public class Cliente {
             ps.setString(3, segundoNombre.get());
             ps.setString(4, primerApellido.get());
             ps.setString(5, segundoApellido.get());
-            ps.setInt(1, idTipoDocumento.getIdTipoDocumento());
-            ps.setInt(1, numeroDocumento.get());
-            ps.setInt(7, idEstado.getIdEstado());
-            ps.setString(7, direccion.get());
-            ps.setInt(7, telefono.get());
-            ps.setInt(7, celular.get());
+            ps.setInt(6, idTipoDocumento.getIdTipoDocumento());
+            ps.setInt(7, numeroDocumento.get());
+            ps.setInt(8, idEstadoCliente.getIdEstadoCliente());
+            ps.setString(9, direccion.get());
+            ps.setInt(10, telefono.get());
+            ps.setInt(11, celular.get());
+            ps.setInt(12, idMunicipio.getIdMunicipio());
+            ps.setInt(13, idCliente.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {

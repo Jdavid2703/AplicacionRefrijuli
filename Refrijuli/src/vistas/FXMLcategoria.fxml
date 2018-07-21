@@ -10,34 +10,34 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="525.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.CategoriaController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.CategoriaController">
    <children>
-      <TextField fx:id="txtIdCategoria" layoutX="304.0" layoutY="113.0" />
-      <TextField fx:id="txtNombre" layoutX="304.0" layoutY="151.0" />
-      <TextArea fx:id="txtDescripcion" layoutX="309.0" layoutY="187.0" prefHeight="60.0" prefWidth="200.0" />
-      <Button fx:id="btnNuevo" layoutX="213.0" layoutY="262.0" mnemonicParsing="false" onAction="#limpiarCamposCategoria" text="Nuevo" />
-      <Button fx:id="btnEliminar" disable="true" layoutX="309.0" layoutY="262.0" mnemonicParsing="false" onAction="#eliminarCategoria" text="Eliminar" />
-      <Button fx:id="btnActualizar" disable="true" layoutX="405.0" layoutY="262.0" mnemonicParsing="false" onAction="#actualizarCategoria" text="Actualizar" />
-      <Button fx:id="btnGuardar" layoutX="503.0" layoutY="262.0" mnemonicParsing="false" onAction="#agregarCategoria" text="Guardar" />
-      <ImageView fitHeight="149.0" fitWidth="285.0" layoutX="-41.0" layoutY="5.0">
+      <TextField fx:id="txtIdCategoria" layoutX="137.0" layoutY="177.0" />
+      <TextField fx:id="txtNombre" layoutX="137.0" layoutY="224.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="137.0" layoutY="269.0" prefHeight="60.0" prefWidth="149.0" />
+      <Button fx:id="btnNuevo" layoutX="81.0" layoutY="359.0" mnemonicParsing="false" onAction="#limpiarCamposCategoria" text="Nuevo" />
+      <Button fx:id="btnEliminar" disable="true" layoutX="143.0" layoutY="359.0" mnemonicParsing="false" onAction="#eliminarCategoria" text="Eliminar" />
+      <Button fx:id="btnActualizar" disable="true" layoutX="212.0" layoutY="359.0" mnemonicParsing="false" onAction="#actualizarCategoria" text="Actualizar" />
+      <Button fx:id="btnGuardar" layoutX="293.0" layoutY="359.0" mnemonicParsing="false" onAction="#agregarCategoria" text="Guardar" />
+      <ImageView fitHeight="108.0" fitWidth="210.0" layoutX="307.0" layoutY="435.0">
          <image>
             <Image url="@../img/REFRIJULI.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="134.0" fitWidth="475.0" layoutX="191.0">
+      <ImageView fitHeight="161.0" fitWidth="579.0" layoutX="116.0" layoutY="2.0">
          <image>
             <Image url="@../img/CATEGORIA.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblViewCategoria" layoutX="202.0" layoutY="317.0" prefHeight="194.0" prefWidth="333.0">
+      <TableView fx:id="tblViewCategoria" layoutX="436.0" layoutY="163.0" prefHeight="194.0" prefWidth="299.0">
          <columns>
             <TableColumn fx:id="clmnIdCategoria" prefWidth="69.0" text="ID Categoria" />
             <TableColumn fx:id="clmnNombre" prefWidth="92.0" text="Nombre " />
-            <TableColumn fx:id="clmnDescripcion" prefWidth="171.0" text="Descripción" />
+            <TableColumn fx:id="clmnDescripcion" prefWidth="137.0" text="Descripción" />
          </columns>
       </TableView>
-      <Label layoutX="230.0" layoutY="117.0" text="ID Categoria:" />
-      <Label layoutX="250.0" layoutY="155.0" text="Nombre:" />
-      <Label layoutX="244.0" layoutY="196.0" text="Decripción:" />
+      <Label layoutX="63.0" layoutY="181.0" text="ID Categoria:" />
+      <Label layoutX="83.0" layoutY="228.0" text="Nombre:" />
+      <Label layoutX="68.0" layoutY="283.0" text="Decripción:" />
    </children>
 </AnchorPane>

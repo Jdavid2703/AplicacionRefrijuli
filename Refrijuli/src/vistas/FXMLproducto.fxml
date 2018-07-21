@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -12,52 +11,40 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="510.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.ProductoController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.ProductoController">
    <children>
-      <SplitPane dividerPositions="0.5829145728643216" layoutX="220.0" layoutY="100.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="872.0">
-               <children>
-                  <Label layoutX="182.0" layoutY="99.0" text="Id Producto" />
-                  <Label layoutX="182.0" layoutY="149.0" text="Nombre" />
-                  <Label layoutX="182.0" layoutY="198.0" text="Descripcion" />
-                  <Label layoutX="432.0" layoutY="122.0" text="Precio" />
-                  <Label layoutX="432.0" layoutY="173.0" text="Estado" />
-                  <TextField fx:id="txtidProducto" layoutX="258.0" layoutY="95.0" prefHeight="25.0" prefWidth="62.0" />
-                  <TextField fx:id="txtNombre" layoutX="258.0" layoutY="145.0" />
-                  <TextArea fx:id="txtDescripcion" layoutX="258.0" layoutY="179.0" prefHeight="55.0" prefWidth="149.0" />
-                  <TextField fx:id="txtPrecio" layoutX="484.0" layoutY="118.0" prefHeight="25.0" prefWidth="62.0" />
-                  <ComboBox fx:id="cmbIdEstado" layoutX="484.0" layoutY="169.0" prefWidth="150.0" />
-                  <Button fx:id="btnNuevo" layoutX="200.0" layoutY="248.0" mnemonicParsing="false" onAction="#limpiarCamposProducto" text="Nuevo" />
-                  <Button fx:id="btnActualizar" disable="true" layoutX="294.0" layoutY="248.0" mnemonicParsing="false" onAction="#actualizarProducto" text="Actualizar" />
-                  <Button fx:id="btnGuardar" layoutX="486.0" layoutY="248.0" mnemonicParsing="false" onAction="#agregarProducto" text="Guardar" />
-                  <Button fx:id="btnEliminar" disable="true" layoutX="403.0" layoutY="248.0" mnemonicParsing="false" onAction="#eliminarProducto" text="Eliminar" />
-                  <ImageView fitHeight="95.0" fitWidth="448.0" layoutX="319.0">
-                     <image>
-                        <Image url="@../img/PRODUCTO.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="134.0" fitWidth="260.0" layoutX="-36.0">
-                     <image>
-                        <Image url="@../img/REFRIJULI.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <TableView fx:id="tblViewProducto" layoutX="7.0" layoutY="5.0" prefHeight="209.0" prefWidth="784.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="clmnIdProducto" text="Id Producto" />
-                      <TableColumn fx:id="clmnNombre" prefWidth="213.0" text="Nombre" />
-                        <TableColumn fx:id="clmnDescripcion" prefWidth="321.0" text="Descripcion" />
-                        <TableColumn fx:id="clmnPrecio" prefWidth="72.0" text="Precio" />
-                        <TableColumn fx:id="clmnIdEstado" prefWidth="97.0" text="Estado" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+      <Label layoutX="30.0" layoutY="165.0" text="Id Producto:" />
+      <Label layoutX="48.0" layoutY="206.0" text="Nombre:" />
+      <Label layoutX="30.0" layoutY="262.0" text="Descripción:" />
+      <Label layoutX="54.0" layoutY="323.0" text="Precio:" />
+      <Label layoutX="52.0" layoutY="368.0" text="Estado:" />
+      <TextField fx:id="txtidProducto" layoutX="99.0" layoutY="161.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="txtNombre" layoutX="99.0" layoutY="202.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="99.0" layoutY="243.0" prefHeight="55.0" prefWidth="149.0" />
+      <TextField fx:id="txtPrecio" layoutX="99.0" layoutY="319.0" prefHeight="25.0" prefWidth="149.0" />
+      <ComboBox fx:id="cmbIdEstadoProducto" layoutX="99.0" layoutY="364.0" prefWidth="150.0" />
+      <Button fx:id="btnNuevo" layoutX="39.0" layoutY="429.0" mnemonicParsing="false" onAction="#limpiarCamposProducto" text="Nuevo" />
+      <Button fx:id="btnActualizar" disable="true" layoutX="105.0" layoutY="429.0" mnemonicParsing="false" onAction="#actualizarProducto" text="Actualizar" />
+      <Button fx:id="btnEliminar" disable="true" layoutX="184.0" layoutY="429.0" mnemonicParsing="false" onAction="#eliminarProducto" text="Eliminar" />
+      <Button fx:id="btnGuardar" layoutX="258.0" layoutY="429.0" mnemonicParsing="false" onAction="#agregarProducto" text="Guardar" />
+      <ImageView fitHeight="161.0" fitWidth="579.0" layoutX="110.0">
+         <image>
+            <Image url="@../img/PRODUCTO.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="108.0" fitWidth="210.0" layoutX="295.0" layoutY="460.0">
+         <image>
+            <Image url="@../img/REFRIJULI.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblViewProducto" layoutX="324.0" layoutY="134.0" prefHeight="255.0" prefWidth="455.0" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="324.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="134.0">
+        <columns>
+          <TableColumn fx:id="clmnIdProducto" prefWidth="72.0" text="Id Producto" />
+          <TableColumn fx:id="clmnNombre" prefWidth="94.0" text="Nombre" />
+            <TableColumn fx:id="clmnDescripcion" prefWidth="128.0" text="Descripcion" />
+            <TableColumn fx:id="clmnPrecio" prefWidth="70.0" text="Precio" />
+            <TableColumn fx:id="clmnIdEstadoProducto" prefWidth="90.0" text="Estado" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

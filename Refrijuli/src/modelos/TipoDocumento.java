@@ -25,6 +25,12 @@ public class TipoDocumento {
         this.nombreTipoDocumento = new SimpleStringProperty(nombreTipoDocumento);
         this.descripcionTipoDocumento = new SimpleStringProperty(descripcionTipoDocumento);
     }
+    
+     /**
+     * Constructor vacío para parametrizar un único valor
+     */
+    public TipoDocumento() {
+    }
 
 //GET Y SET ID TIPO DOCUMENTO
     public Integer getIdTipoDocumento() {
@@ -91,6 +97,11 @@ public class TipoDocumento {
         }
     }
 
+    @Override
+    public String toString() {
+        return descripcionTipoDocumento.get();
+    }
+
 //METODO GUARDAR TIPO DOCUMENTO
     public int guardarTipoDocumento(Conexion conexion) {
         try {
@@ -99,7 +110,7 @@ public class TipoDocumento {
                     + "idTipoDocumento, "
                     + "nombreTipoDocumento, "
                     + "descripcionTipoDocumento "
-                    + ") VALUES (?, ?, ?)"
+                    + ") VALUES (?,  ?,  ?)"
             );
             ps.setInt(1, idTipoDocumento.get());
             ps.setString(2, nombreTipoDocumento.get());
@@ -116,17 +127,17 @@ public class TipoDocumento {
     public int actualizarTipoDocumento(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "UPDATE TipoDocumento"
+                    "UPDATE TipoDocumento "
                     + "SET idTipoDocumento = ?, "
                     + "nombreTipoDocumento = ?, "
-                    + "descripcionTipoDocumento = ?, "
+                    + "descripcionTipoDocumento = ? "
                     + "WHERE idTipoDocumento = ?"
             );
 
             ps.setInt(1, idTipoDocumento.get());
             ps.setString(2, nombreTipoDocumento.get());
             ps.setString(3, descripcionTipoDocumento.get());
-            
+            ps.setInt(4, idTipoDocumento.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {

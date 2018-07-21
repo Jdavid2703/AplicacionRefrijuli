@@ -19,6 +19,7 @@ public class Pedido {
     private Date fechaEntrega;
     private Date fechaPedido;
     private StringProperty direccionEntrega;
+    private Municipio idMunicipio;
     private Time horaEntrega;
     private Cliente idCliente;
     private Estado idEstado;
@@ -28,6 +29,7 @@ public class Pedido {
             Date fechaEntrega,
             Date fechaPedido,
             String direccionEntrega,
+            Municipio idMunicipio,
             Time horaEntrega,
             Cliente idCliente,
             Estado idEstado) {
@@ -35,10 +37,17 @@ public class Pedido {
         this.fechaEntrega = fechaEntrega;
         this.fechaPedido = fechaPedido;
         this.direccionEntrega = new SimpleStringProperty(direccionEntrega);
+        this.idMunicipio = idMunicipio;
         this.horaEntrega = horaEntrega;
         this.idCliente = idCliente;
         this.idEstado = idEstado;
 
+    }
+
+    /**
+     * Constructor vacío para parametrizar un único valor
+     */
+    public Pedido() {
     }
 
 //GET Y SET ID PEDIDO
@@ -93,6 +102,19 @@ public class Pedido {
         return direccionEntrega;
     }
 
+    //GET Y SET ID MUNICIPIO
+    public Municipio getIdMunicipio() {
+        return idMunicipio;
+    }
+
+    public void setIdMunicipio(Municipio idMunicipio) {
+        this.idMunicipio = idMunicipio;
+    }
+
+    public Municipio idMunicipioProperty() {
+        return idMunicipio;
+    }
+
 //GET Y SET HORA ENTREGA
     public Time getHoraEntrega() {
         return horaEntrega;
@@ -142,6 +164,7 @@ public class Pedido {
                     + "fechaEntrega, "
                     + "fechaPedido, "
                     + "direccionEntrega, "
+                    + "idMunicipio, "
                     + "horaEntrega, "
                     + "idCliente, "
                     + "idEstado "
@@ -155,6 +178,10 @@ public class Pedido {
                                 resultado.getDate("fechaEntrega"),
                                 resultado.getDate("fechaPedido"),
                                 resultado.getString("direccionEntrega"),
+                                new Municipio(
+                                        resultado.getInt("idMunicipio"),
+                                        resultado.getString("nombre"),
+                                        resultado.getString("descripcion")),
                                 resultado.getTime("horaEntrega"),
                                 new Cliente(
                                         resultado.getInt("idCliente"),
@@ -167,13 +194,17 @@ public class Pedido {
                                                 resultado.getString("nombreTipoDocumento"),
                                                 resultado.getString("desecripcionTipoDocumento")),
                                         resultado.getInt("numeroDocumento"),
-                                        new Estado(
-                                                resultado.getInt("idEstado"),
-                                                resultado.getString("nombreEstado"),
-                                                resultado.getString("Descripcion")),
+                                        new EstadoCliente(
+                                                resultado.getInt("idEstadoCliente"),
+                                                resultado.getString("nombreEstadoCliente"),
+                                                resultado.getString("descripcionEstadoCliente")),
                                         resultado.getString("direccion"),
                                         resultado.getInt("telefono"),
-                                        resultado.getInt("celular")),
+                                        resultado.getInt("celular"),
+                                        new Municipio(
+                                                resultado.getInt("idMunicipio"),
+                                                resultado.getString("nombre"),
+                                                resultado.getString("descripcion"))),
                                 new Estado(
                                         resultado.getInt("idEstado"),
                                         resultado.getString("nombreEstado"),
@@ -193,20 +224,22 @@ public class Pedido {
                     "INSERT INTO Pedido ( "
                     + "idPedido, "
                     + "fechaEntrega, "
-                    + "fechaPedido "
+                    + "fechaPedido, "
                     + "direccionEntrega, "
+                    + "idMunicipio, "
                     + "horaEntrega, "
                     + "idCliente, "
                     + "idEstado "
-                    + ") VALUES (?,  ?,  ?,  ?,  ?, ?, ?)"
+                    + ") VALUES (?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)"
             );
             ps.setInt(1, idPedido.get());
             ps.setDate(2, (java.sql.Date) fechaEntrega);
             ps.setDate(3, (java.sql.Date) fechaPedido);
             ps.setString(4, direccionEntrega.get());
-            ps.setTime(5, (java.sql.Time) horaEntrega);
-            ps.setInt(6, idCliente.getIdCliente());
-            ps.setInt(7, idEstado.getIdEstado());
+            ps.setInt(5, idMunicipio.getIdMunicipio());
+            ps.setTime(6, (java.sql.Time) horaEntrega);
+            ps.setInt(7, idCliente.getIdCliente());
+            ps.setInt(8, idEstado.getIdEstado());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -219,13 +252,14 @@ public class Pedido {
     public int actualizarPedido(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "UPDATE Pedido"
-                    + "SET idPedido = ? "
-                    + "fechaEntrega = ? "
-                    + "fechaPedido = ? "
-                    + "direccionEntrega = ? "
-                    + "horaEntrega = ? "
-                    + "idCliente = ? "
+                    "UPDATE Pedido "
+                    + "SET idPedido = ?, "
+                    + "fechaEntrega = ?, "
+                    + "fechaPedido = ?, "
+                    + "direccionEntrega = ?, "
+                    + "idMunicipio = ?, "
+                    + "horaEntrega = ?, "
+                    + "idCliente = ?, "
                     + "idEstado = ? "
                     + "WHERE idPedido = ?"
             );
@@ -234,9 +268,11 @@ public class Pedido {
             ps.setDate(2, (java.sql.Date) fechaEntrega);
             ps.setDate(3, (java.sql.Date) fechaPedido);
             ps.setString(4, direccionEntrega.get());
-            ps.setTime(5, (java.sql.Time) horaEntrega);
-            ps.setInt(6, idCliente.getIdCliente());
-            ps.setInt(7, idEstado.getIdEstado());
+            ps.setInt(5, idMunicipio.getIdMunicipio());
+            ps.setTime(6, (java.sql.Time) horaEntrega);
+            ps.setInt(7, idCliente.getIdCliente());
+            ps.setInt(8, idEstado.getIdEstado());
+            ps.setInt(9, idPedido.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {

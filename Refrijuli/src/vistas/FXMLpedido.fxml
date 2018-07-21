@@ -11,46 +11,49 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" accessibleRole="BUTTON" prefHeight="593.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.PedidoController">
+<AnchorPane id="AnchorPane" accessibleRole="BUTTON" prefHeight="582.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.PedidoController">
    <children>
-      <TextField fx:id="txtIdPedido" layoutX="100.0" layoutY="129.0" prefHeight="25.0" prefWidth="149.0" />
-      <DatePicker fx:id="dapickeFechaPedido" layoutX="100.0" layoutY="180.0" prefHeight="25.0" prefWidth="150.0" />
-      <DatePicker fx:id="dapickeFechaEntrega" layoutX="100.0" layoutY="227.0" prefHeight="25.0" prefWidth="150.0" />
-      <TextField fx:id="txtDireccionEntrega" layoutX="374.0" layoutY="129.0" />
-      <TextField fx:id="txtHoraEntrega" layoutX="374.0" layoutY="180.0" />
-      <ComboBox fx:id="cmbIdCliente" layoutX="374.0" layoutY="227.0" prefWidth="150.0" />
-      <ComboBox fx:id="cmbIdEstado" layoutX="611.0" layoutY="129.0" prefWidth="150.0" />
-      <Button fx:id="btnNuevo" layoutX="233.0" layoutY="304.0" mnemonicParsing="false" onAction="#limpiarCamposPedido" text="Nuevo" />
-      <Button fx:id="btnEliminar" disable="true" layoutX="329.0" layoutY="304.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
-      <Button fx:id="btnActualizar" disable="true" layoutX="425.0" layoutY="304.0" mnemonicParsing="false" onAction="#actualizarPedido" text="Actualizar" />
-      <Button fx:id="btnGuardar" layoutX="523.0" layoutY="304.0" mnemonicParsing="false" onAction="#agregarPedido" text="Guardar" />
-      <TableView fx:id="tblViewPedido" layoutX="1.0" layoutY="353.0" prefHeight="240.0" prefWidth="804.0">
+      <TextField fx:id="txtIdPedido" layoutX="143.0" layoutY="166.0" prefHeight="25.0" prefWidth="149.0" />
+      <DatePicker fx:id="dapickeFechaPedido" layoutX="143.0" layoutY="217.0" prefHeight="25.0" prefWidth="150.0" />
+      <DatePicker fx:id="dapickeFechaEntrega" layoutX="143.0" layoutY="264.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="txtDireccionEntrega" layoutX="418.0" layoutY="168.0" />
+      <TextField fx:id="txtHoraEntrega" layoutX="418.0" layoutY="219.0" />
+      <ComboBox fx:id="cmbIdCliente" layoutX="418.0" layoutY="266.0" prefWidth="150.0" />
+      <ComboBox fx:id="cmbIdEstado" layoutX="645.0" layoutY="168.0" prefHeight="25.0" prefWidth="130.0" />
+      <ComboBox fx:id="cmbIdMunicipio" layoutX="645.0" layoutY="217.0" prefHeight="25.0" prefWidth="130.0" />
+      <Button fx:id="btnNuevo" layoutX="265.0" layoutY="327.0" mnemonicParsing="false" onAction="#limpiarCamposPedido" text="Nuevo" />
+      <Button fx:id="btnEliminar" disable="true" layoutX="361.0" layoutY="327.0" mnemonicParsing="false" onAction="#eliminarPedido" text="Eliminar" />
+      <Button fx:id="btnActualizar" disable="true" layoutX="457.0" layoutY="327.0" mnemonicParsing="false" onAction="#actualizarPedido" text="Actualizar" />
+      <Button fx:id="btnGuardar" layoutX="555.0" layoutY="327.0" mnemonicParsing="false" onAction="#agregarPedido" text="Guardar" />
+      <TableView fx:id="tblViewPedido" layoutX="83.0" layoutY="373.0" prefHeight="184.0" prefWidth="728.0">
         <columns>
-          <TableColumn fx:id="clmnIdPedido" prefWidth="77.0" text="ID Pedido" />
-          <TableColumn fx:id="clmnFechaEntrega" prefWidth="113.0" text="Fecha Entrega" />
-            <TableColumn fx:id="clmnFechaPedido" prefWidth="115.0" text="Fecha Pedido" />
-            <TableColumn fx:id="clmnDireccionEntrega" prefWidth="135.0" text="Dirección Entrega" />
-            <TableColumn fx:id="clmnHoraEntrega" minWidth="0.0" prefWidth="129.0" text="Hora Entrega" />
-            <TableColumn fx:id="clmnIdCliente" prefWidth="107.0" text="ID Cliente" />
-            <TableColumn fx:id="clmnIdEstado" prefWidth="127.0" text="ID Estado" />
+          <TableColumn fx:id="clmnIdPedido" prefWidth="56.0" text="ID Pedido" />
+          <TableColumn fx:id="clmnFechaEntrega" prefWidth="86.0" text="Fecha Entrega" />
+            <TableColumn fx:id="clmnFechaPedido" prefWidth="90.0" text="Fecha Pedido" />
+            <TableColumn fx:id="clmnDireccionEntrega" prefWidth="122.0" text="Dirección Entrega" />
+            <TableColumn fx:id="clmnHoraEntrega" minWidth="0.0" prefWidth="96.0" text="Hora Entrega" />
+            <TableColumn fx:id="clmnIdCliente" prefWidth="96.0" text="Cliente" />
+            <TableColumn fx:id="clmnIdEstado" prefWidth="90.0" text="Estado" />
+            <TableColumn fx:id="clmnIdMunicipio" prefWidth="90.0" text="Municipio" />
         </columns>
       </TableView>
-      <Label layoutX="40.0" layoutY="133.0" text="Id Pedido:" />
-      <Label layoutX="16.0" layoutY="231.0" prefHeight="17.0" prefWidth="82.0" text="Fecha Entrega:" />
-      <Label layoutX="20.0" layoutY="184.0" text="Fecha Pedido:" />
-      <Label layoutX="267.0" layoutY="133.0" text="Dirección Entrega:" />
-      <Label layoutX="293.0" layoutY="184.0" text="Hora Entrega:" />
-      <Label layoutX="315.0" layoutY="231.0" text="Id Cliente:" />
-      <Label layoutX="556.0" layoutY="133.0" text="Id Estado:" />
-      <ImageView fitHeight="87.0" fitWidth="443.0" layoutX="361.0" layoutY="19.0">
+      <Label layoutX="83.0" layoutY="170.0" text="Id Pedido:" />
+      <Label layoutX="59.0" layoutY="268.0" prefHeight="17.0" prefWidth="82.0" text="Fecha Entrega:" />
+      <Label layoutX="63.0" layoutY="221.0" text="Fecha Pedido:" />
+      <Label layoutX="316.0" layoutY="172.0" text="Dirección Entrega:" />
+      <Label layoutX="330.0" layoutY="223.0" text="Hora Entrega:" />
+      <Label layoutX="365.0" layoutY="270.0" text=" Cliente:" />
+      <Label layoutX="595.0" layoutY="172.0" text="Estado:" />
+      <ImageView fitHeight="161.0" fitWidth="579.0" layoutX="131.0" layoutY="14.0">
          <image>
             <Image url="@../img/PEDIDO.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="117.0" fitWidth="332.0" layoutX="40.0" layoutY="4.0">
+      <ImageView fitHeight="108.0" fitWidth="210.0" layoutX="-33.0" layoutY="25.0">
          <image>
             <Image url="@../img/REFRIJULI.png" />
          </image>
       </ImageView>
+      <Label layoutX="586.0" layoutY="223.0" text="Municipio:" />
    </children>
 </AnchorPane>

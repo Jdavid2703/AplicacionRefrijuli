@@ -8,54 +8,32 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="512.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.UnidadController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.UnidadController">
    <children>
-      <ImageView fitHeight="146.0" fitWidth="326.0" layoutX="-26.0" layoutY="2.0">
+      <ImageView fitHeight="108.0" fitWidth="210.0" layoutX="292.0" layoutY="439.0">
          <image>
             <Image url="@../img/REFRIJULI.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="98.0" fitWidth="418.0" layoutX="275.0" layoutY="14.0">
+      <ImageView fitHeight="161.0" fitWidth="579.0" layoutX="138.0" layoutY="14.0">
          <image>
             <Image url="@../img/UNIDAD.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="107.0" layoutY="114.0" prefHeight="120.0" prefWidth="473.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="ID Unidad: " GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-            <Label text="Nombre Unidad: " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <TextField fx:id="txtIdUnidad" GridPane.columnIndex="2" />
-            <TextField fx:id="txtNombreUnidad" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#limpiarCamposUnidad" text="Nuevo" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-            <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarUnidad" text="Actualizar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarUnidad" prefHeight="25.0" prefWidth="63.0" text="Eliminar" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#agregarUnidad" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-         </children>
-      </GridPane>
-      <TableView fx:id="tblViewUnidad" layoutX="114.0" layoutY="253.0" prefHeight="220.0" prefWidth="473.0">
+      <TableView fx:id="tblViewUnidad" layoutX="475.0" layoutY="165.0" prefHeight="220.0" prefWidth="181.0">
         <columns>
-          <TableColumn fx:id="clmnIdUnidad" prefWidth="236.0" text="ID Unidad" />
-          <TableColumn fx:id="clmnNombreUnidad" prefWidth="236.0" text="Nombre Unidad" />
+          <TableColumn fx:id="clmnIdUnidad" prefWidth="72.0" text="ID Unidad" />
+          <TableColumn fx:id="clmnNombreUnidad" prefWidth="107.0" text="Nombre Unidad" />
         </columns>
       </TableView>
+      <Label layoutX="138.0" layoutY="192.0" text="ID Unidad: " />
+      <Label layoutX="108.0" layoutY="243.0" text="Nombre Unidad: " />
+      <TextField fx:id="txtIdUnidad" layoutX="205.0" layoutY="188.0" />
+      <TextField fx:id="txtNombreUnidad" layoutX="205.0" layoutY="239.0" />
+      <Button fx:id="btnNuevo" layoutX="133.0" layoutY="335.0" mnemonicParsing="false" onAction="#limpiarCamposUnidad" text="Nuevo" />
+      <Button fx:id="btnActualizar" disable="true" layoutX="200.0" layoutY="335.0" mnemonicParsing="false" onAction="#actualizarUnidad" text="Actualizar" />
+      <Button fx:id="btnEliminar" disable="true" layoutX="285.0" layoutY="335.0" mnemonicParsing="false" onAction="#eliminarUnidad" prefHeight="25.0" prefWidth="63.0" text="Eliminar" />
+      <Button fx:id="btnGuardar" layoutX="367.0" layoutY="335.0" mnemonicParsing="false" onAction="#agregarUnidad" text="Guardar" />
    </children>
 </AnchorPane>

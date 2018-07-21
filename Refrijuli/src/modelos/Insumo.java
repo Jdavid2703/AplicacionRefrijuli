@@ -49,6 +49,12 @@ public class Insumo {
         this.precioUnitario = new SimpleIntegerProperty(precioUnitario);
         this.disponibilidad = new SimpleIntegerProperty(disponibilidad);
     }
+    
+        /**
+     * Constructor vacío para parametrizar un único valor
+     */
+    public Insumo() {
+    }
 
 //GET Y SET ID INSUMO
     public Integer getIdInsumo() {
@@ -201,16 +207,16 @@ public class Insumo {
             Statement statement = connection.createStatement();
             ResultSet resultado = statement.executeQuery(
                     "SELECT idInsumo, "
-                    + "nombre,"
-                    + "descripcion,"
-                    + "cantidad,"
-                    + "idCategoria,"
-                    + "stockMin,"
-                    + "stockMax,"
-                    + "idPresentacion,"
-                    + "idUnidad,"
-                    + "precioUnitario,"
-                    + "disponibilidad"
+                    + "nombre, "
+                    + "descripcion, "
+                    + "cantidad, "
+                    + "idCategoria, "
+                    + "stockMin, "
+                    + "stockMax, "
+                    + "idPresentacion, "
+                    + "idUnidad, "
+                    + "precioUnitario, "
+                    + "disponibilidad "
                     + "FROM Insumo"
             );
 
@@ -221,15 +227,18 @@ public class Insumo {
                                 resultado.getString("nombre"),
                                 resultado.getString("descripcion"),
                                 resultado.getInt("cantidad"),
-                                new Categoria(resultado.getInt("idCategoria"),
+                                new Categoria(
+                                        resultado.getInt("idCategoria"),
                                         resultado.getString("nombre"),
                                         resultado.getString("descripcion")),
                                 resultado.getInt("stockMin"),
                                 resultado.getInt("stockMax"),
-                                new Presentacion(resultado.getInt("idPresentacion"),
+                                new Presentacion(
+                                        resultado.getInt("idPresentacion"),
                                         resultado.getString("descripcion")),
-                                new Unidad(resultado.getInt("idUnidad"),
-                                        resultado.getString("tipoUnidad")),
+                                new Unidad(
+                                        resultado.getInt("idUnidad"),
+                                        resultado.getString("nombreUnidad")),
                                 resultado.getInt("precioUnitario"),
                                 resultado.getInt("disponibilidad")
                         )
@@ -239,24 +248,27 @@ public class Insumo {
             e.printStackTrace();
         }
     }
+    
+    
+    
 
     //METODO GUARDAR 
     public int guardarInsumo(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "INSERT INTO  Insumo ( "
+                    "INSERT INTO Insumo ( "
                     + "idInsumo, "
-                    + "nombre,"
-                    + "descripcion,"
-                    + "cantidad,"
-                    + "idCategoria,"
-                    + "stockMin,"
-                    + "stockMax,"
-                    + "idPresentacion,"
-                    + "idUnidad,"
-                    + "precioUnitario,"
-                    + "disponibilidad"
-                    + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )"
+                    + "nombre, "
+                    + "descripcion, "
+                    + "cantidad, "
+                    + "idCategoria, "
+                    + "stockMin, "
+                    + "stockMax, "
+                    + "idPresentacion, "
+                    + "idUnidad, "
+                    + "precioUnitario, "
+                    + "disponibilidad "
+                    + ") VALUES (?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)"
             );
             ps.setInt(1, idInsumo.get());
             ps.setString(2, nombre.get());
@@ -282,17 +294,17 @@ public class Insumo {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
                     "UPDATE Insumo "
-                    + "SET idInsumo = ? ,"
-                    + "nombre = ?,"
-                    + "descripcion = ?,"
-                    + "cantidad = ?,"
-                    + "idCategoria = ?,"
-                    + "stockMin = ?,"
-                    + "stockMax = ?,"
-                    + "idPresentacion = ?,"
-                    + "idUnidad = ?,"
-                    + "precioUnitario = ?,"
-                    + "disponibilidad = ?"
+                    + "SET idInsumo = ?, "
+                    + "nombre = ?, "
+                    + "descripcion = ?, "
+                    + "cantidad = ?, "
+                    + "idCategoria = ?, "
+                    + "stockMin = ?, "
+                    + "stockMax = ?, "
+                    + "idPresentacion = ?, "
+                    + "idUnidad = ?, "
+                    + "precioUnitario = ?, "
+                    + "disponibilidad = ? "
                     + "WHERE idInsumo = ?"
             );
 
@@ -307,6 +319,7 @@ public class Insumo {
             ps.setInt(9, idUnidad.getIdUnidad());
             ps.setInt(10, precioUnitario.get());
             ps.setInt(11, disponibilidad.get());
+            ps.setInt(12, idInsumo.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -319,9 +332,11 @@ public class Insumo {
     public int eliminarInsumo(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "DELETE FROM insumo WHERE idInsumo = ?"
+                    "DELETE FROM insumo "
+                     + "WHERE idInsumo = ?"
             );
             ps.setInt(1, idInsumo.get());
+            
             return ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

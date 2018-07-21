@@ -1,6 +1,7 @@
 package vistas;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -54,18 +56,21 @@ public class CategoriaController implements Initializable {
         btnGuardar.setDisable(false);
         btnEliminar.setDisable(true);
         btnActualizar.setDisable(true);
+        txtIdCategoria.setDisable(false);
 
     }
 
     private Conexion conexion;//Instanciando la conexion
     private ObservableList<Categoria> listaCategoria;
 
-//AGREGAR CATEGORIA
+// METODO AGREGAR CATEGORIA
     public void agregarCategoria() {
         Categoria categoria = new Categoria(
                 Integer.valueOf(txtIdCategoria.getText()),
                 txtNombre.getText(),
                 txtDescripcion.getText());
+        
+        
 
         conexion.establecerConexion();
         int resultado = categoria.guardarCategoria(conexion);
@@ -73,44 +78,67 @@ public class CategoriaController implements Initializable {
 
         if (resultado == 1) {
             listaCategoria.add(categoria);
+
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("Registro agregado");
+            mensaje.setContentText("Registro ha sido agregado con exíto");
+            mensaje.setHeaderText("Resultado:");
+            mensaje.show();
+
+            limpiarCamposCategoria();
         }
     }
 
-// ACTUALIZAR CATEGORIA
+// METODO ACTUALIZAR CATEGORIA
     public void actualizarCategoria() {
         Categoria categoria = new Categoria(
                 Integer.valueOf(txtIdCategoria.getText()),
                 txtNombre.getText(),
                 txtDescripcion.getText());
-
+  
         conexion.establecerConexion();
         int resultado = categoria.actualizarCategoria(conexion);
         conexion.cerrarConexion();
 
         if (resultado == 1) {
             listaCategoria.set(
-                    tblViewCategoria.getSelectionModel().getSelectedIndex(),
-                    categoria
-            );
+                    tblViewCategoria.getSelectionModel().getSelectedIndex(), categoria);
+
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+            mensaje.setTitle("Registro Actualizado");
+            mensaje.setContentText("Registro ha sido actualizado con exito");
+            mensaje.setHeaderText("Resultado:");
+            mensaje.show();
+
+            limpiarCamposCategoria();
         }
     }
 
-// ELIMINAR CATEGORIA
+//  METODO ELIMINAR CATEGORIA
     public void eliminarCategoria() {
-        conexion.establecerConexion();
-        int resultado = tblViewCategoria.getSelectionModel().getSelectedItem()
-                .eliminarCategoria((Conexion) conexion.getConnection());
-        conexion.cerrarConexion();
+        Alert cuadroDialogoConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        cuadroDialogoConfirmacion.setTitle("Confirmación");
+        cuadroDialogoConfirmacion.setHeaderText("Eliminar Registro");
+        cuadroDialogoConfirmacion.setContentText("¿Está Seguro de Eliminar el Registro?");
+        Optional<ButtonType> resultado = cuadroDialogoConfirmacion.showAndWait();
+        if (resultado.get() == ButtonType.OK) {
+            Categoria categoria = new Categoria();
+            categoria.setIdCategoria(Integer.valueOf(txtIdCategoria.getText()));
+            conexion.establecerConexion();
+            int r = categoria.eliminarCategoria(conexion);
+            conexion.cerrarConexion();
 
-        if (resultado == 1) {
+            if (r == 1) {
+                listaCategoria.remove(tblViewCategoria.getSelectionModel().getSelectedIndex());
 
-            listaCategoria.remove(tblViewCategoria.getSelectionModel().getSelectedIndex());
+                Alert cuadroDialogo = new Alert(Alert.AlertType.INFORMATION);
+                cuadroDialogo.setContentText("Registro Eliminado con Éxito");
+                cuadroDialogo.setTitle("Registro Eliminado");
+                cuadroDialogo.setHeaderText("Resultado: ");
+                cuadroDialogo.showAndWait();
 
-            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
-            mensaje.setTitle("Registro Eliminado");
-            mensaje.setContentText("Registro ha sido eliminado con exito");
-            mensaje.setHeaderText("Resultado:");
-            mensaje.show();
+                limpiarCamposCategoria();
+            }
 
         }
 
@@ -152,9 +180,14 @@ public class CategoriaController implements Initializable {
                     btnGuardar.setDisable(true);
                     btnEliminar.setDisable(false);
                     btnActualizar.setDisable(false);
+                    
+                    txtIdCategoria.setDisable(true);
+                  
                 }
             }
         }
         );
     }
+    
+    
 }

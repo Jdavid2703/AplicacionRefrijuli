@@ -4,17 +4,38 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.VentanaPrincipalController">
    <children>
-      <Button fx:id="Categoria" layoutX="116.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Categoria" />
-      <Button fx:id="TipoDocumento" layoutX="116.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage2" prefHeight="53.0" prefWidth="111.0" text="Tipo de Documentos" />
-      <Button fx:id="Insumo" layoutX="116.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage3" prefHeight="53.0" prefWidth="111.0" text="Insumo" />
-      <Button fx:id="Cliente" layoutX="354.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage7" prefHeight="53.0" prefWidth="111.0" text="Cliente" />
-      <Button fx:id="Producto" layoutX="354.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage8" prefHeight="53.0" prefWidth="111.0" text="Producto" />
-      <Button fx:id="Pedido" layoutX="354.0" layoutY="340.0" mnemonicParsing="false" onAction="#newpage4" prefHeight="53.0" prefWidth="111.0" text="Pedido" />
-      <Button fx:id="Unidad" layoutX="566.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage6" prefHeight="53.0" prefWidth="111.0" text="Unidad" />
-      <Button fx:id="Presentacion" layoutX="566.0" layoutY="257.0" mnemonicParsing="false" onAction="#newpage5" prefHeight="53.0" prefWidth="111.0" text="Presentación" />
+      <Button fx:id="Categoria" layoutX="116.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage" prefHeight="53.0" prefWidth="111.0" text="Categoria" textFill="#ffa938">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
+      <Button fx:id="Insumo" layoutX="116.0" layoutY="240.0" mnemonicParsing="false" onAction="#newpage3" prefHeight="53.0" prefWidth="111.0" text="Insumo" textFill="#ffab36">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
+      <Button fx:id="Cliente" layoutX="354.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage7" prefHeight="53.0" prefWidth="111.0" text="Cliente" textFill="#ffab36">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
+      <Button fx:id="Producto" layoutX="357.0" layoutY="240.0" mnemonicParsing="false" onAction="#newpage8" prefHeight="53.0" prefWidth="111.0" text="Producto" textFill="#ffab36">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
+      <Button fx:id="Pedido" layoutX="116.0" layoutY="314.0" mnemonicParsing="false" onAction="#newpage4" prefHeight="53.0" prefWidth="111.0" text="Pedido" textFill="#ffab36">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
+      <Button fx:id="Unidad" layoutX="566.0" layoutY="163.0" mnemonicParsing="false" onAction="#newpage6" prefHeight="53.0" prefWidth="111.0" text="Unidad" textFill="#ffab36">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
+      <Button fx:id="Presentacion" layoutX="357.0" layoutY="314.0" mnemonicParsing="false" onAction="#newpage5" prefHeight="53.0" prefWidth="111.0" text="Presentación" textFill="#ffab36">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
       <ImageView fitHeight="112.0" fitWidth="425.0" layoutX="141.0" layoutY="14.0">
          <image>
             <Image url="@../img/refrijuliprincipal_1_original.png" />
@@ -25,22 +46,17 @@
             <Image url="@../img/icons8-management-96.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="37.0" layoutY="340.0">
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="44.0" layoutY="240.0">
          <image>
             <Image url="@../img/icons8-ingredients-96.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="40.0" layoutY="257.0">
-         <image>
-            <Image url="@../img/icons8-tarjeta-de-identificación-96.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="284.0" layoutY="257.0">
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="287.0" layoutY="240.0">
          <image>
             <Image url="@../img/icons8-producto-96.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="284.0" layoutY="340.0">
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="44.0" layoutY="314.0">
          <image>
             <Image url="@../img/icons8-orden-de-compra-96.png" />
          </image>
@@ -55,9 +71,19 @@
             <Image url="@../img/icons8-libro-de-caja-96.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="499.0" layoutY="257.0">
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="290.0" layoutY="314.0">
          <image>
             <Image url="@../img/icons8-minibar-80.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Presentacion1" layoutX="566.0" layoutY="240.0" mnemonicParsing="false" onAction="#newpage9" prefHeight="53.0" prefWidth="111.0" text="Información" textFill="#ffab36">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="499.0" layoutY="240.0">
+         <image>
+            <Image url="@../img/info.png" />
          </image>
       </ImageView>
    </children>

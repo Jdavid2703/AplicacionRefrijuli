@@ -10,90 +10,59 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="597.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.InsumoController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.InsumoController">
    <children>
-      <GridPane layoutX="39.0" layoutY="128.0" prefHeight="273.0" prefWidth="796.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="60.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label text="ID Insumo: " GridPane.halignment="RIGHT" />
-            <Label text="Nombre: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label text="Descripcion: " GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-            <Label text="Cantidad: " GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-            <Label text="ID Categoria: " GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-            <TextField fx:id="txtIdInsumo" GridPane.columnIndex="1" />
-            <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextArea fx:id="txtDescripcion" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="txtCantidad" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="cmbIdCategoria" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Label text="Stock Min: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-            <Label text="Stock Max: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label text="ID Presentacion: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-            <Label text="ID Unidad: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-            <Label text="Precio Unitario: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-            <TextField fx:id="txtStockMin" GridPane.columnIndex="3" />
-            <TextField fx:id="txtStockMax" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <ComboBox fx:id="cmbIdPresentacion" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <ComboBox fx:id="cmbIdUnidad" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <TextField fx:id="txtPrecioUnitario" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-            <Label prefHeight="17.0" prefWidth="95.0" text="Disponibilidad: " GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
-            <TextField fx:id="txtDisponibilidad" GridPane.columnIndex="5" />
-            <Button fx:id="btnNuevo" mnemonicParsing="false" onAction="#limpiarCamposInsumo" text="Nuevo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-            <Button fx:id="btnActualizar" disable="true" mnemonicParsing="false" onAction="#actualizarInsumo" text="Actualizar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-            <Button fx:id="btnEliminar" disable="true" mnemonicParsing="false" onAction="#eliminarInsumo" text="Eliminar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#agregarInsumo" text="Guardar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-         </children>
-      </GridPane>
-      <ImageView fitHeight="87.0" fitWidth="443.0" layoutX="353.0" layoutY="24.0">
+      <ImageView fitHeight="161.0" fitWidth="579.0" layoutX="161.0">
          <image>
             <Image url="@../img/INSUMO.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblViewInsumo" layoutX="17.0" layoutY="398.0" prefHeight="190.0" prefWidth="892.0">
+      <TextField fx:id="txtIdInsumo" layoutX="87.0" layoutY="164.0" prefHeight="25.0" prefWidth="125.0" />
+      <TextField fx:id="txtNombre" layoutX="87.0" layoutY="206.0" prefHeight="25.0" prefWidth="125.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="84.0" layoutY="248.0" prefHeight="37.0" prefWidth="125.0" />
+      <ComboBox fx:id="cmbIdCategoria" layoutX="287.0" layoutY="164.0" prefHeight="25.0" prefWidth="125.0" />
+      <TextField fx:id="txtStockMax" layoutX="287.0" layoutY="206.0" prefHeight="25.0" prefWidth="125.0" />
+      <TextField fx:id="txtStockMin" layoutX="287.0" layoutY="251.0" prefHeight="25.0" prefWidth="125.0" />
+      <TextField fx:id="txtCantidad" layoutX="502.0" layoutY="161.0" prefHeight="25.0" prefWidth="125.0" />
+      <ComboBox fx:id="cmbIdPresentacion" layoutX="503.0" layoutY="203.0" prefHeight="25.0" prefWidth="125.0" />
+      <TextField fx:id="txtDisponibilidad" layoutX="503.0" layoutY="251.0" prefHeight="25.0" prefWidth="125.0" />
+      <ComboBox fx:id="cmbIdUnidad" layoutX="716.0" layoutY="161.0" prefHeight="25.0" prefWidth="99.0" />
+      <TextField fx:id="txtPrecioUnitario" layoutX="720.0" layoutY="203.0" prefHeight="25.0" prefWidth="85.0" />
+      <Button fx:id="btnNuevo" layoutX="268.0" layoutY="321.0" mnemonicParsing="false" onAction="#limpiarCamposInsumo" text="Nuevo" />
+      <Button fx:id="btnActualizar" disable="true" layoutX="340.0" layoutY="321.0" mnemonicParsing="false" onAction="#actualizarInsumo" text="Actualizar" />
+      <Button fx:id="btnEliminar" disable="true" layoutX="421.0" layoutY="321.0" mnemonicParsing="false" onAction="#eliminarInsumo" text="Eliminar" />
+      <Button fx:id="btnGuardar" layoutX="499.0" layoutY="321.0" mnemonicParsing="false" onAction="#agregarInsumo" text="Guardar" />
+      <TableView fx:id="tblViewInsumo" layoutX="36.0" layoutY="368.0" prefHeight="190.0" prefWidth="778.0">
         <columns>
-          <TableColumn fx:id="clmnIdInsumo" prefWidth="64.0" text="ID Insumo" />
-          <TableColumn fx:id="clmnNombre" prefWidth="58.0" text="Nombre" />
-            <TableColumn fx:id="clmnDescripcion" prefWidth="92.0" text="Descripcion" />
-            <TableColumn fx:id="clmnCantidad" prefWidth="83.0" text="Cantidad" />
-            <TableColumn fx:id="clmnIdCategoria" prefWidth="77.0" text="ID Categoria" />
-            <TableColumn fx:id="clmnStockMin" prefWidth="78.0" text="Stock Min" />
-            <TableColumn fx:id="clmnStockMax" prefWidth="78.0" text="Stock Max" />
-            <TableColumn fx:id="clmnIdPresentacion" prefWidth="98.0" text="ID Presentacion" />
-            <TableColumn fx:id="clmnIdUnidad" prefWidth="73.0" text="ID Unidad" />
-            <TableColumn fx:id="clmnPrecioUnitario" prefWidth="97.0" text="Precio Unitario" />
-            <TableColumn fx:id="clmnDisponibilidad" prefWidth="93.0" text="Disponibilidad" />
+          <TableColumn fx:id="clmnIdInsumo" prefWidth="41.0" text="ID Insumo" />
+          <TableColumn fx:id="clmnNombre" prefWidth="79.0" text="Nombre" />
+            <TableColumn fx:id="clmnDescripcion" prefWidth="115.0" text="Descripción" />
+            <TableColumn fx:id="clmnCantidad" prefWidth="56.0" text="Cantidad" />
+            <TableColumn fx:id="clmnIdCategoria" prefWidth="72.0" text="Categoria" />
+            <TableColumn fx:id="clmnStockMin" prefWidth="64.0" text="Stock Min" />
+            <TableColumn fx:id="clmnStockMax" prefWidth="66.0" text="Stock Max" />
+            <TableColumn fx:id="clmnIdPresentacion" prefWidth="82.0" text="Presentación" />
+            <TableColumn fx:id="clmnIdUnidad" prefWidth="51.0" text="Unidad" />
+            <TableColumn fx:id="clmnPrecioUnitario" prefWidth="88.0" text="Precio Unitario" />
+            <TableColumn fx:id="clmnDisponibilidad" prefWidth="64.0" text="Disponibilidad" />
         </columns>
       </TableView>
-      <ImageView fitHeight="117.0" fitWidth="332.0" layoutX="39.0">
+      <ImageView fitHeight="108.0" fitWidth="210.0" layoutX="14.0" layoutY="14.0">
          <image>
             <Image url="@../img/REFRIJULI.png" />
          </image>
       </ImageView>
+      <Label layoutX="26.0" layoutY="168.0" text="ID Insumo: " />
+      <Label layoutX="32.0" layoutY="210.0" text="Nombre: " />
+      <Label layoutX="14.0" layoutY="255.0" text="Descripcion: " />
+      <Label layoutX="444.0" layoutY="165.0" text="Cantidad: " />
+      <Label layoutX="225.0" layoutY="168.0" prefHeight="17.0" prefWidth="59.0" text="Categoria: " />
+      <Label layoutX="223.0" layoutY="210.0" text="Stock Max: " />
+      <Label layoutX="423.0" layoutY="207.0" text="Presentacion: " />
+      <Label layoutX="671.0" layoutY="165.0" text="Unidad: " />
+      <Label layoutX="635.0" layoutY="207.0" text="Precio Unitario: " />
+      <Label layoutX="225.0" layoutY="255.0" text="Stock Min: " />
+      <Label layoutX="418.0" layoutY="255.0" prefHeight="17.0" prefWidth="85.0" text="Disponibilidad: " />
    </children>
 </AnchorPane>

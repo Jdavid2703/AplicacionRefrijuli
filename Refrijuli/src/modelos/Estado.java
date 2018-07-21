@@ -25,6 +25,12 @@ public class Estado {
         this.nombreEstado = new SimpleStringProperty(Nombre);
         this.descripcion = new SimpleStringProperty(descripcion);
     }
+    
+        /**
+     * Constructor vacío para parametrizar un único valor
+     */
+    public Estado() {
+    }
 
 //GET Y SET ID ESTADO
     public Integer getIdEstado() {
@@ -89,6 +95,12 @@ public class Estado {
             e.printStackTrace();
         }
     }
+    
+       @Override
+    public String toString(){
+        return nombreEstado.get();
+    }
+
 
 //METODO GUARDAR
     public int guardarEstado(Conexion conexion) {
@@ -98,7 +110,7 @@ public class Estado {
                     + "idEstado, "
                     + "nombreEstado, "
                     + "Descripcion, "
-                    + ") VALUES (?, ?, ?)"
+                    + ") VALUES (?,  ?,  ?)"
             );
             ps.setInt(1, idEstado.get());
             ps.setString(2, nombreEstado.get());
@@ -114,14 +126,17 @@ public class Estado {
     public int actualizarEstado(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "UPDATE Estado"
-                    + "SET idEstado = ? "
-                    + "nombreEstado, "
-                    + "descripcion, "
+                    "UPDATE Estado "
+                    + "SET idEstado = ?, "
+                    + "nombreEstado = ?, "
+                    + "descripcion = ? "
                     + "WHERE idEstado = ?"
             );
 
             ps.setInt(1, idEstado.get());
+            ps.setString(2, nombreEstado.get());
+            ps.setString(3, descripcion.get());
+            ps.setInt(4, idEstado.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {

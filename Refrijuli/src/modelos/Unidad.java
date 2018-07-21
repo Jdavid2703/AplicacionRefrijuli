@@ -23,6 +23,12 @@ public class Unidad {
         this.nombreUnidad = new SimpleStringProperty(nombreUnidad);
     }
 
+            /**
+     * Constructor vacío para parametrizar un único valor
+     */
+    public Unidad() {
+    }
+    
 //GET Y SET ID UNIDAD
     public Integer getIdUnidad() {
         return idUnidad.get();
@@ -72,12 +78,17 @@ public class Unidad {
             e.printStackTrace();
         }
     }
+    
+        @Override
+    public String toString(){
+        return nombreUnidad.get();
+    }
 
 //METODO GUARDAR UNIDAD
     public int guardarUnidad(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "INSERT INTO  Unidad ( "
+                    "INSERT INTO  Unidad( "
                     + "idUnidad, "
                     + "nombreUnidad "
                     + ") VALUES (?, ?)"
@@ -96,14 +107,15 @@ public class Unidad {
     public int actualizarUnidad(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "UPDATE Unidad"
+                    "UPDATE Unidad "
                     + "SET idUnidad = ?, "
-                    + "nombreUnidad = ?, "
+                    + "nombreUnidad = ? "
                     + "WHERE idUnidad = ?"
             );
 
             ps.setInt(1, idUnidad.get());
             ps.setString(2, nombreUnidad.get());
+            ps.setInt(3, idUnidad.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {

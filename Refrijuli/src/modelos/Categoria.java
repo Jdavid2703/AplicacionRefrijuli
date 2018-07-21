@@ -25,6 +25,12 @@ public class Categoria {
         this.nombre = new SimpleStringProperty(nombre);
         this.descripcion = new SimpleStringProperty(descripcion);
     }
+    
+        /**
+     * Constructor vacío para parametrizar un único valor
+     */
+    public Categoria() {
+    }
 
 //GET Y SET ID CATEGORIA
   
@@ -75,7 +81,7 @@ public class Categoria {
                     "SELECT idCategoria, "
                     + "nombre, "
                     + "descripcion "
-                    + "FROM Categoria "
+                    + "FROM Categoria"
             );
 
             while (resultado.next()) {
@@ -90,6 +96,11 @@ public class Categoria {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    @Override
+    public String toString(){
+        return nombre.get();
     }
 
 //METODO GUARDAR 
@@ -117,9 +128,9 @@ public class Categoria {
     public int actualizarCategoria(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "UPDATE Categoria"
-                    + "SET idCategoria = ? "
-                    + "nombre = ? "
+                    "UPDATE categoria "
+                    + "SET idCategoria = ?, "
+                    + "nombre = ?, "                   
                     + "descripcion = ? "
                     + "WHERE idCategoria = ?"
             );
@@ -127,6 +138,7 @@ public class Categoria {
             ps.setInt(1, idCategoria.get());
             ps.setString(2, nombre.get());
             ps.setString(3, descripcion.get());
+            ps.setInt(4, idCategoria.get());
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -139,7 +151,7 @@ public class Categoria {
     public int eliminarCategoria(Conexion conexion) {
         try {
             PreparedStatement ps = conexion.getConnection().prepareStatement(
-                    "DELETE FROM Categoria"
+                    "DELETE FROM categoria"
                     + " WHERE idCategoria = ?"
             );
 

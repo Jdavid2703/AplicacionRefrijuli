@@ -1,6 +1,7 @@
 package vistas;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -98,6 +100,7 @@ public class InsumoController implements Initializable {
         btnActualizar.setDisable(true);
         btnEliminar.setDisable(true);
         txtIdInsumo.requestFocus();
+        txtIdInsumo.setDisable(false);
 
     }
     private Conexion conexion;
@@ -119,7 +122,7 @@ public class InsumoController implements Initializable {
                 cmbIdPresentacion.getSelectionModel().getSelectedItem(),
                 cmbIdUnidad.getSelectionModel().getSelectedItem(),
                 Integer.valueOf(txtPrecioUnitario.getText()),
-                Integer.valueOf(txtPrecioUnitario.getText()));
+                Integer.valueOf(txtDisponibilidad.getText()));
 
         conexion.establecerConexion();
         int resultado = insumo.guardarInsumo(conexion);
@@ -127,6 +130,15 @@ public class InsumoController implements Initializable {
 
         if (resultado == 1) {
             listaInsumo.add(insumo);
+            
+            Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
+			mensaje.setTitle("Registro agregado");
+			mensaje.setContentText("Registro ha sido agregado con exíto");
+			mensaje.setHeaderText("Resultado:");
+			mensaje.show();
+            
+            limpiarCamposInsumo();
+            
         }
     }
 
@@ -144,6 +156,8 @@ public class InsumoController implements Initializable {
                 cmbIdUnidad.getSelectionModel().getSelectedItem(),
                 Integer.valueOf(txtPrecioUnitario.getText()),
                 Integer.valueOf(txtPrecioUnitario.getText()));
+        
+        
 
         conexion.establecerConexion();
         int resultado = insumo.actualizarInsumo(conexion);
@@ -151,27 +165,42 @@ public class InsumoController implements Initializable {
 
         if (resultado == 1) {
             listaInsumo.set(
-                    tblViewInsumo.getSelectionModel().getSelectedIndex(),
-                    insumo
-            );
-        }
-    }
-
-    public void eliminarInsumo() {
-        conexion.establecerConexion();
-        int resultado = tblViewInsumo.getSelectionModel().getSelectedItem()
-                .eliminarInsumo((Conexion) conexion.getConnection());
-        conexion.cerrarConexion();
-
-        if (resultado == 1) {
-
-            listaInsumo.remove(tblViewInsumo.getSelectionModel().getSelectedIndex());
-
+                    tblViewInsumo.getSelectionModel().getSelectedIndex(),insumo);
+            
             Alert mensaje = new Alert(Alert.AlertType.INFORMATION);
-            mensaje.setTitle("Registro Eliminado");
-            mensaje.setContentText("Registro ha sido eliminado con exito");
+            mensaje.setTitle("Registro Actualizado");
+            mensaje.setContentText("Registro ha sido actualizado con exito");
             mensaje.setHeaderText("Resultado:");
             mensaje.show();
+            
+            limpiarCamposInsumo();
+        }
+    }
+// ELIMINAR INSUMO
+    public void eliminarInsumo() {
+        Alert cuadroDialogoConfirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        cuadroDialogoConfirmacion.setTitle("Confirmación");
+        cuadroDialogoConfirmacion.setHeaderText("Eliminar Registro");
+        cuadroDialogoConfirmacion.setContentText("¿Está Seguro de Eliminar el Registro?");
+        Optional<ButtonType> resultado = cuadroDialogoConfirmacion.showAndWait();
+        if (resultado.get() == ButtonType.OK) {
+            Insumo insumo = new Insumo();
+            insumo.setIdInsumo(Integer.valueOf(txtIdInsumo.getText()));
+            conexion.establecerConexion();
+            int r = insumo.eliminarInsumo(conexion);
+            conexion.cerrarConexion();
+
+            if (r == 1) {
+                listaInsumo.remove(tblViewInsumo.getSelectionModel().getSelectedIndex()); 
+                
+                Alert cuadroDialogo = new Alert(Alert.AlertType.INFORMATION);
+                cuadroDialogo.setContentText("Registro Eliminado con Éxito");
+                cuadroDialogo.setTitle("Registro Eliminado");
+                cuadroDialogo.setHeaderText("Resultado: ");
+                cuadroDialogo.showAndWait();
+                
+                limpiarCamposInsumo();
+            }
 
         }
 
@@ -227,7 +256,7 @@ public class InsumoController implements Initializable {
             public void changed(ObservableValue<? extends Insumo> observable, Insumo valorAnterior,
                     Insumo valorSeleccionado) {
                 if (valorSeleccionado != null) {
-                    txtIdInsumo.setText(String.valueOf(valorSeleccionado.getIdInsumo()));
+                    txtIdInsumo.setText(String.valueOf(valorSeleccionado.getIdInsumo().toString()));
                     txtNombre.setText(String.valueOf(valorSeleccionado.getNombre()));
                     txtDescripcion.setText(String.valueOf(valorSeleccionado.getDescripcion()));
                     txtCantidad.setText(String.valueOf(valorSeleccionado.getCantidad()));
@@ -243,6 +272,8 @@ public class InsumoController implements Initializable {
                     btnGuardar.setDisable(true);
                     btnEliminar.setDisable(false);
                     btnActualizar.setDisable(false);
+                    
+                    txtIdInsumo.setDisable(true);
                 }
             }
         }
